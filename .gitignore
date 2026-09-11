@@ -1,0 +1,6 @@
+cloudflared.exe
+tunnel_url.txt
+__pycache__/
+*.pyc
+daily_chart.json
+daily_releases.json

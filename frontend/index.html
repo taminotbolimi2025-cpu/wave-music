@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wave Music</title>
+  <!-- Telegram Web App SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-container">
+    
+    <!-- Header: Minimal & Elegant -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-title">Wave Music</span>
+      </div>
+      <div class="header-actions">
+        <button id="searchHeaderShortcut" class="header-icon-btn" title="Поиск">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-viewport">
+      
+      <!-- TAB 1: МОЯ ВОЛНА -->
+      <section id="tab-wave" class="tab-page active">
+        
+        <!-- Wave Section: Sleek, Minimal, Mature -->
+        <div class="wave-hero-card">
+          <div class="wave-visualizer-wrap">
+            <div class="wave-ripple" id="waveRipple1"></div>
+            <div class="wave-ripple" id="waveRipple2"></div>
+            <div class="wave-disc" id="waveOrb">
+              <div class="disc-grooves"></div>
+              <div class="disc-center">
+                <svg class="disc-play-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                <div class="sound-bars">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wave-meta">
+            <h2 class="wave-title">Моя Волна</h2>
+            <p class="wave-subtitle">Персональный музыкальный поток</p>
+          </div>
+
+          <!-- Modest Mood Chips: Clean, No Tacky Emojis -->
+          <div class="mood-chips-scroll">
+            <button class="mood-chip active" data-mood="all">Все треки</button>
+            <button class="mood-chip" data-mood="energy">Энергия</button>
+            <button class="mood-chip" data-mood="chill">Спокойствие</button>
+            <button class="mood-chip" data-mood="drive">В дорогу</button>
+            <button class="mood-chip" data-mood="dance">Ритм</button>
+            <button class="mood-chip" data-mood="romantic">Лирика</button>
+          </div>
+
+          <button id="waveStartBtn" class="btn-wave-action">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span>Слушать Волну</span>
+          </button>
+        </div>
+
+        <!-- Fresh Hits of the Day -->
+        <div class="section-block">
+          <div class="section-header">
+            <h3 class="section-title">Свежие релизы</h3>
+            <span class="section-link" id="viewAllHits">Все</span>
+          </div>
+          <div class="horizontal-cards-scroll" id="quickHitsContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Curated Playlists -->
+        <div class="section-block">
+          <div class="section-header">
+            <h3 class="section-title">Плейлисты</h3>
+          </div>
+          <div class="playlists-grid" id="playlistsContainer">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ПОИСК -->
+      <section id="tab-search" class="tab-page">
+        <div class="search-bar-wrap">
+          <svg class="search-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Поиск треков и артистов..." autocomplete="off">
+          <button id="clearSearchBtn" class="clear-search-btn" style="display: none;">&times;</button>
+        </div>
+
+        <!-- Quick Tags -->
+        <div class="search-tags-container">
+          <span class="search-tag" data-query="MiyaGi">MiyaGi</span>
+          <span class="search-tag" data-query="MACAN">MACAN</span>
+          <span class="search-tag" data-query="The Weeknd">The Weeknd</span>
+          <span class="search-tag" data-query="Xcho">Xcho</span>
+          <span class="search-tag" data-query="JONY">JONY</span>
+          <span class="search-tag" data-query="Navai">Navai</span>
+          <span class="search-tag" data-query="Eminem">Eminem</span>
+        </div>
+
+        <!-- Loader -->
+        <div id="searchLoader" class="loader-wrap" style="display: none;">
+          <div class="spinner"></div>
+          <span>Поиск по каталогу...</span>
+        </div>
+
+        <!-- Results -->
+        <div id="searchResultsList" class="track-list">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- TAB 3: ЧАРТ -->
+      <section id="tab-chart" class="tab-page">
+        <div class="chart-banner">
+          <div class="chart-banner-info">
+            <span class="chart-badge">ТОП 100</span>
+            <h2 class="chart-title">Главный чарт</h2>
+            <p class="chart-desc">Самые прослушиваемые треки дня</p>
+          </div>
+          <button id="playChartBtn" class="chart-play-fab">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+
+        <div id="chartList" class="track-list chart-track-list">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- TAB 4: КОЛЛЕКЦИЯ -->
+      <section id="tab-library" class="tab-page">
+        <div class="library-header">
+          <h2 class="section-title">Коллекция</h2>
+          <span id="favCountBadge" class="badge-count">0 треков</span>
+        </div>
+
+        <div class="library-filter-tabs">
+          <button class="lib-tab active" data-filter="favorites">Любимое</button>
+          <button class="lib-tab" data-filter="recent">История</button>
+        </div>
+
+        <div id="libraryList" class="track-list">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div id="emptyLibraryNotice" class="empty-state" style="display: none;">
+          <div class="empty-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <h3>Список пуст</h3>
+          <p>Нажмите на значок сердечка в плеере, чтобы сохранить понравившийся трек.</p>
+          <button class="btn-secondary" id="goToWaveBtn">Слушать Волну</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- STICKY MINI PLAYER BAR -->
+    <div id="miniPlayer" class="mini-player" style="display: none;">
+      <div class="mini-progress-line" id="miniProgressLine"></div>
+      <div class="mini-player-content" id="miniPlayerOpenArea">
+        <div class="mini-cover-wrap">
+          <img id="miniCover" src="" alt="Cover">
+        </div>
+        <div class="mini-track-info">
+          <div id="miniTitle" class="mini-title">Трек</div>
+          <div id="miniArtist" class="mini-artist">Исполнитель</div>
+        </div>
+      </div>
+      <div class="mini-controls">
+        <button id="miniLikeBtn" class="control-btn like-btn" title="В избранное">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+        <button id="miniPlayBtn" class="control-btn play-circle-btn">
+          <svg id="miniPlayIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+        <button id="miniNextBtn" class="control-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polygon points="5 4 15 12 5 20 5 4"></polygon>
+            <line x1="19" y1="5" x2="19" y2="19"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FULLSCREEN PLAYER MODAL -->
+    <div id="fullPlayerModal" class="full-player-modal">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-content">
+        
+        <div class="player-top-bar">
+          <button id="closeFullPlayerBtn" class="icon-btn close-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="player-header-title">
+            <span class="now-playing-sub">СЕЙЧАС ИГРАЕТ</span>
+            <span id="playerSourceLabel" class="source-label">Моя Волна</span>
+          </div>
+          <button id="fullLikeBtn" class="icon-btn like-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Cover Art -->
+        <div class="full-cover-container">
+          <div class="cover-halo" id="coverHalo"></div>
+          <img id="fullCover" class="full-cover-img" src="" alt="Album Cover">
+        </div>
+
+        <!-- Meta -->
+        <div class="full-track-meta">
+          <h1 id="fullTitle" class="full-title">Название</h1>
+          <h3 id="fullArtist" class="full-artist">Исполнитель</h3>
+        </div>
+
+        <!-- Progress Scrubber -->
+        <div class="progress-container">
+          <div class="progress-bar-wrapper" id="progressBarWrapper">
+            <div class="progress-fill" id="progressFill"></div>
+            <div class="progress-handle" id="progressHandle"></div>
+          </div>
+          <div class="time-row">
+            <span id="currentTime">0:00</span>
+            <span id="totalDuration">0:00</span>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="main-controls-row">
+          <button id="shuffleBtn" class="control-btn sub-control" title="Случайный порядок">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="16 3 21 3 21 8"></polyline>
+              <line x1="4" y1="20" x2="21" y2="3"></line>
+              <polyline points="21 16 21 21 16 21"></polyline>
+              <line x1="15" y1="15" x2="21" y2="21"></line>
+              <line x1="4" y1="4" x2="9" y2="9"></line>
+            </svg>
+          </button>
+
+          <button id="prevBtn" class="control-btn" title="Предыдущий">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+            </svg>
+          </button>
+
+          <button id="fullPlayBtn" class="main-play-btn" title="Воспроизведение">
+            <svg id="fullPlayIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </button>
+
+          <button id="nextBtn" class="control-btn" title="Следующий">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+            </svg>
+          </button>
+
+          <button id="repeatBtn" class="control-btn sub-control" title="Повтор">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Background Play & Download -->
+        <div class="pro-features-strip">
+          <button id="sendToChatBtn" class="pro-action-btn" title="Слушать в фоне">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+            </svg>
+            <span>В фон Telegram</span>
+          </button>
+
+          <button id="downloadMp3Btn" class="pro-action-btn" title="Скачать">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Скачать MP3</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Navigation: Clean & Modest -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-target="tab-wave">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M2 12h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H2v-6z"></path>
+          <path d="M22 12h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v-6z"></path>
+          <path d="M12 2v20"></path>
+          <path d="M7 7v10"></path>
+          <path d="M17 7v10"></path>
+        </svg>
+        <span>Волна</span>
+      </button>
+
+      <button class="nav-item" data-target="tab-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span>Поиск</span>
+      </button>
+
+      <button class="nav-item" data-target="tab-chart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <line x1="18" y1="20" x2="18" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="6" y1="20" x2="6" y2="14"></line>
+        </svg>
+        <span>Чарт</span>
+      </button>
+
+      <button class="nav-item" data-target="tab-library">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>Коллекция</span>
+      </button>
+    </nav>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer" preload="auto"></audio>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-popup"></div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
