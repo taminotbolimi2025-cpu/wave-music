@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!streamId || streamId.startsWith('track_')) {
       streamId = `${track.artist} ${track.title}`;
     }
+    showToast(`▶ ${track.artist} — ${track.title}`, 2000);
     const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}`;
     audio.src = streamUrl;
     audio.play().then(() => {
@@ -498,8 +499,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // Click row to play
-      item.querySelector('.track-item-left').addEventListener('click', () => {
+      // Click anywhere on row to play (excluding like button)
+      item.addEventListener('click', (e) => {
+        if (e.target.closest('.like-btn')) return;
         triggerHaptic();
         state.queue = [...tracks];
         state.queueIndex = index;

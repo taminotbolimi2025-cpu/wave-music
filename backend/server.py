@@ -69,8 +69,48 @@ async def api_stream(request):
         return web.Response(status=400, text='Missing id parameter')
     
     stream_url = music_service.get_stream_url(vid_id)
-    # Redirect directly to high-speed CDN audio stream
-    return web.HTTPFound(location=stream_url)
+    if not stream_url:
+        return web.Response(status=404, text='Track not found')
+    
+    # Proxy audio stream directly through the server so YouTube IP restrictions don't block the mobile client
+    headers = {}
+    range_header = request.headers.get('Range')
+    if range_header:
+        headers['Range'] = range_header
+    
+    client_timeout = aiohttp.ClientTimeout(total=None, sock_read=60, sock_connect=10)
+    try:
+        session = aiohttp.ClientSession(timeout=client_timeout)
+        upstream = await session.get(stream_url, headers=headers)
+        
+        res_headers = {
+            'Content-Type': upstream.headers.get('Content-Type', 'audio/webm'),
+            'Accept-Ranges': 'bytes',
+            'Cache-Control': 'public, max-age=3600',
+            'Access-Control-Allow-Origin': '*'
+        }
+        if 'Content-Range' in upstream.headers:
+            res_headers['Content-Range'] = upstream.headers['Content-Range']
+        if 'Content-Length' in upstream.headers:
+            res_headers['Content-Length'] = upstream.headers['Content-Length']
+            
+        response = web.StreamResponse(status=upstream.status, headers=res_headers)
+        await response.prepare(request)
+        
+        try:
+            async for chunk in upstream.content.iter_chunked(64 * 1024):
+                await response.write(chunk)
+        except (asyncio.CancelledError, ConnectionResetError):
+            pass
+        finally:
+            await response.write_eof()
+            upstream.close()
+            await session.close()
+            
+        return response
+    except Exception as ex:
+        logger.error(f"Stream proxy error for {vid_id}: {ex}")
+        return web.Response(status=500, text=f"Streaming error: {ex}")
 
 
 async def api_send_to_chat(request):
