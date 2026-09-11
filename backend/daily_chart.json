@@ -1,5 +1,5 @@
 {
-  "updated_at": 1789135446.3326313,
+  "updated_at": 1789135471.8210726,
   "tracks": [
     {
       "id": "mUll6jirang",
@@ -50,14 +50,6 @@
       "streamUrl": "/api/stream?id=-idrqmXAHZw"
     },
     {
-      "id": "2O4rrhdNShA",
-      "title": "Музыка 2026: хиты и трендовые ремиксы🔥🎧| Remix+Covers 2026 /Zr Veep Optmos",
-      "artist": "Zr Veep Optmos",
-      "cover": "https://i.ytimg.com/vi/2O4rrhdNShA/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLB-aHxU6VEQk77AKjM-rMw9_LPayA",
-      "duration": "19:25",
-      "streamUrl": "/api/stream?id=2O4rrhdNShA"
-    },
-    {
       "id": "2Sy2zj53Plo",
       "title": "ХИТЫ 2026🎉Музыка в тренде 2026🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥Лучшие песни 2026 🔥Новинки 2026 Музыки",
       "artist": "UX MUSIC",
@@ -98,12 +90,12 @@
       "streamUrl": "/api/stream?id=WBy8ETk_Fqs"
     },
     {
-      "id": "UY9K9GnpnC8",
-      "title": "ХИТЫ КАЗАХСТАНА ИЮНЬ 2026 🇰🇿 | Лучшие казахстанские песни",
-      "artist": "TURAN MEDIA",
-      "cover": "https://i.ytimg.com/vi/UY9K9GnpnC8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCDZOUYqqvz1zMqab6j__8Gi7IRRQ",
-      "duration": "27:55",
-      "streamUrl": "/api/stream?id=UY9K9GnpnC8"
+      "id": "ZWw9e857yYs",
+      "title": "Шадэ, Jony, Мальборо, Zivert, MiyaGi, MOT | ХИТЫ 2026 #всехиты2026 #хиты2026 #трендовыепесни #топ",
+      "artist": "The Nicklaus",
+      "cover": "https://i.ytimg.com/vi/ZWw9e857yYs/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCgI2PasWC3uBR8pxBKxB6fMg2YDA",
+      "duration": "65:43",
+      "streamUrl": "/api/stream?id=ZWw9e857yYs"
     },
     {
       "id": "cD6XHYsuBzA",
@@ -114,12 +106,20 @@
       "streamUrl": "/api/stream?id=cD6XHYsuBzA"
     },
     {
-      "id": "ZWw9e857yYs",
-      "title": "Шадэ, Jony, Мальборо, Zivert, MiyaGi, MOT | ХИТЫ 2026 #всехиты2026 #хиты2026 #трендовыепесни #топ",
-      "artist": "The Nicklaus",
-      "cover": "https://i.ytimg.com/vi/ZWw9e857yYs/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCgI2PasWC3uBR8pxBKxB6fMg2YDA",
-      "duration": "65:43",
-      "streamUrl": "/api/stream?id=ZWw9e857yYs"
+      "id": "UY9K9GnpnC8",
+      "title": "ХИТЫ КАЗАХСТАНА ИЮНЬ 2026 🇰🇿 | Лучшие казахстанские песни",
+      "artist": "TURAN MEDIA",
+      "cover": "https://i.ytimg.com/vi/UY9K9GnpnC8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCDZOUYqqvz1zMqab6j__8Gi7IRRQ",
+      "duration": "27:55",
+      "streamUrl": "/api/stream?id=UY9K9GnpnC8"
+    },
+    {
+      "id": "Lc59n6HW-sQ",
+      "title": "ХИТЫ 2026🎉Музыка в тренде 2026🔥СЛУШАТЬ МУЗЫКУ 2026 НОВИНКИ🔥СЛУШАТЬ ЛУЧШЕЕ 2026 🔥Новинки 2026 Музыки",
+      "artist": "Russian Best Mix",
+      "cover": "https://i.ytimg.com/vi/Lc59n6HW-sQ/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhbIGUoRzAP&rs=AOn4CLAveBA0LfGhjTbAGMTQzKCMTK-sQw",
+      "duration": "63:13",
+      "streamUrl": "/api/stream?id=Lc59n6HW-sQ"
     }
   ]
 }
