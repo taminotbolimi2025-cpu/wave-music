@@ -9,7 +9,7 @@ echo.
 echo Сейчас откроется окно авторизации GitHub в браузере.
 echo Нажмите "Sign in with your browser" и разрешите доступ.
 echo.
-git push -u origin main
+git push --force -u origin main
 echo.
 if %errorlevel% equ 0 (
     echo ======================================================
