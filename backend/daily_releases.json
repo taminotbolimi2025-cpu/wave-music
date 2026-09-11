@@ -1,29 +1,13 @@
 {
-  "updated_at": 1789134666.615981,
+  "updated_at": 1789135448.1117227,
   "tracks": [
     {
-      "id": "V_JoG_Q9Y_4",
-      "title": "Не звони | Премьера 2026",
-      "artist": "NILETTO",
-      "cover": "https://i.ytimg.com/vi/V_JoG_Q9Y_4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCp7K6EoHhN0oxbZSTm0ENDXgYnIA",
-      "duration": "9:02",
-      "streamUrl": "/api/stream?id=V_JoG_Q9Y_4"
-    },
-    {
-      "id": "pVZWgldPPEk",
-      "title": "Be Silent | Premiere 2026",
-      "artist": "Miyagi & Zivert",
-      "cover": "https://i.ytimg.com/vi/pVZWgldPPEk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD1gbJqY0L0IHi235JU1jq1Pky48Q",
-      "duration": "8:47",
-      "streamUrl": "/api/stream?id=pVZWgldPPEk"
-    },
-    {
-      "id": "xKpFhtatd9o",
-      "title": "🔥СБОРНИК В ДОРОГУ 2026 • Слушай в одиночестве | Atmospheric Deep House | Remix & Cover 2026",
-      "artist": "2K Music",
-      "cover": "https://i.ytimg.com/vi/xKpFhtatd9o/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB10LMUww4dfOXyWgrFvzDFawIS2w",
-      "duration": "88:58",
-      "streamUrl": "/api/stream?id=xKpFhtatd9o"
+      "id": "JLQLc7A56e4",
+      "title": "KARMA (CLIP PREMIERE 2026)",
+      "artist": "EGOR KREED & ARTIK & ASTI",
+      "cover": "https://i.ytimg.com/vi/JLQLc7A56e4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDw_OfvxCrcWtohxXzLFjfCm_YzPA",
+      "duration": "2:59",
+      "streamUrl": "/api/stream?id=JLQLc7A56e4"
     },
     {
       "id": "mUll6jirang",
@@ -34,44 +18,84 @@
       "streamUrl": "/api/stream?id=mUll6jirang"
     },
     {
-      "id": "qEK2V0ykYHA",
-      "title": "Песни для танца 2026🔥🔥",
-      "artist": "gulmusic ",
-      "cover": "https://i.ytimg.com/vi/qEK2V0ykYHA/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAArQFigIMCAAQARhHIE8oZTAP&rs=AOn4CLDNGYst7SOhIlNkC8UiQNqs5-m8Cw",
-      "duration": "14:40",
-      "streamUrl": "/api/stream?id=qEK2V0ykYHA"
+      "id": "vSA7yMrTETg",
+      "title": "Peshta / Хамдам Собиров - Пешта / Video Klip",
+      "artist": "Xamdam Sobirov",
+      "cover": "https://i.ytimg.com/vi/vSA7yMrTETg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLApNDiEkGB7YDGJFzxh-1xBSeEq1A",
+      "duration": "3:01",
+      "streamUrl": "/api/stream?id=vSA7yMrTETg"
     },
     {
-      "id": "LXbNepqWtcg",
-      "title": "Музыка в машину 2026: хиты и трендовые ремиксы 🔥🎧 Remix+Covers 2026 | WINRIX Deep Music #хиты2026",
-      "artist": "WINRIX Deep Music",
-      "cover": "https://i.ytimg.com/vi/LXbNepqWtcg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDsNHPul5JnsbSIB3qkEV8fzks01Q",
-      "duration": "119:57",
-      "streamUrl": "/api/stream?id=LXbNepqWtcg"
+      "id": "okjClZsBjyE",
+      "title": "GAZ",
+      "artist": "Zivert",
+      "cover": "https://i.ytimg.com/vi/okjClZsBjyE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAazCvIOkKFZujk3RqMNE8Vpmc9Cg",
+      "duration": "3:05",
+      "streamUrl": "/api/stream?id=okjClZsBjyE"
     },
     {
-      "id": "fvU8b5bkd_o",
-      "title": "Top 10 Car Music 2026🔥 BADABUM, Bones, Lollipop, JAGUAR, 2 Pac | Music Playlist #105 (FR MUSIC)",
-      "artist": "FR MUSIC",
-      "cover": "https://i.ytimg.com/vi/fvU8b5bkd_o/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDa_7SLZsZ2tQQgFGJbyOrPxRHg7g",
-      "duration": "16:16",
-      "streamUrl": "/api/stream?id=fvU8b5bkd_o"
+      "id": "o4xKE7z8_3c",
+      "title": "Avtobus",
+      "artist": "Sevinch Ismoilova",
+      "cover": "https://i.ytimg.com/vi/o4xKE7z8_3c/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCOP8EWq5uTF0CTXSp2bT8UmPhtwA",
+      "duration": "3:25",
+      "streamUrl": "/api/stream?id=o4xKE7z8_3c"
     },
     {
-      "id": "2uOzs4y52Rg",
-      "title": "Мама, я влюбилась | Премьера 2026",
-      "artist": "ANIVAR",
-      "cover": "https://i.ytimg.com/vi/2uOzs4y52Rg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC_z6EVcQvoTExjSN_C63UCKcj2uw",
-      "duration": "9:16",
-      "streamUrl": "/api/stream?id=2uOzs4y52Rg"
+      "id": "Sjtmtd_DEKQ",
+      "title": "Больше, чем ближе",
+      "artist": "NAVAI",
+      "cover": "https://i.ytimg.com/vi/Sjtmtd_DEKQ/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIFcoPDAP&rs=AOn4CLA8W6gGqKn0k_XyVU18ubu4kQjNLA",
+      "duration": "3:37",
+      "streamUrl": "/api/stream?id=Sjtmtd_DEKQ"
     },
     {
-      "id": "seEZ4-95u0E",
-      "title": "Топ Треки для Машины 2026 🏎️🎶 Deep Hip-Hop & Night Drive",
-      "artist": "INFINITY MIX",
-      "cover": "https://i.ytimg.com/vi/seEZ4-95u0E/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhDIGEoZTAP&rs=AOn4CLBENQKDcuAicHuZSUVmeIeY45y0Ig",
-      "duration": "23:04",
-      "streamUrl": "/api/stream?id=seEZ4-95u0E"
+      "id": "8BrFQMR8yns",
+      "title": "Кайфовая",
+      "artist": "VORSKIY, GG brodyaga",
+      "cover": "https://i.ytimg.com/vi/8BrFQMR8yns/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDWb2XNz8gIkpeu34_alH8_urFUQw",
+      "duration": "2:19",
+      "streamUrl": "/api/stream?id=8BrFQMR8yns"
+    },
+    {
+      "id": "P1ShGh9cam4",
+      "title": "Jambul – Franklin (Track Premiere 2026)",
+      "artist": "Jambul",
+      "cover": "https://i.ytimg.com/vi/P1ShGh9cam4/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIF0oVTAP&rs=AOn4CLAGjPAA4pIFucXzzxLReub2G9wWYw",
+      "duration": "2:52",
+      "streamUrl": "/api/stream?id=P1ShGh9cam4"
+    },
+    {
+      "id": "5Twx6fiAkKs",
+      "title": "Летний бал",
+      "artist": "Ленинград",
+      "cover": "https://i.ytimg.com/vi/5Twx6fiAkKs/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCxqWxcZeAxGJcTgkug9cEyCC0AOw",
+      "duration": "7:52",
+      "streamUrl": "/api/stream?id=5Twx6fiAkKs"
+    },
+    {
+      "id": "CC-wAFFVzzE",
+      "title": "Дил поралар",
+      "artist": "Райхон",
+      "cover": "https://i.ytimg.com/vi/CC-wAFFVzzE/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDlm0FikBnbNmfbS9eWVPL3x5Lpzg",
+      "duration": "3:34",
+      "streamUrl": "/api/stream?id=CC-wAFFVzzE"
+    },
+    {
+      "id": "ZoVcKf16Gbk",
+      "title": "Намёк на нас",
+      "artist": "МОТ",
+      "cover": "https://i.ytimg.com/vi/ZoVcKf16Gbk/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhyIF0oQjAP&rs=AOn4CLAoTKqpfBT-I9DUtEKHFg4tqeEm0Q",
+      "duration": "2:49",
+      "streamUrl": "/api/stream?id=ZoVcKf16Gbk"
+    },
+    {
+      "id": "U8VIlfvlYhM",
+      "title": "Мальборо | Deep House Remix 2026",
+      "artist": "SAYAN",
+      "cover": "https://i.ytimg.com/vi/U8VIlfvlYhM/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBdRDfevHDRl6fsTdyf2w-7_7XZiw",
+      "duration": "6:00",
+      "streamUrl": "/api/stream?id=U8VIlfvlYhM"
     },
     {
       "id": "cgjGt_o8bio",
@@ -82,44 +106,20 @@
       "streamUrl": "/api/stream?id=cgjGt_o8bio"
     },
     {
-      "id": "2O4rrhdNShA",
-      "title": "Музыка 2026: хиты и трендовые ремиксы🔥🎧| Remix+Covers 2026 /Zr Veep Optmos",
-      "artist": "Zr Veep Optmos",
-      "cover": "https://i.ytimg.com/vi/2O4rrhdNShA/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLB-aHxU6VEQk77AKjM-rMw9_LPayA",
-      "duration": "19:25",
-      "streamUrl": "/api/stream?id=2O4rrhdNShA"
+      "id": "z5saG7eB-zg",
+      "title": "Неземная",
+      "artist": "Alex Lim, Игорь Крутой",
+      "cover": "https://i.ytimg.com/vi/z5saG7eB-zg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA01QFbkXe_UFvRWEFW6YZi2jnoFw",
+      "duration": "3:54",
+      "streamUrl": "/api/stream?id=z5saG7eB-zg"
     },
     {
-      "id": "QgRO7SgPmsA",
-      "title": "самые лучшие треки из тик ток / 2026 / remix / speed up",
-      "artist": "ChaseReed",
-      "cover": "https://i.ytimg.com/vi/QgRO7SgPmsA/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhyIEcoTzAP&rs=AOn4CLDwiVa421293gnXT_iqxjMyvEa9dg",
-      "duration": "23:54",
-      "streamUrl": "/api/stream?id=QgRO7SgPmsA"
-    },
-    {
-      "id": "WdhHrVjFEpQ",
-      "title": "СБОРНИК ПЕСНИ 2026 🔥 Русский Dance Mix | Лучшие Хиты для Настроения",
-      "artist": "ХИТЫ Russian Music",
-      "cover": "https://i.ytimg.com/vi/WdhHrVjFEpQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB3nc9SLaYPBSzjgr3Sfwi8rNQjXg",
-      "duration": "66:23",
-      "streamUrl": "/api/stream?id=WdhHrVjFEpQ"
-    },
-    {
-      "id": "84W-7eIx7j8",
-      "title": "Музыка 2026: хиты и трендовые ремиксы🔥🎧| Remix+Covers 2026 /Pulse Empire",
-      "artist": "PULSE EMPIRE",
-      "cover": "https://i.ytimg.com/vi/84W-7eIx7j8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB0wqOgdtwpDMhpNw_rGf53ZshVjw",
-      "duration": "24:25",
-      "streamUrl": "/api/stream?id=84W-7eIx7j8"
-    },
-    {
-      "id": "6jaht82rURI",
-      "title": "Где тебя искать🎧  | Trend Music 2026",
-      "artist": "Jakone",
-      "cover": "https://i.ytimg.com/vi/6jaht82rURI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBFHL08wWcDXHYWK0LKPK5u5gjLgg",
-      "duration": "7:59",
-      "streamUrl": "/api/stream?id=6jaht82rURI"
+      "id": "Hf4Ng5aror4",
+      "title": "Эркам",
+      "artist": "Жалолиддин Ахмадалиев",
+      "cover": "https://i.ytimg.com/vi/Hf4Ng5aror4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgRcpSyuxjzCkW7eL0NXiAHtNwgw",
+      "duration": "5:02",
+      "streamUrl": "/api/stream?id=Hf4Ng5aror4"
     }
   ]
 }

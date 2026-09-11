@@ -1,5 +1,5 @@
 {
-  "updated_at": 1789134664.9810665,
+  "updated_at": 1789135446.3326313,
   "tracks": [
     {
       "id": "mUll6jirang",
@@ -34,14 +34,6 @@
       "streamUrl": "/api/stream?id=YvcUBRIq0AQ"
     },
     {
-      "id": "-idrqmXAHZw",
-      "title": "🔥Топ ГЛАВНЫХ ХИТОВ 2026🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥ПОПУЛЯРНЫЕ Хиты 2026 🔥Кайфовые Хиты🔥Top Remix 2026",
-      "artist": "MIRA MUSIC",
-      "cover": "https://i.ytimg.com/vi/-idrqmXAHZw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBv5lSAbSczjLWTM3RCCv-WT-kM1g",
-      "duration": "45:41",
-      "streamUrl": "/api/stream?id=-idrqmXAHZw"
-    },
-    {
       "id": "SgGmnERiEik",
       "title": "ХИТЫ 2026🎉Музыка в тренде 2026🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥ТАНЦЕВАЛЬНАЯ МУЗЫКА 2026 🔥Новинки 2026 Музыки",
       "artist": "Russian Best Mix",
@@ -50,44 +42,12 @@
       "streamUrl": "/api/stream?id=SgGmnERiEik"
     },
     {
-      "id": "WBy8ETk_Fqs",
-      "title": "Spotify Pop Hits 2026 ♫ Lady Gaga, Bruno Mars, Ed Sheeran, Billie Eilish, Miley Cyrus, Tate McRae#13",
-      "artist": "Slow Acoustic and Sound View",
-      "cover": "https://i.ytimg.com/vi/WBy8ETk_Fqs/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDwJ7wsqxE9posydNJE35bKAz1x3w",
-      "duration": "120:25",
-      "streamUrl": "/api/stream?id=WBy8ETk_Fqs"
-    },
-    {
-      "id": "GQ5xXQYSzC4",
-      "title": "🔥КАЙФОВЫЕ ХИТЫ🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥ПОПУЛЯРНЫЕ Хиты 2026 🔥Топ ГЛАВНЫХ ХИТОВ 2026🔥Top Remix 2026",
-      "artist": "Midnight Stoner",
-      "cover": "https://i.ytimg.com/vi/GQ5xXQYSzC4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_NvjAAtUzCFo8mnUePJ5XkOMUUw",
-      "duration": "48:07",
-      "streamUrl": "/api/stream?id=GQ5xXQYSzC4"
-    },
-    {
-      "id": "2Sy2zj53Plo",
-      "title": "ХИТЫ 2026🎉Музыка в тренде 2026🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥Лучшие песни 2026 🔥Новинки 2026 Музыки",
-      "artist": "UX MUSIC",
-      "cover": "https://i.ytimg.com/vi/2Sy2zj53Plo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBkZf387o8zqKk3oVyKFUM2TUTCPw",
-      "duration": "63:42",
-      "streamUrl": "/api/stream?id=2Sy2zj53Plo"
-    },
-    {
-      "id": "U8VIlfvlYhM",
-      "title": "Мальборо | Deep House Remix 2026",
-      "artist": "SAYAN",
-      "cover": "https://i.ytimg.com/vi/U8VIlfvlYhM/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBdRDfevHDRl6fsTdyf2w-7_7XZiw",
-      "duration": "6:00",
-      "streamUrl": "/api/stream?id=U8VIlfvlYhM"
-    },
-    {
-      "id": "JLQLc7A56e4",
-      "title": "KARMA (CLIP PREMIERE 2026)",
-      "artist": "EGOR KREED & ARTIK & ASTI",
-      "cover": "https://i.ytimg.com/vi/JLQLc7A56e4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDw_OfvxCrcWtohxXzLFjfCm_YzPA",
-      "duration": "2:59",
-      "streamUrl": "/api/stream?id=JLQLc7A56e4"
+      "id": "-idrqmXAHZw",
+      "title": "🔥Топ ГЛАВНЫХ ХИТОВ 2026🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥ПОПУЛЯРНЫЕ Хиты 2026 🔥Кайфовые Хиты🔥Top Remix 2026",
+      "artist": "MIRA MUSIC",
+      "cover": "https://i.ytimg.com/vi/-idrqmXAHZw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBv5lSAbSczjLWTM3RCCv-WT-kM1g",
+      "duration": "45:41",
+      "streamUrl": "/api/stream?id=-idrqmXAHZw"
     },
     {
       "id": "2O4rrhdNShA",
@@ -98,6 +58,30 @@
       "streamUrl": "/api/stream?id=2O4rrhdNShA"
     },
     {
+      "id": "2Sy2zj53Plo",
+      "title": "ХИТЫ 2026🎉Музыка в тренде 2026🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥Лучшие песни 2026 🔥Новинки 2026 Музыки",
+      "artist": "UX MUSIC",
+      "cover": "https://i.ytimg.com/vi/2Sy2zj53Plo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBkZf387o8zqKk3oVyKFUM2TUTCPw",
+      "duration": "63:42",
+      "streamUrl": "/api/stream?id=2Sy2zj53Plo"
+    },
+    {
+      "id": "QgRO7SgPmsA",
+      "title": "самые лучшие треки из тик ток / 2026 / remix / speed up",
+      "artist": "ChaseReed",
+      "cover": "https://i.ytimg.com/vi/QgRO7SgPmsA/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhyIEcoTzAP&rs=AOn4CLDwiVa421293gnXT_iqxjMyvEa9dg",
+      "duration": "23:54",
+      "streamUrl": "/api/stream?id=QgRO7SgPmsA"
+    },
+    {
+      "id": "GQ5xXQYSzC4",
+      "title": "🔥КАЙФОВЫЕ ХИТЫ🔥САМЫЕ ЛУЧШИЕ ПЕСНИ 2026🔥ПОПУЛЯРНЫЕ Хиты 2026 🔥Топ ГЛАВНЫХ ХИТОВ 2026🔥Top Remix 2026",
+      "artist": "Midnight Stoner",
+      "cover": "https://i.ytimg.com/vi/GQ5xXQYSzC4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_NvjAAtUzCFo8mnUePJ5XkOMUUw",
+      "duration": "48:07",
+      "streamUrl": "/api/stream?id=GQ5xXQYSzC4"
+    },
+    {
       "id": "TSXLzJqoqGI",
       "title": "VIP PLAYLIST  | хит 2026🔥🔥🔥 | ЭКСПОНАТ | МАЛЬБОРО",
       "artist": "FACTОРИУМ",
@@ -106,20 +90,36 @@
       "streamUrl": "/api/stream?id=TSXLzJqoqGI"
     },
     {
-      "id": "LXbNepqWtcg",
-      "title": "Музыка в машину 2026: хиты и трендовые ремиксы 🔥🎧 Remix+Covers 2026 | WINRIX Deep Music #хиты2026",
-      "artist": "WINRIX Deep Music",
-      "cover": "https://i.ytimg.com/vi/LXbNepqWtcg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDsNHPul5JnsbSIB3qkEV8fzks01Q",
-      "duration": "119:57",
-      "streamUrl": "/api/stream?id=LXbNepqWtcg"
+      "id": "WBy8ETk_Fqs",
+      "title": "Spotify Pop Hits 2026 ♫ Lady Gaga, Bruno Mars, Ed Sheeran, Billie Eilish, Miley Cyrus, Tate McRae#13",
+      "artist": "Slow Acoustic and Sound View",
+      "cover": "https://i.ytimg.com/vi/WBy8ETk_Fqs/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDwJ7wsqxE9posydNJE35bKAz1x3w",
+      "duration": "120:25",
+      "streamUrl": "/api/stream?id=WBy8ETk_Fqs"
     },
     {
-      "id": "Lc59n6HW-sQ",
-      "title": "ХИТЫ 2026🎉Музыка в тренде 2026🔥СЛУШАТЬ МУЗЫКУ 2026 НОВИНКИ🔥СЛУШАТЬ ЛУЧШЕЕ 2026 🔥Новинки 2026 Музыки",
-      "artist": "Russian Best Mix",
-      "cover": "https://i.ytimg.com/vi/Lc59n6HW-sQ/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhbIGUoRzAP&rs=AOn4CLAveBA0LfGhjTbAGMTQzKCMTK-sQw",
-      "duration": "63:13",
-      "streamUrl": "/api/stream?id=Lc59n6HW-sQ"
+      "id": "UY9K9GnpnC8",
+      "title": "ХИТЫ КАЗАХСТАНА ИЮНЬ 2026 🇰🇿 | Лучшие казахстанские песни",
+      "artist": "TURAN MEDIA",
+      "cover": "https://i.ytimg.com/vi/UY9K9GnpnC8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCDZOUYqqvz1zMqab6j__8Gi7IRRQ",
+      "duration": "27:55",
+      "streamUrl": "/api/stream?id=UY9K9GnpnC8"
+    },
+    {
+      "id": "cD6XHYsuBzA",
+      "title": "Самые лучшие TikTok треки 2026",
+      "artist": "BekaaSounds ",
+      "cover": "https://i.ytimg.com/vi/cD6XHYsuBzA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDZy7mnyxwTLdd3SIJhs4SY89B78w",
+      "duration": "23:54",
+      "streamUrl": "/api/stream?id=cD6XHYsuBzA"
+    },
+    {
+      "id": "ZWw9e857yYs",
+      "title": "Шадэ, Jony, Мальборо, Zivert, MiyaGi, MOT | ХИТЫ 2026 #всехиты2026 #хиты2026 #трендовыепесни #топ",
+      "artist": "The Nicklaus",
+      "cover": "https://i.ytimg.com/vi/ZWw9e857yYs/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCgI2PasWC3uBR8pxBKxB6fMg2YDA",
+      "duration": "65:43",
+      "streamUrl": "/api/stream?id=ZWw9e857yYs"
     }
   ]
 }
