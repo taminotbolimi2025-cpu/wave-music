@@ -52,6 +52,63 @@ def get_webapp_keyboard():
     return markup
 
 
+def _send_track_to_chat(chat_id, track, status_msg_id=None):
+    title = track.get('title', 'Трек')
+    artist = track.get('artist', 'Wave Music')
+    track_id = track.get('id', '')
+    duration_sec = track.get('duration_sec', 0)
+
+    audio_file = music_service.download_track_audio(track_id or f"{artist} {title}")
+    if audio_file and os.path.exists(audio_file):
+        try:
+            caption = (
+                f"🎵 <b>{html.escape(artist)} — {html.escape(title)}</b>\n\n"
+                f"🎧 <a href='{get_current_url()}'>Открыть в Wave Music</a>"
+            )
+            with open(audio_file, "rb") as f:
+                bot.send_audio(
+                    chat_id=chat_id,
+                    audio=f,
+                    title=title,
+                    performer=artist,
+                    duration=duration_sec,
+                    caption=caption,
+                    parse_mode="HTML",
+                    reply_markup=get_webapp_keyboard()
+                )
+            if status_msg_id:
+                try:
+                    bot.delete_message(chat_id=chat_id, message_id=status_msg_id)
+                except Exception:
+                    pass
+            return True
+        finally:
+            try:
+                os.remove(audio_file)
+            except Exception:
+                pass
+    else:
+        text = (
+            f"🎵 <b>{html.escape(artist)} — {html.escape(title)}</b>\n"
+            f"⏱ Длительность: {track.get('duration', '3:00')}\n\n"
+            f"🎧 Нажмите кнопку ниже, чтобы слушать в плеере:"
+        )
+        if status_msg_id:
+            try:
+                bot.edit_message_text(
+                    chat_id=chat_id,
+                    message_id=status_msg_id,
+                    text=text,
+                    reply_markup=get_webapp_keyboard(),
+                    parse_mode="HTML"
+                )
+            except Exception:
+                bot.send_message(chat_id, text, reply_markup=get_webapp_keyboard(), parse_mode="HTML")
+        else:
+            bot.send_message(chat_id, text, reply_markup=get_webapp_keyboard(), parse_mode="HTML")
+        return False
+
+
 @bot.message_handler(commands=['myid', 'id'])
 def handle_myid(message):
     user_id = message.from_user.id
@@ -76,7 +133,7 @@ def handle_myid(message):
     )
 
 
-@bot.message_handler(commands=['start', 'help'])
+@bot.message_handler(commands=['start'])
 def handle_start(message):
     user_id = message.from_user.id
     user_name = html.escape(message.from_user.first_name or "друг")
@@ -84,7 +141,6 @@ def handle_start(message):
 
     # Check permission
     if not access_control.is_allowed(user_id):
-        # Reset menu button for unauthorized user to default
         try:
             bot.set_chat_menu_button(chat_id=message.chat.id, menu_button=MenuButtonDefault())
         except Exception:
@@ -114,15 +170,21 @@ def handle_start(message):
     if access_control.is_admin(user_id):
         welcome_text = (
             f"👑 <b>Здравствуйте, Администратор ({user_name})!</b>\n\n"
-            f"Ваш плеер активен в приватном режиме.\n"
-            f"• Нажмите кнопку ниже для запуска плеера.\n"
-            f"• Напишите любое название песни в чат, чтобы получить трек прямо сюда.\n"
-            f"• Используйте /admin для управления пользователями."
+            f"Ваш персональный плеер Wave Music активен:\n\n"
+            f"• 🎵 Нажмите <b>«Открыть Wave Music»</b> для запуска MiniApp\n"
+            f"• 🌊 Команда <b>/wave</b> — включить Мою Волну по настроению\n"
+            f"• 🔥 Команда <b>/chart</b> — топ-10 лучших треков недели\n"
+            f"• 🔍 Просто напишите название трека в чат, чтобы скачать файл\n"
+            f"• 👑 Команда <b>/admin</b> — управление доступом пользователей"
         )
     else:
         welcome_text = (
             f"👋 <b>Здравствуйте, {user_name}!</b>\n\n"
-            f"Ваш доступ активен. Нажмите кнопку ниже, чтобы открыть плеер, либо просто напишите название трека в чат:"
+            f"Ваш доступ активирован! Наслаждайтесь бесплатной музыкой без рекламы:\n\n"
+            f"• 🎵 Нажмите кнопку ниже для запуска плеера Wave Music\n"
+            f"• 🌊 <b>/wave</b> — включить «Мою Волну»\n"
+            f"• 🔥 <b>/chart</b> — топ чарт недели\n"
+            f"• 🔍 Напишите название любой песни, чтобы получить её прямо в чат"
         )
 
     try:
@@ -139,6 +201,124 @@ def handle_start(message):
         reply_markup=get_webapp_keyboard(),
         parse_mode="HTML"
     )
+
+
+@bot.message_handler(commands=['help'])
+def handle_help(message):
+    help_text = (
+        "🎵 <b>Возможности бота Wave Music:</b>\n\n"
+        "1. <b>Полноценный Mini App:</b> нажмите кнопку «🎵 Открыть Wave Music» под чатом или напишите /start.\n"
+        "2. <b>Мгновенный поиск музыки:</b> просто напишите имя исполнителя или трека в чат (например: <code>MACAN</code>, <code>Miyagi</code>).\n"
+        "3. <b>/wave</b> — интерактивный подбор музыки «Моя Волна» по вашему настроению.\n"
+        "4. <b>/chart</b> — топ-10 главных хитов с возможностью скачать любой трек в 1 клик.\n"
+        "5. <b>/myid</b> — ваш личный ID в Telegram.\n"
+        "6. <b>Ссылки YouTube / Shorts:</b> отправьте ссылку на видео, и бот извлечет аудиофайл в чат!"
+    )
+    bot.send_message(message.chat.id, help_text, reply_markup=get_webapp_keyboard(), parse_mode="HTML")
+
+
+@bot.message_handler(commands=['chart', 'top'])
+def handle_chart(message):
+    user_id = message.from_user.id
+    if not access_control.is_allowed(user_id):
+        handle_start(message)
+        return
+
+    tracks = music_service.get_chart_tracks()
+    if not tracks:
+        bot.reply_to(message, "⚠️ Не удалось загрузить чарт. Попробуйте чуть позже.")
+        return
+
+    text = "🔥 <b>Главный чарт хитов (Топ-10)</b>\n\n<i>Нажмите на любой трек, чтобы бот прислал аудио прямо сюда:</i>"
+    markup = InlineKeyboardMarkup(row_width=1)
+    for i, t in enumerate(tracks[:10], start=1):
+        markup.add(
+            InlineKeyboardButton(
+                text=f"{i}. {t['artist']} — {t['title']} ({t.get('duration', '3:00')})",
+                callback_data=f"sendtrack_{t['id'][:20]}"
+            )
+        )
+    markup.add(
+        InlineKeyboardButton(text="🎵 Открыть плеер Wave Music", web_app=WebAppInfo(url=get_current_url()))
+    )
+
+    bot.send_message(message.chat.id, text, reply_markup=markup, parse_mode="HTML")
+
+
+@bot.message_handler(commands=['wave'])
+def handle_wave(message):
+    user_id = message.from_user.id
+    if not access_control.is_allowed(user_id):
+        handle_start(message)
+        return
+
+    text = (
+        "🌊 <b>Моя Волна — выберите настроение:</b>\n\n"
+        "Выберите вайб, и бот мгновенно пришлёт трек прямо в чат 👇"
+    )
+    markup = InlineKeyboardMarkup(row_width=2)
+    markup.add(
+        InlineKeyboardButton(text="🔥 Драйв", callback_data="wave_drive"),
+        InlineKeyboardButton(text="😌 Релакс", callback_data="wave_chill")
+    )
+    markup.add(
+        InlineKeyboardButton(text="⚡️ Энергия", callback_data="wave_energy"),
+        InlineKeyboardButton(text="❤️ Романтика", callback_data="wave_romantic")
+    )
+    markup.add(
+        InlineKeyboardButton(text="💃 Танцевальная", callback_data="wave_dance"),
+        InlineKeyboardButton(text="🎲 Случайный хит", callback_data="wave_all")
+    )
+    markup.add(
+        InlineKeyboardButton(text="🌊 Запустить Мою Волну в плеере", web_app=WebAppInfo(url=f"{get_current_url()}#wave"))
+    )
+
+    bot.send_message(message.chat.id, text, reply_markup=markup, parse_mode="HTML")
+
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith('wave_'))
+def handle_wave_pick(call):
+    if not access_control.is_allowed(call.from_user.id):
+        bot.answer_callback_query(call.id, "Доступ закрыт", show_alert=True)
+        return
+
+    mood = call.data.split('_')[1]
+    mood_names = {
+        'drive': '🔥 Драйв', 'chill': '😌 Релакс', 'energy': '⚡️ Энергия',
+        'romantic': '❤️ Романтика', 'dance': '💃 Танцы', 'all': '🎲 Случайный хит'
+    }
+    mood_label = mood_names.get(mood, '🌊 Моя Волна')
+    bot.answer_callback_query(call.id, f"Подбираю {mood_label}...")
+
+    status_msg = bot.send_message(call.message.chat.id, f"🌊 <i>Подбираю лучший трек под настроение «{mood_label}»...</i>", parse_mode="HTML")
+    tracks = music_service.get_wave_tracks(mood)
+    if not tracks:
+        bot.edit_message_text(chat_id=call.message.chat.id, message_id=status_msg.message_id, text="⚠️ Не удалось найти трек под это настроение.")
+        return
+
+    import random
+    top = random.choice(tracks[:6])
+    _send_track_to_chat(call.message.chat.id, top, status_msg_id=status_msg.message_id)
+
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith('sendtrack_'))
+def handle_send_chart_track(call):
+    if not access_control.is_allowed(call.from_user.id):
+        bot.answer_callback_query(call.id, "Доступ закрыт", show_alert=True)
+        return
+
+    track_id = call.data.split('_')[1]
+    bot.answer_callback_query(call.id, "⏳ Загружаю трек...")
+
+    status_msg = bot.send_message(call.message.chat.id, "⏳ <i>Загружаю выбранный трек в Telegram...</i>", parse_mode="HTML")
+
+    # Look up in chart or new releases
+    all_cached = music_service.get_chart_tracks() + music_service.get_new_releases()
+    target = next((t for t in all_cached if t['id'].startswith(track_id)), None)
+    if not target:
+        target = {'id': track_id, 'title': 'Трек из чарта', 'artist': 'Wave Music', 'duration_sec': 0}
+
+    _send_track_to_chat(call.message.chat.id, target, status_msg_id=status_msg.message_id)
 
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith('req_access_'))
@@ -194,7 +374,6 @@ def handle_approve(call):
         parse_mode="HTML"
     )
 
-    # Set webapp menu button for the approved user
     try:
         bot.set_chat_menu_button(
             chat_id=target_id,
@@ -203,7 +382,6 @@ def handle_approve(call):
     except Exception as e:
         logger.warning(f"Could not set menu button for user {target_id}: {e}")
 
-    # Notify the approved user
     try:
         bot.send_message(
             chat_id=target_id,
@@ -228,7 +406,6 @@ def handle_reject(call):
     target_id = int(call.data.split('_')[1])
     access_control.remove_from_whitelist(target_id)
 
-    # Reset menu button for the rejected user
     try:
         bot.set_chat_menu_button(chat_id=target_id, menu_button=MenuButtonDefault())
     except Exception:
@@ -333,48 +510,7 @@ def handle_text_search(message):
             parse_mode="HTML"
         )
 
-        # Download audio track
-        audio_file = music_service.download_track_audio(top['id'])
-
-        if audio_file and os.path.exists(audio_file):
-            try:
-                caption = (
-                    f"🎵 <b>{html.escape(top['artist'])} — {html.escape(top['title'])}</b>\n\n"
-                    f"🎧 <a href='{get_current_url()}'>Открыть в Wave Music</a>"
-                )
-                with open(audio_file, "rb") as f:
-                    bot.send_audio(
-                        chat_id=message.chat.id,
-                        audio=f,
-                        title=top['title'],
-                        performer=top['artist'],
-                        duration=top.get('duration_sec', 0),
-                        caption=caption,
-                        parse_mode="HTML",
-                        reply_markup=get_webapp_keyboard()
-                    )
-                try:
-                    bot.delete_message(chat_id=message.chat.id, message_id=status_msg.message_id)
-                except Exception:
-                    pass
-            finally:
-                try:
-                    os.remove(audio_file)
-                except Exception:
-                    pass
-        else:
-            # Fallback to direct WebApp stream card
-            bot.edit_message_text(
-                chat_id=message.chat.id,
-                message_id=status_msg.message_id,
-                text=(
-                    f"🎵 <b>{html.escape(top['artist'])} — {html.escape(top['title'])}</b>\n"
-                    f"⏱ Длительность: {top.get('duration', '3:00')}\n\n"
-                    f"🎧 Нажмите кнопку ниже, чтобы слушать в плеере:"
-                ),
-                reply_markup=get_webapp_keyboard(),
-                parse_mode="HTML"
-            )
+        _send_track_to_chat(message.chat.id, top, status_msg_id=status_msg.message_id)
 
     except Exception as ex:
         logger.error(f"Error handling query {query}: {ex}")
