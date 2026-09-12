@@ -196,7 +196,7 @@ async def api_version(request):
     import config
     return web.json_response({
         'status': 'ok',
-        'version': '2.5.0',
+        'version': '2.6.0',
         'admin_id': config.ADMIN_ID
     })
 
