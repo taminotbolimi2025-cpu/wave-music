@@ -9,6 +9,7 @@ import telebot
 
 from config import BOT_TOKEN, HOST, PORT, FRONTEND_DIR
 import music_service
+import yt_dlp
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
@@ -203,21 +204,37 @@ async def api_version(request):
 async def api_debug_stream(request):
     import traceback
     vid_id = request.query.get('id', 'ZZMj3GjGTVU')
+    target = f"https://www.youtube.com/watch?v={vid_id}"
+    diag = {}
+    
+    # Check yt-dlp extract_info
     try:
-        url = music_service.get_stream_url(vid_id)
-        return web.json_response({
-            'status': 'ok',
-            'id': vid_id,
-            'url_found': bool(url),
-            'url': (url[:80] + '...') if url else ''
-        })
+        with yt_dlp.YoutubeDL(music_service.YDL_OPTS_STREAM) as ydl:
+            info = ydl.extract_info(target, download=False)
+            if 'entries' in info and info['entries']:
+                info = info['entries'][0]
+            stream_url = info.get('url', '')
+            diag['extract_url'] = (stream_url[:80] + '...') if stream_url else ''
+            diag['extract_success'] = bool(stream_url)
     except Exception as e:
-        return web.json_response({
-            'status': 'error',
-            'id': vid_id,
-            'error': str(e),
-            'trace': traceback.format_exc()
-        })
+        diag['extract_error'] = f"{type(e).__name__}: {str(e)}"
+        diag['extract_trace'] = traceback.format_exc()
+
+    # Check download_and_cache_audio
+    try:
+        dl_path = music_service.download_and_cache_audio(vid_id)
+        diag['dl_path'] = dl_path
+        diag['dl_exists'] = os.path.exists(dl_path) if dl_path else False
+        diag['dl_size'] = os.path.getsize(dl_path) if dl_path and os.path.exists(dl_path) else 0
+    except Exception as e:
+        diag['dl_error'] = f"{type(e).__name__}: {str(e)}"
+        diag['dl_trace'] = traceback.format_exc()
+
+    diag['cache_dir'] = music_service.AUDIO_CACHE_DIR
+    diag['cache_dir_exists'] = os.path.exists(music_service.AUDIO_CACHE_DIR)
+    diag['cache_dir_contents'] = os.listdir(music_service.AUDIO_CACHE_DIR) if os.path.exists(music_service.AUDIO_CACHE_DIR) else []
+
+    return web.json_response(diag)
 
 
 def create_app():
