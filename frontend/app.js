@@ -33,45 +33,87 @@ document.addEventListener('DOMContentLoaded', () => {
     recent: JSON.parse(localStorage.getItem('wave_recent') || '[]')
   };
 
-  // Curated Real Tracks
+  // Curated Real Tracks (12 guaranteed cached hits)
   const defaultTracks = [
     {
-      id: 'ZZMj3GjGTVU',
+      id: '4EfM6rPmxow',
       title: 'Minor',
       artist: 'MiyaGi & Andy Panda',
       cover: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400',
       duration: '2:56'
     },
     {
-      id: 'aYw5HDb3z54',
+      id: 'nidQCt_HEsY',
+      title: 'I Got Love',
+      artist: 'Miyagi & Эндшпиль',
+      cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400',
+      duration: '4:35'
+    },
+    {
+      id: 'j5cNhjG6iGs',
       title: 'Останься образом',
       artist: 'MACAN',
       cover: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400',
       duration: '3:12'
     },
     {
-      id: '4NRXx6U8ABQ',
+      id: '7LcZzCPCuvg',
+      title: 'По барам',
+      artist: 'ANNA ASTI',
+      cover: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400',
+      duration: '3:58'
+    },
+    {
+      id: 'p39HcuQNlg4',
+      title: 'Прятки',
+      artist: 'HammAli & Navai',
+      cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400',
+      duration: '3:10'
+    },
+    {
+      id: 'fHI8X4OXluQ',
       title: 'Blinding Lights',
       artist: 'The Weeknd',
       cover: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400',
       duration: '3:20'
     },
     {
-      id: 'xKzL5zR4H7c',
+      id: 'x1XuN5Rq2ws',
       title: 'Ты и Я',
       artist: 'Xcho',
-      cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400',
+      cover: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400',
       duration: '2:45'
     },
     {
-      id: 'XvR07g-R94E',
+      id: 'yM1QjdoLmxQ',
       title: 'Комета',
       artist: 'JONY',
       cover: 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400',
       duration: '2:38'
     },
     {
-      id: '_Yhyp-_hX2s',
+      id: 'UJ3COIHd954',
+      title: 'Captain',
+      artist: 'Miyagi',
+      cover: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400',
+      duration: '3:40'
+    },
+    {
+      id: 'Rif-RTvmmss',
+      title: 'Starboy',
+      artist: 'The Weeknd ft. Daft Punk',
+      cover: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400',
+      duration: '3:50'
+    },
+    {
+      id: 'wjj2upnfBI0',
+      title: 'Lovely',
+      artist: 'Billie Eilish & Khalid',
+      cover: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400',
+      duration: '3:20'
+    },
+    {
+      id: 'tR1ECf4sEpw',
       title: 'Lose Yourself',
       artist: 'Eminem',
       cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400',
@@ -183,8 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     showToast(`▶ ${track.artist} — ${track.title}`, 2000);
     const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}`;
-    audio.src = streamUrl;
-    audio.load();
+    if (!audio.src || !audio.src.includes(encodeURIComponent(streamId))) {
+      audio.src = streamUrl;
+    }
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
@@ -192,9 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePlayPauseState(true);
       }).catch(err => {
         console.warn('Playback error or waiting for user gesture:', err);
-        // On mobile, if autoplay is blocked, ready the player so next touch plays immediately
         state.isPlaying = false;
         updatePlayPauseState(false);
+        showToast('Нажмите Play для воспроизведения', 2500);
       });
     }
 
@@ -319,10 +362,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  audio.addEventListener('playing', () => {
+    state.isPlaying = true;
+    updatePlayPauseState(true);
+  });
+
+  audio.addEventListener('pause', () => {
+    state.isPlaying = false;
+    updatePlayPauseState(false);
+  });
+
   audio.addEventListener('error', (e) => {
-    console.warn('Audio stream error, moving to next:', e);
-    // Auto advance if stream had temporary issue
-    setTimeout(() => playNext(), 1500);
+    const err = audio.error;
+    console.warn('Audio stream error:', err);
+    state.isPlaying = false;
+    updatePlayPauseState(false);
+    if (err && err.code === 4) {
+      showToast('⚠️ Формат не поддерживается, пробуем следующий...', 2500);
+    } else {
+      showToast('⚠️ Ошибка сети, переход к следующему...', 2500);
+    }
+    setTimeout(() => playNext(), 2000);
   });
 
   function formatTime(seconds) {

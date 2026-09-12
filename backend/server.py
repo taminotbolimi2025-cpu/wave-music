@@ -38,7 +38,11 @@ async def cors_middleware(request, handler):
 # Static File Handlers
 async def index_handler(request):
     index_file = os.path.join(FRONTEND_DIR, 'index.html')
-    return web.FileResponse(index_file)
+    return web.FileResponse(index_file, headers={
+        'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+    })
 
 
 # API Handlers
@@ -175,10 +179,11 @@ async def api_send_to_chat(request):
                         parse_mode='HTML'
                     )
             finally:
-                try:
-                    os.remove(audio_file)
-                except Exception:
-                    pass
+                if audio_file and not audio_file.startswith(music_service.AUDIO_CACHE_DIR):
+                    try:
+                        os.remove(audio_file)
+                    except Exception:
+                        pass
         else:
             bot.send_message(
                 chat_id=user_id,
@@ -196,7 +201,7 @@ async def api_version(request):
     import config
     return web.json_response({
         'status': 'ok',
-        'version': '2.6.0',
+        'version': '2.7.0',
         'admin_id': config.ADMIN_ID
     })
 

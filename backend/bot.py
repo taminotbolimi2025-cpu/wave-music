@@ -23,15 +23,17 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 def get_current_url():
     url_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "tunnel_url.txt"))
+    base_url = config.WEBAPP_URL
     if os.path.exists(url_file):
         try:
             with open(url_file, "r", encoding="utf-8") as f:
                 url = f.read().strip()
                 if url.startswith("http"):
-                    return url
+                    base_url = url
         except Exception:
             pass
-    return config.WEBAPP_URL
+    separator = "&" if "?" in base_url else "?"
+    return f"{base_url}{separator}v=2.7.0"
 
 
 def get_webapp_keyboard():
@@ -43,10 +45,11 @@ def get_webapp_keyboard():
             web_app=WebAppInfo(url=current_url)
         )
     )
+    wave_url = f"{current_url}#wave"
     markup.add(
         InlineKeyboardButton(
             text="🌊 Запустить Мою Волну",
-            web_app=WebAppInfo(url=f"{current_url}#wave")
+            web_app=WebAppInfo(url=wave_url)
         )
     )
     return markup
