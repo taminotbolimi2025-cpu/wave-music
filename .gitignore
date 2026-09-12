@@ -7,3 +7,8 @@ daily_releases.json
 *.log
 .venv/
 *.tmp
+backend/audio_cache/
+*.m4a
+*.mp3
+*.webm
+*.opus

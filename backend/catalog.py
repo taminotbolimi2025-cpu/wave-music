@@ -5588,6 +5588,16 @@ CATALOG = [
 # Quick lookup indexes
 TRACKS_BY_ID = {t["id"]: t for t in CATALOG}
 
+def get_track_by_id(tid):
+    if not tid:
+        return None
+    if tid in TRACKS_BY_ID:
+        return TRACKS_BY_ID[tid]
+    for t in CATALOG:
+        if t.get("id") == tid or str(t.get("ym_id")) == str(tid):
+            return t
+    return None
+
 def get_catalog_tracks():
     return list(CATALOG)
 

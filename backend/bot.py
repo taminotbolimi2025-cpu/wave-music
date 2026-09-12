@@ -39,7 +39,7 @@ def get_current_url():
         except Exception:
             pass
     separator = "&" if "?" in base_url else "?"
-    return f"{base_url}{separator}v=3.3.0"
+    return f"{base_url}{separator}v=3.4.0"
 
 
 def get_webapp_keyboard():

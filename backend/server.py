@@ -64,7 +64,7 @@ def _get_audio_content_type(file_or_url: str) -> str:
 _caching_ids = set()
 
 
-async def _bg_cache_track(vid_id: str):
+async def _bg_cache_track(vid_id: str, artist: str = "", title: str = ""):
     """Caches track in background so future seeks and replays are instantaneous"""
     if not vid_id or vid_id in _caching_ids:
         return
@@ -72,7 +72,7 @@ async def _bg_cache_track(vid_id: str):
     try:
         if not music_service.get_cached_audio_path(vid_id):
             loop = asyncio.get_event_loop()
-            await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id)
+            await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id, artist, title)
     except Exception as e:
         logger.warning(f"Background cache error for {vid_id}: {e}")
     finally:
@@ -186,6 +186,9 @@ async def api_stream(request):
     vid_id = request.query.get('id', '').strip()
     if not vid_id:
         return web.Response(status=400, text='Missing id parameter')
+
+    artist = request.query.get('artist', '').strip()
+    title = request.query.get('title', '').strip()
     
     # Check access permission if user_id is passed
     user_id_str = request.query.get('user_id') or request.headers.get('X-User-Id')
@@ -211,10 +214,10 @@ async def api_stream(request):
     loop = asyncio.get_event_loop()
 
     # Trigger non-blocking background caching
-    asyncio.create_task(_bg_cache_track(vid_id))
+    asyncio.create_task(_bg_cache_track(vid_id, artist=artist, title=title))
 
     # 2. Try fast direct stream URL without blocking event loop
-    stream_url = await loop.run_in_executor(None, music_service.get_stream_url, vid_id)
+    stream_url = await loop.run_in_executor(None, music_service.get_stream_url, vid_id, artist, title)
     if stream_url and not stream_url.endswith('.m3u8'):
         try:
             headers = {}
@@ -260,7 +263,7 @@ async def api_stream(request):
 
     # 3. Robust Mobile Fallback: Download track in worker thread and stream via FileResponse
     try:
-        downloaded = await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id)
+        downloaded = await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id, artist, title)
         if downloaded and os.path.exists(downloaded) and os.path.getsize(downloaded) > 10000:
             ctype = _get_audio_content_type(downloaded)
             return web.FileResponse(downloaded, headers={
@@ -406,7 +409,7 @@ async def api_version(request):
     import config
     return web.json_response({
         'status': 'ok',
-        'version': '3.0.0',
+        'version': '3.4.0',
         'admin_id': config.ADMIN_ID
     })
 

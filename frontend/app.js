@@ -5868,7 +5868,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     showToast(`▶ ${track.artist} — ${track.title}`, 2000);
     const userParam = state.currentUserId ? `&user_id=${state.currentUserId}` : '';
-    const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}${userParam}`;
+    const artistParam = track.artist ? `&artist=${encodeURIComponent(track.artist)}` : '';
+    const titleParam = track.title ? `&title=${encodeURIComponent(track.title)}` : '';
+    const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}${artistParam}${titleParam}${userParam}`;
     if (!audio.src || !audio.src.includes(encodeURIComponent(streamId))) {
       audio.src = streamUrl;
     }
@@ -6693,8 +6695,9 @@ document.addEventListener('DOMContentLoaded', () => {
     triggerHaptic('medium');
     if (!state.currentTrack) return;
     showToast('⬇️ Скачивание трека началось...');
-    const link = document.createElement('a');
-    link.href = state.currentTrack.streamUrl || `/api/stream?id=${encodeURIComponent(state.currentTrack.id)}`;
+    const tArtist = encodeURIComponent(state.currentTrack.artist || '');
+    const tTitle = encodeURIComponent(state.currentTrack.title || '');
+    link.href = `/api/stream?id=${encodeURIComponent(state.currentTrack.id)}&artist=${tArtist}&title=${tTitle}`;
     link.download = `${state.currentTrack.artist} - ${state.currentTrack.title}.mp3`;
     link.target = '_blank';
     document.body.appendChild(link);

@@ -183,43 +183,52 @@ def search_tracks(query: str, limit: int = 12):
     return out_results
 
 
-def get_stream_url(video_id_or_title: str) -> str:
-    """Extracts direct audio playback stream URL with high precision and caching"""
-    clean_query = video_id_or_title.strip()
-    if clean_query in _stream_cache:
-        cached_url, cached_time = _stream_cache[clean_query]
-        if time.time() - cached_time < 7200:  # 2 hours stream URL TTL
-            return cached_url
-
-def _resolve_target_query(clean_query: str) -> str:
+def _resolve_target_query(clean_query: str, artist: str = "", title: str = "") -> str:
     if clean_query.startswith('http'):
         return clean_query
-    elif len(clean_query) == 11 and re.match(r'^[a-zA-Z0-9_-]{11}$', clean_query):
-        return f"https://www.youtube.com/watch?v={clean_query}"
-    elif clean_query.startswith('ym_'):
+
+    # 1. If explicit artist and title are provided, use them directly
+    if artist and title:
+        return f"ytsearch1:{artist} - {title} audio"
+
+    # 2. Check curated catalog (contains 365+ tracks: Yandex Top 100, Apple Music, Phonk, etc.)
+    track = catalog.get_track_by_id(clean_query)
+    if track:
+        return f"ytsearch1:{track['artist']} - {track['title']} audio"
+
+    # 3. If it's a Yandex ID, check live chart or liked tracks
+    if clean_query.startswith('ym_'):
         ym_id = clean_query[3:]
         for t in catalog.get_yandex_liked_tracks():
             if t.get('id') == clean_query or str(t.get('ym_id')) == ym_id:
                 return f"ytsearch1:{t['artist']} - {t['title']} audio"
-        for t in yandex_chart.fetch_live_yandex_chart(100):
-            if t.get('id') == clean_query or str(t.get('ym_id')) == ym_id:
-                return f"ytsearch1:{t['artist']} - {t['title']} audio"
-        return f"ytsearch1:{clean_query} audio"
-    else:
-        if clean_query.startswith('track_'):
-            clean_query = 'хит музыки'
-        return f"ytsearch1:{clean_query} audio"
+        try:
+            for t in yandex_chart.fetch_live_yandex_chart(100):
+                if t.get('id') == clean_query or str(t.get('ym_id')) == ym_id:
+                    return f"ytsearch1:{t['artist']} - {t['title']} audio"
+        except Exception:
+            pass
+
+    # 4. Standard YouTube 11-char ID (must NOT be internal prefixes like ym_, am_, tr_)
+    if len(clean_query) == 11 and re.match(r'^[a-zA-Z0-9_-]{11}$', clean_query) and not clean_query.startswith(('ym_', 'am_', 'tr_')):
+        return f"https://www.youtube.com/watch?v={clean_query}"
+
+    # 5. Fallback general search
+    if clean_query.startswith('track_'):
+        clean_query = 'хит музыки'
+    return f"ytsearch1:{clean_query} audio"
 
 
-def get_stream_url(video_id_or_title: str) -> str:
+def get_stream_url(video_id_or_title: str, artist: str = "", title: str = "") -> str:
     """Extracts direct audio playback stream URL with high precision and caching"""
     clean_query = video_id_or_title.strip()
-    if clean_query in _stream_cache:
-        cached_url, cached_time = _stream_cache[clean_query]
+    cache_key = f"{clean_query}_{artist}_{title}" if (artist or title) else clean_query
+    if cache_key in _stream_cache:
+        cached_url, cached_time = _stream_cache[cache_key]
         if time.time() - cached_time < 7200:  # 2 hours stream URL TTL
             return cached_url
 
-    target = _resolve_target_query(clean_query)
+    target = _resolve_target_query(clean_query, artist=artist, title=title)
 
     try:
         with yt_dlp.YoutubeDL(YDL_OPTS_STREAM) as ydl:
@@ -230,11 +239,12 @@ def get_stream_url(video_id_or_title: str) -> str:
             stream_url = info.get('url')
             if stream_url:
                 now = time.time()
+                _stream_cache[cache_key] = (stream_url, now)
                 _stream_cache[clean_query] = (stream_url, now)
                 _stream_cache[video_id_or_title] = (stream_url, now)
                 return stream_url
     except Exception as ex:
-        logger.error(f"Failed to extract stream for {video_id_or_title}: {ex}")
+        logger.error(f"Failed to extract stream for {video_id_or_title} ({artist} - {title}): {ex}")
 
     return ""
 
@@ -267,14 +277,14 @@ def get_cached_audio_path(video_id_or_title: str) -> str:
     return ""
 
 
-def download_and_cache_audio(video_id_or_title: str) -> str:
+def download_and_cache_audio(video_id_or_title: str, artist: str = "", title: str = "") -> str:
     """Downloads pure audio track directly into persistent cache directory and returns the path."""
     cached = get_cached_audio_path(video_id_or_title)
     if cached:
         return cached
 
     clean_query = video_id_or_title.strip()
-    target = _resolve_target_query(clean_query)
+    target = _resolve_target_query(clean_query, artist=artist, title=title)
 
     base_name = _safe_basename(clean_query)
     out_tmpl = os.path.join(AUDIO_CACHE_DIR, f"{base_name}.%(ext)s")
@@ -298,10 +308,9 @@ def download_and_cache_audio(video_id_or_title: str) -> str:
     return ""
 
 
-def download_track_audio(video_id_or_title: str) -> str:
+def download_track_audio(video_id_or_title: str, artist: str = "", title: str = "") -> str:
     """Downloads audio of track or gets it from cache. Returns path to file if successful."""
-    return download_and_cache_audio(video_id_or_title)
-    return download_and_cache_audio(video_id_or_title)
+    return download_and_cache_audio(video_id_or_title, artist=artist, title=title)
 
 
 def pre_cache_top_tracks():
