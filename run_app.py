@@ -71,9 +71,13 @@ def tunnel_watchdog():
 
 
 def daily_updater_thread():
-    """Background job that automatically refreshes charts and new releases every 12 hours."""
-    time.sleep(10)  # Let server and tunnel initialize first
+    """Background job that automatically refreshes charts, pre-caches audio, and keeps playlists fresh."""
+    time.sleep(3)  # Let server initialize first
     import music_service
+    try:
+        music_service.pre_cache_top_tracks()
+    except Exception as e:
+        logger.warning(f"Initial pre-cache error: {e}")
     while True:
         try:
             music_service.update_all_daily_playlists()

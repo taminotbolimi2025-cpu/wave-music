@@ -67,53 +67,72 @@ async def api_new_releases(request):
 
 
 async def api_stream(request):
-    vid_id = request.query.get('id', '')
+    vid_id = request.query.get('id', '').strip()
     if not vid_id:
         return web.Response(status=400, text='Missing id parameter')
     
+    # 1. Fast path: check if track is already cached locally on disk
+    cached_path = music_service.get_cached_audio_path(vid_id)
+    if cached_path and os.path.exists(cached_path) and os.path.getsize(cached_path) > 10000:
+        return web.FileResponse(cached_path, headers={
+            'Access-Control-Allow-Origin': '*',
+            'Cache-Control': 'public, max-age=86400'
+        })
+
+    # 2. Try fast direct stream URL
     stream_url = music_service.get_stream_url(vid_id)
-    if not stream_url:
-        return web.Response(status=404, text='Track not found')
-    
-    # Proxy audio stream directly through the server so YouTube IP restrictions don't block the mobile client
-    headers = {}
-    range_header = request.headers.get('Range')
-    if range_header:
-        headers['Range'] = range_header
-    
-    client_timeout = aiohttp.ClientTimeout(total=None, sock_read=60, sock_connect=10)
-    try:
-        session = aiohttp.ClientSession(timeout=client_timeout)
-        upstream = await session.get(stream_url, headers=headers)
-        
-        res_headers = {
-            'Content-Type': upstream.headers.get('Content-Type', 'audio/webm'),
-            'Accept-Ranges': 'bytes',
-            'Cache-Control': 'public, max-age=3600',
-            'Access-Control-Allow-Origin': '*'
-        }
-        if 'Content-Range' in upstream.headers:
-            res_headers['Content-Range'] = upstream.headers['Content-Range']
-        if 'Content-Length' in upstream.headers:
-            res_headers['Content-Length'] = upstream.headers['Content-Length']
-            
-        response = web.StreamResponse(status=upstream.status, headers=res_headers)
-        await response.prepare(request)
-        
+    if stream_url and not stream_url.endswith('.m3u8'):
         try:
-            async for chunk in upstream.content.iter_chunked(64 * 1024):
-                await response.write(chunk)
-        except (asyncio.CancelledError, ConnectionResetError):
-            pass
-        finally:
-            await response.write_eof()
-            upstream.close()
-            await session.close()
-            
-        return response
-    except Exception as ex:
-        logger.error(f"Stream proxy error for {vid_id}: {ex}")
-        return web.Response(status=500, text=f"Streaming error: {ex}")
+            headers = {}
+            range_header = request.headers.get('Range')
+            if range_header:
+                headers['Range'] = range_header
+
+            session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=None, sock_read=60, sock_connect=10))
+            upstream = await session.get(stream_url, headers=headers)
+            if upstream.status in (200, 206):
+                content_type = upstream.headers.get('Content-Type', 'audio/mp4')
+                res_headers = {
+                    'Content-Type': content_type,
+                    'Accept-Ranges': 'bytes',
+                    'Access-Control-Allow-Origin': '*',
+                    'Cache-Control': 'public, max-age=3600'
+                }
+                if 'Content-Range' in upstream.headers:
+                    res_headers['Content-Range'] = upstream.headers['Content-Range']
+                if 'Content-Length' in upstream.headers:
+                    res_headers['Content-Length'] = upstream.headers['Content-Length']
+
+                response = web.StreamResponse(status=upstream.status, headers=res_headers)
+                await response.prepare(request)
+                try:
+                    async for chunk in upstream.content.iter_chunked(64 * 1024):
+                        await response.write(chunk)
+                except (asyncio.CancelledError, ConnectionResetError):
+                    pass
+                finally:
+                    await response.write_eof()
+                    upstream.close()
+                    await session.close()
+                return response
+            else:
+                await session.close()
+        except Exception as proxy_err:
+            logger.warning(f"Direct stream proxy error for {vid_id}: {proxy_err}")
+
+    # 3. Robust Mobile Fallback: Download track in worker thread and stream via FileResponse!
+    loop = asyncio.get_event_loop()
+    try:
+        downloaded = await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id)
+        if downloaded and os.path.exists(downloaded) and os.path.getsize(downloaded) > 10000:
+            return web.FileResponse(downloaded, headers={
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=86400'
+            })
+    except Exception as dl_err:
+        logger.error(f"Fallback download error for {vid_id}: {dl_err}")
+
+    return web.Response(status=404, text='Track could not be loaded')
 
 
 async def api_send_to_chat(request):
@@ -176,7 +195,7 @@ async def api_version(request):
     import config
     return web.json_response({
         'status': 'ok',
-        'version': '2.1.0',
+        'version': '2.3.0',
         'admin_id': config.ADMIN_ID
     })
 

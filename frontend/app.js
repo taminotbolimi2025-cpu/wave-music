@@ -184,14 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast(`▶ ${track.artist} — ${track.title}`, 2000);
     const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}`;
     audio.src = streamUrl;
-    audio.play().then(() => {
-      state.isPlaying = true;
-      updatePlayPauseState(true);
-    }).catch(err => {
-      console.warn('Playback autoplay policy or network error, ready to play:', err);
-      state.isPlaying = false;
-      updatePlayPauseState(false);
-    });
+    audio.load();
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        state.isPlaying = true;
+        updatePlayPauseState(true);
+      }).catch(err => {
+        console.warn('Playback error or waiting for user gesture:', err);
+        // On mobile, if autoplay is blocked, ready the player so next touch plays immediately
+        state.isPlaying = false;
+        updatePlayPauseState(false);
+      });
+    }
 
     // Update MediaSession for lockscreen & background play
     if ('mediaSession' in navigator) {

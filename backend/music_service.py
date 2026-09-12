@@ -1,5 +1,10 @@
+import os
 import re
+import json
+import time
 import logging
+import tempfile
+import uuid
 import yt_dlp
 
 logger = logging.getLogger(__name__)
@@ -19,7 +24,7 @@ YDL_OPTS_SEARCH = {
 YDL_OPTS_STREAM = {
     'quiet': True,
     'no_warnings': True,
-    'format': 'bestaudio/best',
+    'format': 'bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
     'skip_download': True,
     'noplaylist': True,
 }
@@ -248,15 +253,33 @@ def get_stream_url(video_id_or_title: str) -> str:
 
     return ""
 
+AUDIO_CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio_cache")
+os.makedirs(AUDIO_CACHE_DIR, exist_ok=True)
 
-import tempfile
-import uuid
+
+def _safe_filename(query: str) -> str:
+    cleaned = re.sub(r'[^a-zA-Z0-9_-]', '_', query.strip())
+    if len(cleaned) > 50:
+        cleaned = cleaned[:50]
+    return f"{cleaned}.m4a"
 
 
-def download_track_audio(video_id_or_title: str) -> str:
-    """Downloads audio of track to a local m4a file in temp directory.
-    Returns path to file if successful, or empty string on failure.
-    Caller is responsible for removing the file after sending."""
+def get_cached_audio_path(video_id_or_title: str) -> str:
+    """Returns path to cached audio file if it exists and is valid, else empty string"""
+    clean_query = video_id_or_title.strip()
+    fname = _safe_filename(clean_query)
+    fpath = os.path.join(AUDIO_CACHE_DIR, fname)
+    if os.path.exists(fpath) and os.path.getsize(fpath) > 50000:
+        return fpath
+    return ""
+
+
+def download_and_cache_audio(video_id_or_title: str) -> str:
+    """Downloads track directly into persistent cache directory and returns the path."""
+    cached = get_cached_audio_path(video_id_or_title)
+    if cached:
+        return cached
+
     clean_query = video_id_or_title.strip()
     if clean_query.startswith('http'):
         target = clean_query
@@ -265,22 +288,22 @@ def download_track_audio(video_id_or_title: str) -> str:
     else:
         target = f"ytsearch1:{clean_query} audio"
 
-    out_file = os.path.join(tempfile.gettempdir(), f"wave_{uuid.uuid4().hex[:8]}.m4a")
+    out_file = os.path.join(AUDIO_CACHE_DIR, _safe_filename(clean_query))
     ydl_opts = {
-        'format': 'bestaudio[ext=m4a]/bestaudio/best',
+        'format': 'bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
         'outtmpl': out_file,
         'quiet': True,
         'no_warnings': True,
         'noplaylist': True,
-        'max_filesize': 30 * 1024 * 1024,
+        'max_filesize': 35 * 1024 * 1024,
     }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([target])
-        if os.path.exists(out_file) and os.path.getsize(out_file) > 1000:
+        if os.path.exists(out_file) and os.path.getsize(out_file) > 10000:
             return out_file
     except Exception as ex:
-        logger.error(f"Error downloading audio for {video_id_or_title}: {ex}")
+        logger.error(f"Error downloading and caching audio for {video_id_or_title}: {ex}")
         if os.path.exists(out_file):
             try:
                 os.remove(out_file)
@@ -289,10 +312,22 @@ def download_track_audio(video_id_or_title: str) -> str:
     return ""
 
 
+def download_track_audio(video_id_or_title: str) -> str:
+    """Downloads audio of track or gets it from cache. Returns path to file if successful."""
+    return download_and_cache_audio(video_id_or_title)
 
-import os
-import json
-import time
+
+def pre_cache_top_tracks():
+    """Pre-downloads top tracks so mobile playback is instant with zero buffering"""
+    logger.info("[PreCache] Начинаю фоновую предзагрузку топ-треков для мгновенного воспроизведения...")
+    startup_ids = ['ZZMj3GjGTVU', 'aYw5HDb3z54', '4NRXx6U8ABQ', 'xKzL5zR4H7c', 'XvR07g-R94E', '_Yhyp-_hX2s']
+    for sid in startup_ids:
+        try:
+            download_and_cache_audio(sid)
+        except Exception as e:
+            logger.warning(f"Error pre-caching {sid}: {e}")
+    logger.info("[PreCache] Готово! Топ-треки закешированы на сервере.")
+
 
 CACHE_DIR = os.path.dirname(os.path.abspath(__file__))
 CHART_CACHE_FILE = os.path.join(CACHE_DIR, "daily_chart.json")
