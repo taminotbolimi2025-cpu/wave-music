@@ -133,7 +133,10 @@ def main():
         time.sleep(4)
     else:
         print(f"[Cloud] Облачный режим активен! URL: {config.WEBAPP_URL}", flush=True)
-        sync_user_menu_buttons(config.WEBAPP_URL)
+        if os.environ.get("SYNC_RENDER_MENU"):
+            sync_user_menu_buttons(config.WEBAPP_URL)
+        else:
+            print("[Cloud] Меню-кнопка сохранена за активным рабочим туннелем", flush=True)
 
     # 3. Start Daily Playlist Auto-Updater thread
     updater_thread = threading.Thread(target=daily_updater_thread, daemon=True)
