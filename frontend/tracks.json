@@ -1,5 +1,4210 @@
 [
   {
+    "id": "ym_79071659",
+    "ym_id": "79071659",
+    "title": "Лампочки",
+    "artist": "ARTIK & ASTI",
+    "duration": "3:15",
+    "duration_ms": 195780,
+    "cover": "https://avatars.yandex.net/get-music-content/5282321/917eff67.a.16969949-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_79071659",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_154651895",
+    "ym_id": "154651895",
+    "title": "PESHTA",
+    "artist": "Хамдам Собиров",
+    "duration": "2:57",
+    "duration_ms": 177540,
+    "cover": "https://avatars.yandex.net/get-music-content/17674835/84e8948a.a.43484020-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_154651895",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_153528983",
+    "ym_id": "153528983",
+    "title": "Xatlar",
+    "artist": "Shohruhxon, Umidaxon",
+    "duration": "4:21",
+    "duration_ms": 261450,
+    "cover": "https://avatars.yandex.net/get-music-content/17655650/8949a11b.a.43012345-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_153528983",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150986099",
+    "ym_id": "150986099",
+    "title": "BAD TIMES",
+    "artist": "Imael Angel",
+    "duration": "2:47",
+    "duration_ms": 167730,
+    "cover": "https://avatars.yandex.net/get-music-content/20113429/3ccd4733.a.41901484-5/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150986099",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151020719",
+    "ym_id": "151020719",
+    "title": "Шадэ",
+    "artist": "By Индия, Xcho, MOT",
+    "duration": "2:48",
+    "duration_ms": 168940,
+    "cover": "https://avatars.yandex.net/get-music-content/16154377/525b9915.a.41920857-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151020719",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_148872331",
+    "ym_id": "148872331",
+    "title": "Светлое чувство",
+    "artist": "Settlers",
+    "duration": "2:56",
+    "duration_ms": 176770,
+    "cover": "https://avatars.yandex.net/get-music-content/20031403/b66d4541.a.40966464-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_148872331",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151860518",
+    "ym_id": "151860518",
+    "title": "Sebebi Yar",
+    "artist": "BLOK3",
+    "duration": "3:06",
+    "duration_ms": 186470,
+    "cover": "https://avatars.yandex.net/get-music-content/18132539/c9d08df7.a.42287881-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151860518",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151328086",
+    "ym_id": "151328086",
+    "title": "Bevafo",
+    "artist": "Munisa Rizaeva",
+    "duration": "2:39",
+    "duration_ms": 159430,
+    "cover": "https://avatars.yandex.net/get-music-content/19999910/145df04c.a.42063699-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151328086",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_154509219",
+    "ym_id": "154509219",
+    "title": "Armon",
+    "artist": "Gafur",
+    "duration": "2:21",
+    "duration_ms": 141170,
+    "cover": "https://avatars.yandex.net/get-music-content/17659805/c1f2be79.a.43425758-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_154509219",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_153008107",
+    "ym_id": "153008107",
+    "title": "Sin Nombre",
+    "artist": "Ulukmanapo",
+    "duration": "2:30",
+    "duration_ms": 150920,
+    "cover": "https://avatars.yandex.net/get-music-content/20113429/bfefbc61.a.42793079-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_153008107",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151136140",
+    "ym_id": "151136140",
+    "title": "ЭКСПОНАТ",
+    "artist": "MIA BOYKA",
+    "duration": "1:38",
+    "duration_ms": 98760,
+    "cover": "https://avatars.yandex.net/get-music-content/20372582/82527af1.a.41976933-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151136140",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_48591617",
+    "ym_id": "48591617",
+    "title": "Кинолента",
+    "artist": "Баста",
+    "duration": "4:23",
+    "duration_ms": 263320,
+    "cover": "https://avatars.yandex.net/get-music-content/17659240/595efc40.a.61945-3/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_48591617",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150289586",
+    "ym_id": "150289586",
+    "title": "Take Me There",
+    "artist": "DA TI",
+    "duration": "3:22",
+    "duration_ms": 202680,
+    "cover": "https://avatars.yandex.net/get-music-content/17696724/3d7692ef.a.41597692-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150289586",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_153703709",
+    "ym_id": "153703709",
+    "title": "Если я буду танцевать",
+    "artist": "Баста, Моя Мишель",
+    "duration": "2:59",
+    "duration_ms": 179140,
+    "cover": "https://avatars.yandex.net/get-music-content/20322863/b83dd6c6.a.43086620-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_153703709",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_148108224",
+    "ym_id": "148108224",
+    "title": "Больше, чем ближе",
+    "artist": "NAVAI",
+    "duration": "3:36",
+    "duration_ms": 216640,
+    "cover": "https://avatars.yandex.net/get-music-content/16496077/a538d4bc.a.40614119-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_148108224",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_87659100",
+    "ym_id": "87659100",
+    "title": "Любовь после тебя",
+    "artist": "ARTIK & ASTI",
+    "duration": "4:05",
+    "duration_ms": 245450,
+    "cover": "https://avatars.yandex.net/get-music-content/5282321/917eff67.a.16969949-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_87659100",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150053393",
+    "ym_id": "150053393",
+    "title": "Мальборо",
+    "artist": "SAYAN",
+    "duration": "2:02",
+    "duration_ms": 122720,
+    "cover": "https://avatars.yandex.net/get-music-content/19999910/9afd1da4.a.41489388-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150053393",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_152288111",
+    "ym_id": "152288111",
+    "title": "Beni Al (Ta Ki Seni Görene Kadar)",
+    "artist": "Ankara Echoes, Kürşad Kahraman",
+    "duration": "4:12",
+    "duration_ms": 252420,
+    "cover": "https://avatars.yandex.net/get-music-content/17740720/e5e36a94.a.42477249-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_152288111",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_152183082",
+    "ym_id": "152183082",
+    "title": "Dai Dai",
+    "artist": "Shakira, Burna Boy",
+    "duration": "3:43",
+    "duration_ms": 223440,
+    "cover": "https://avatars.yandex.net/get-music-content/20013662/6aef1e43.a.42801956-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_152183082",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_145460509",
+    "ym_id": "145460509",
+    "title": "KUSURA BAKMA",
+    "artist": "BLOK3",
+    "duration": "2:37",
+    "duration_ms": 157800,
+    "cover": "https://avatars.yandex.net/get-music-content/18132539/c9d08df7.a.42287881-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_145460509",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_143826691",
+    "ym_id": "143826691",
+    "title": "Devonangman",
+    "artist": "Shoxrux, Иззат Шукуров",
+    "duration": "3:16",
+    "duration_ms": 196650,
+    "cover": "https://avatars.yandex.net/get-music-content/15142616/cf5c708a.a.38573531-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_143826691",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_153878581",
+    "ym_id": "153878581",
+    "title": "Я ТЕБЯ МОГНУ",
+    "artist": "ЦУЕФА, Вирсавия, Милана Некрасова, LIZOGUB, Давид Туров",
+    "duration": "1:21",
+    "duration_ms": 81370,
+    "cover": "https://avatars.yandex.net/get-music-content/19035207/f7c8a190.a.43161207-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_153878581",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_148137777",
+    "ym_id": "148137777",
+    "title": "Мать императрица",
+    "artist": "ICEGERGERT",
+    "duration": "1:50",
+    "duration_ms": 110540,
+    "cover": "https://avatars.yandex.net/get-music-content/18132539/36160ca8.a.40626387-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_148137777",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_152535534",
+    "ym_id": "152535534",
+    "title": "زِندان جيا",
+    "artist": "Ashiq",
+    "duration": "2:32",
+    "duration_ms": 152040,
+    "cover": "https://avatars.yandex.net/get-music-content/17696724/6cd9e132.a.42592103-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_152535534",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_62352384",
+    "ym_id": "62352384",
+    "title": "Последний поцелуй",
+    "artist": "ARTIK & ASTI",
+    "duration": "3:12",
+    "duration_ms": 192890,
+    "cover": "https://avatars.yandex.net/get-music-content/2390047/c8af4302.a.9823163-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_62352384",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_50181131",
+    "ym_id": "50181131",
+    "title": "В горле ком",
+    "artist": "Гио Пика",
+    "duration": "2:14",
+    "duration_ms": 134030,
+    "cover": "https://avatars.yandex.net/get-music-content/103235/df819441.a.6915159-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_50181131",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151860529",
+    "ym_id": "151860529",
+    "title": "Çok Güzel Gülüyorsun",
+    "artist": "BLOK3, Poizi",
+    "duration": "4:00",
+    "duration_ms": 240780,
+    "cover": "https://avatars.yandex.net/get-music-content/18132539/c9d08df7.a.42287881-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151860529",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_146188293",
+    "ym_id": "146188293",
+    "title": "Jamaican (Bam Bam)",
+    "artist": "HUGEL, SOLTO (FR)",
+    "duration": "2:36",
+    "duration_ms": 156400,
+    "cover": "https://avatars.yandex.net/get-music-content/17681324/cfde0987.a.39730560-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_146188293",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_153919218",
+    "ym_id": "153919218",
+    "title": "ДИНАСТИЯ",
+    "artist": "VILLIAN, madk1d",
+    "duration": "2:30",
+    "duration_ms": 150420,
+    "cover": "https://avatars.yandex.net/get-music-content/17740720/822ddd48.a.43177815-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_153919218",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150101305",
+    "ym_id": "150101305",
+    "title": "Purosangue",
+    "artist": "MACAN, Jakone",
+    "duration": "2:16",
+    "duration_ms": 136470,
+    "cover": "https://avatars.yandex.net/get-music-content/20900757/2a18c42e.a.41511487-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150101305",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_152801006",
+    "ym_id": "152801006",
+    "title": "Party Funk",
+    "artist": "YOUNG MADZ",
+    "duration": "2:12",
+    "duration_ms": 132990,
+    "cover": "https://avatars.yandex.net/get-music-content/20855185/b1c3a138.a.42705060-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_152801006",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_144324885",
+    "ym_id": "144324885",
+    "title": "Quralay",
+    "artist": "Гайбулла Турсунов",
+    "duration": "3:02",
+    "duration_ms": 182370,
+    "cover": "https://avatars.yandex.net/get-music-content/16464214/d9f79a3c.a.38803704-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_144324885",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150576362",
+    "ym_id": "150576362",
+    "title": "Vaqtinchalik Shamol",
+    "artist": "DLEJ",
+    "duration": "3:22",
+    "duration_ms": 202200,
+    "cover": "https://avatars.yandex.net/get-music-content/17740720/714c3dbc.a.41719954-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150576362",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_144308863",
+    "ym_id": "144308863",
+    "title": "Raindance",
+    "artist": "Dave, Tems",
+    "duration": "3:39",
+    "duration_ms": 219740,
+    "cover": "https://avatars.yandex.net/get-music-content/15682289/465580f1.a.38795691-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_144308863",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_122711147",
+    "ym_id": "122711147",
+    "title": "Training Season",
+    "artist": "Dua Lipa",
+    "duration": "3:29",
+    "duration_ms": 209480,
+    "cover": "https://avatars.yandex.net/get-music-content/19999910/646fcf45.a.42281627-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_122711147",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_144505243",
+    "ym_id": "144505243",
+    "title": "Onamga aytmang",
+    "artist": "Юлдуз Усманова",
+    "duration": "4:20",
+    "duration_ms": 260350,
+    "cover": "https://avatars.yandex.net/get-music-content/14304155/b5ffb710.a.38890966-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_144505243",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_149972244",
+    "ym_id": "149972244",
+    "title": "Обнял, поцеловал",
+    "artist": "Whole Lotta Swag",
+    "duration": "2:38",
+    "duration_ms": 158110,
+    "cover": "https://avatars.yandex.net/get-music-content/16616584/e9ddbe1e.a.41455532-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_149972244",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_108408644",
+    "ym_id": "108408644",
+    "title": "Asta sekin",
+    "artist": "Sevara Nazarkhan, Shoxrux",
+    "duration": "4:06",
+    "duration_ms": 246450,
+    "cover": "https://avatars.yandex.net/get-music-content/6058982/93cbd374.a.23908352-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_108408644",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_143625165",
+    "ym_id": "143625165",
+    "title": "Asragin meni",
+    "artist": "Konsta, Sevara Nazarkhan, Yaira Matyakub",
+    "duration": "3:52",
+    "duration_ms": 232000,
+    "cover": "https://avatars.yandex.net/get-music-content/15134515/578cac2d.a.38499616-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_143625165",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_27317259",
+    "ym_id": "27317259",
+    "title": "Письмо домой",
+    "artist": "GUF",
+    "duration": "4:37",
+    "duration_ms": 277500,
+    "cover": "https://avatars.yandex.net/get-music-content/17722696/134f26a7.a.3269046-7/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_27317259",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_628727",
+    "ym_id": "628727",
+    "title": "Billie Jean",
+    "artist": "Michael Jackson",
+    "duration": "4:53",
+    "duration_ms": 293960,
+    "cover": "https://avatars.yandex.net/get-music-content/33216/3c4457a3.a.211016-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_628727",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_146060683",
+    "ym_id": "146060683",
+    "title": "Daryo Daryo",
+    "artist": "Юлдуз Усманова, Хамдам Собиров",
+    "duration": "3:57",
+    "duration_ms": 237500,
+    "cover": "https://avatars.yandex.net/get-music-content/17699177/f1eb5e7e.a.39672930-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_146060683",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_138672454",
+    "ym_id": "138672454",
+    "title": "Наследство",
+    "artist": "ICEGERGERT, SKY RAE",
+    "duration": "2:09",
+    "duration_ms": 129640,
+    "cover": "https://avatars.yandex.net/get-music-content/20031403/af9493c9.a.36418505-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_138672454",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_153970251",
+    "ym_id": "153970251",
+    "title": "ЗНАК",
+    "artist": "Toxi$, Дора",
+    "duration": "3:36",
+    "duration_ms": 216000,
+    "cover": "https://avatars.yandex.net/get-music-content/20113429/ad2333c1.a.43201525-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_153970251",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150584056",
+    "ym_id": "150584056",
+    "title": "Oh sevaman yor",
+    "artist": "Ibrohim Nurmatov",
+    "duration": "2:44",
+    "duration_ms": 164610,
+    "cover": "https://avatars.yandex.net/get-music-content/20322863/ab3367cf.a.41723647-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150584056",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_2308847",
+    "ym_id": "2308847",
+    "title": "We Are The People",
+    "artist": "Empire Of The Sun",
+    "duration": "4:07",
+    "duration_ms": 247980,
+    "cover": "https://avatars.yandex.net/get-music-content/49707/0a37d204.a.1671205-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_2308847",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_6687688",
+    "ym_id": "6687688",
+    "title": "Lovesong",
+    "artist": "Adele",
+    "duration": "5:16",
+    "duration_ms": 316240,
+    "cover": "https://avatars.yandex.net/get-music-content/17649213/9f08fe18.a.718991-5/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_6687688",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151860515",
+    "ym_id": "151860515",
+    "title": "Kayıp Kalp",
+    "artist": "BLOK3",
+    "duration": "2:33",
+    "duration_ms": 153230,
+    "cover": "https://avatars.yandex.net/get-music-content/18132539/c9d08df7.a.42287881-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151860515",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_141103804",
+    "ym_id": "141103804",
+    "title": "Неужели это все любовь",
+    "artist": "MACAN, NAVAI",
+    "duration": "2:36",
+    "duration_ms": 156760,
+    "cover": "https://avatars.yandex.net/get-music-content/20013662/789e28d1.a.37458189-4/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_141103804",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_154173363",
+    "ym_id": "154173363",
+    "title": "Меня зовут Кью",
+    "artist": "DJ LINUSIK",
+    "duration": "1:46",
+    "duration_ms": 106820,
+    "cover": "https://avatars.yandex.net/get-music-content/17674835/97b74e4e.a.43281034-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_154173363",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_140900710",
+    "ym_id": "140900710",
+    "title": "napıyosun mesela ?",
+    "artist": "BLOK3",
+    "duration": "3:05",
+    "duration_ms": 185210,
+    "cover": "https://avatars.yandex.net/get-music-content/18132539/c9d08df7.a.42287881-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_140900710",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_135117439",
+    "ym_id": "135117439",
+    "title": "Bo'laveradi",
+    "artist": "Хуршид Расулов",
+    "duration": "4:37",
+    "duration_ms": 277470,
+    "cover": "https://avatars.yandex.net/get-music-content/14439424/a44a97b6.a.34941614-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_135117439",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_74911330",
+    "ym_id": "74911330",
+    "title": "Возле дома твоего",
+    "artist": "Серёга, Макс Лоренс, Сацура",
+    "duration": "3:33",
+    "duration_ms": 213760,
+    "cover": "https://avatars.yandex.net/get-music-content/16406615/bd7299ad.a.38365322-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_74911330",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_141600049",
+    "ym_id": "141600049",
+    "title": "Kel yashaylik",
+    "artist": "Тохир Содиков",
+    "duration": "3:15",
+    "duration_ms": 195890,
+    "cover": "https://avatars.yandex.net/get-music-content/15682289/e1f3d996.a.37681720-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_141600049",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_154874665",
+    "ym_id": "154874665",
+    "title": "Galmin During",
+    "artist": "Anvarbek Xamroyev",
+    "duration": "2:30",
+    "duration_ms": 150890,
+    "cover": "https://avatars.yandex.net/get-music-content/19999910/21dce21e.a.43574349-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_154874665",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_112924577",
+    "ym_id": "112924577",
+    "title": "Sarson",
+    "artist": "Озодбек Назарбеков",
+    "duration": "4:33",
+    "duration_ms": 273030,
+    "cover": "https://avatars.yandex.net/get-music-content/7852894/3bc1aed5.a.25479909-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_112924577",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_119788350",
+    "ym_id": "119788350",
+    "title": "Ga'nimat",
+    "artist": "Юлдуз Усманова",
+    "duration": "6:19",
+    "duration_ms": 379170,
+    "cover": "https://avatars.yandex.net/get-music-content/10210263/c5bb0b8b.a.28438722-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_119788350",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_155586941",
+    "ym_id": "155586941",
+    "title": "Сияй",
+    "artist": "Ramil', Баста",
+    "duration": "3:17",
+    "duration_ms": 197400,
+    "cover": "https://avatars.yandex.net/get-music-content/20305588/cd364cf9.a.43882045-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_155586941",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_51452575",
+    "ym_id": "51452575",
+    "title": "Под гипнозом",
+    "artist": "ARTIK & ASTI",
+    "duration": "3:28",
+    "duration_ms": 208690,
+    "cover": "https://avatars.yandex.net/get-music-content/119639/f62ca2f5.a.7175206-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_51452575",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_146044291",
+    "ym_id": "146044291",
+    "title": "Meni sev",
+    "artist": "Shaxriyor",
+    "duration": "3:33",
+    "duration_ms": 213040,
+    "cover": "https://avatars.yandex.net/get-music-content/15018579/4c6dd78d.a.39665567-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_146044291",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_123387215",
+    "ym_id": "123387215",
+    "title": "Есенин",
+    "artist": "NAVAI, MONA",
+    "duration": "2:50",
+    "duration_ms": 170670,
+    "cover": "https://avatars.yandex.net/get-music-content/5853241/7e0ded91.a.30069631-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_123387215",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_155550874",
+    "ym_id": "155550874",
+    "title": "34",
+    "artist": "Konsta",
+    "duration": "2:54",
+    "duration_ms": 174000,
+    "cover": "https://avatars.yandex.net/get-music-content/20608190/9fd84a61.a.43865585-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_155550874",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150365181",
+    "ym_id": "150365181",
+    "title": "GAZ",
+    "artist": "Zivert",
+    "duration": "3:01",
+    "duration_ms": 181930,
+    "cover": "https://avatars.yandex.net/get-music-content/20189877/0cc4e5b5.a.41632333-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150365181",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_154716132",
+    "ym_id": "154716132",
+    "title": "Буду всегда с тобой",
+    "artist": "Баста, AMCHI",
+    "duration": "2:58",
+    "duration_ms": 178570,
+    "cover": "https://avatars.yandex.net/get-music-content/20712233/d0e7040e.a.43512060-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_154716132",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_795836",
+    "ym_id": "795836",
+    "title": "Shape Of My Heart",
+    "artist": "Sting",
+    "duration": "4:39",
+    "duration_ms": 279220,
+    "cover": "https://avatars.yandex.net/get-music-content/2399641/033ec230.a.9172879-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_795836",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_35505245",
+    "ym_id": "35505245",
+    "title": "I Got Love",
+    "artist": "Miyagi & Эндшпиль, Рем Дигга",
+    "duration": "4:36",
+    "duration_ms": 276680,
+    "cover": "https://avatars.yandex.net/get-music-content/5314916/a57cedc4.a.20559909-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_35505245",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_141264728",
+    "ym_id": "141264728",
+    "title": "Базовый минимум",
+    "artist": "SABI, MIA BOYKA",
+    "duration": "2:15",
+    "duration_ms": 135150,
+    "cover": "https://avatars.yandex.net/get-music-content/19999910/23c53dbd.a.37531069-8/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_141264728",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_119762749",
+    "ym_id": "119762749",
+    "title": "O'ylamading",
+    "artist": "Munisa Rizaeva, Konsta",
+    "duration": "4:08",
+    "duration_ms": 248060,
+    "cover": "https://avatars.yandex.net/get-music-content/10210263/f7f75783.a.28428803-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_119762749",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_138504764",
+    "ym_id": "138504764",
+    "title": "С неба",
+    "artist": "ELMAN, TRIDA",
+    "duration": "3:09",
+    "duration_ms": 189040,
+    "cover": "https://avatars.yandex.net/get-music-content/13043189/d381a13b.a.36350005-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_138504764",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_126087908",
+    "ym_id": "126087908",
+    "title": "WILDFLOWER",
+    "artist": "Billie Eilish",
+    "duration": "4:21",
+    "duration_ms": 261460,
+    "cover": "https://avatars.yandex.net/get-music-content/9868087/4cf860c9.a.31266458-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_126087908",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150472630",
+    "ym_id": "150472630",
+    "title": "KARMA",
+    "artist": "ЕГОР КРИД, ARTIK & ASTI",
+    "duration": "2:48",
+    "duration_ms": 168130,
+    "cover": "https://avatars.yandex.net/get-music-content/15682289/57fc9a96.a.41677399-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150472630",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_35524737",
+    "ym_id": "35524737",
+    "title": "Привет, ну как ты там вообще",
+    "artist": "HammAli & Navai",
+    "duration": "3:22",
+    "duration_ms": 202770,
+    "cover": "https://avatars.yandex.net/get-music-content/16508792/e5c02fda.a.4433792-6/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_35524737",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_153220453",
+    "ym_id": "153220453",
+    "title": "Malo 2.0",
+    "artist": "ЕГОР КРИД, OG Buda, Toxi$, Мэйби Бэйби, Baby Cute, Дора",
+    "duration": "5:26",
+    "duration_ms": 326070,
+    "cover": "https://avatars.yandex.net/get-music-content/12799091/979f0234.a.42882490-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_153220453",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_117919185",
+    "ym_id": "117919185",
+    "title": "Май",
+    "artist": "MACAN",
+    "duration": "2:36",
+    "duration_ms": 156870,
+    "cover": "https://avatars.yandex.net/get-music-content/10103188/d02c3270.a.27618910-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_117919185",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_148374077",
+    "ym_id": "148374077",
+    "title": "Pomada",
+    "artist": "Юлдуз Усманова, Malik Singer",
+    "duration": "3:36",
+    "duration_ms": 216530,
+    "cover": "https://avatars.yandex.net/get-music-content/17696724/2a2d1715.a.40733919-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_148374077",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151431536",
+    "ym_id": "151431536",
+    "title": "По уши в тебя влюблён",
+    "artist": "Miyagi",
+    "duration": "3:22",
+    "duration_ms": 202160,
+    "cover": "https://avatars.yandex.net/get-music-content/17649213/74999682.a.42107622-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151431536",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_129399444",
+    "ym_id": "129399444",
+    "title": "Мир нам завидовал",
+    "artist": "Akmal'",
+    "duration": "3:07",
+    "duration_ms": 187330,
+    "cover": "https://avatars.yandex.net/get-music-content/13449652/66f64826.a.32586897-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_129399444",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_98901753",
+    "ym_id": "98901753",
+    "title": "Феникс",
+    "artist": "ANNA ASTI",
+    "duration": "3:49",
+    "duration_ms": 229710,
+    "cover": "https://avatars.yandex.net/get-music-content/14439424/458c45a5.a.22820453-5/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_98901753",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151716512",
+    "ym_id": "151716512",
+    "title": "Омут",
+    "artist": "Полка, YASMI",
+    "duration": "2:44",
+    "duration_ms": 164280,
+    "cover": "https://avatars.yandex.net/get-music-content/17784780/fffc6a16.a.42224687-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151716512",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_49961817",
+    "ym_id": "49961817",
+    "title": "Грустный дэнс",
+    "artist": "ARTIK & ASTI, Артём Качер",
+    "duration": "3:37",
+    "duration_ms": 217620,
+    "cover": "https://avatars.yandex.net/get-music-content/119639/f62ca2f5.a.7175206-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_49961817",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_141103759",
+    "ym_id": "141103759",
+    "title": "Пусть Бог будет рядом с твоими планами",
+    "artist": "MACAN, Баста",
+    "duration": "3:16",
+    "duration_ms": 196660,
+    "cover": "https://avatars.yandex.net/get-music-content/20013662/789e28d1.a.37458189-4/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_141103759",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_104964266",
+    "ym_id": "104964266",
+    "title": "По барам",
+    "artist": "ANNA ASTI",
+    "duration": "3:57",
+    "duration_ms": 237830,
+    "cover": "https://avatars.yandex.net/get-music-content/14439424/458c45a5.a.22820453-5/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_104964266",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_143821827",
+    "ym_id": "143821827",
+    "title": "БАНК",
+    "artist": "ICEGERGERT, Zivert",
+    "duration": "2:57",
+    "duration_ms": 177750,
+    "cover": "https://avatars.yandex.net/get-music-content/20840698/1f48032f.a.38572295-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_143821827",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_150804586",
+    "ym_id": "150804586",
+    "title": "Mi Chico",
+    "artist": "Dj Goja",
+    "duration": "1:57",
+    "duration_ms": 117120,
+    "cover": "https://avatars.yandex.net/get-music-content/16496077/47d03353.a.41815842-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_150804586",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_154823175",
+    "ym_id": "154823175",
+    "title": "Ты словно целая вселенная x Говори мне",
+    "artist": "Spectra",
+    "duration": "2:47",
+    "duration_ms": 167560,
+    "cover": "https://avatars.yandex.net/get-music-content/20622967/da18de21.a.43555040-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_154823175",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_141600111",
+    "ym_id": "141600111",
+    "title": "Sog'indim",
+    "artist": "Тохир Содиков",
+    "duration": "4:23",
+    "duration_ms": 263910,
+    "cover": "https://avatars.yandex.net/get-music-content/14350511/31a26228.a.37681752-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_141600111",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_135591120",
+    "ym_id": "135591120",
+    "title": "Xastamanu",
+    "artist": "Гайбулла Турсунов",
+    "duration": "3:22",
+    "duration_ms": 202000,
+    "cover": "https://avatars.yandex.net/get-music-content/12554677/d4b83f0b.a.35168033-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_135591120",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_126278860",
+    "ym_id": "126278860",
+    "title": "Монополия",
+    "artist": "Монеточка",
+    "duration": "3:37",
+    "duration_ms": 217600,
+    "cover": "https://avatars.yandex.net/get-music-content/9837520/0a775505.a.31348570-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_126278860",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_42470582",
+    "ym_id": "42470582",
+    "title": "Dengiz",
+    "artist": "Ummon",
+    "duration": "3:52",
+    "duration_ms": 232410,
+    "cover": "https://avatars.yandex.net/get-music-content/108289/702e78e2.a.5608608-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_42470582",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_29146052",
+    "ym_id": "29146052",
+    "title": "Я твой номер один",
+    "artist": "Дима Билан",
+    "duration": "3:09",
+    "duration_ms": 189500,
+    "cover": "https://avatars.yandex.net/get-music-content/17655650/c5fdbc1e.a.3501250-5/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_29146052",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_143046954",
+    "ym_id": "143046954",
+    "title": "COOOK PARDON",
+    "artist": "Lvbel C5, AKDO",
+    "duration": "1:32",
+    "duration_ms": 92100,
+    "cover": "https://avatars.yandex.net/get-music-content/12554677/6e929747.a.38273124-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_143046954",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_58767953",
+    "ym_id": "58767953",
+    "title": "Не приму и даром",
+    "artist": "NAVAI, Bahh Tee",
+    "duration": "3:18",
+    "duration_ms": 198330,
+    "cover": "https://avatars.yandex.net/get-music-content/16616584/f781984c.a.8950790-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_58767953",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_629164",
+    "ym_id": "629164",
+    "title": "'03 Bonnie & Clyde",
+    "artist": "Jay-Z, Beyoncé",
+    "duration": "3:24",
+    "duration_ms": 204930,
+    "cover": "https://avatars.yandex.net/get-music-content/28589/a3334d53.a.169068-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_629164",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_154676063",
+    "ym_id": "154676063",
+    "title": "Отражение",
+    "artist": "Ваня Дмитриенко, МАЛЬБЭК, Сюзанна",
+    "duration": "2:31",
+    "duration_ms": 151500,
+    "cover": "https://avatars.yandex.net/get-music-content/20855185/25d0a152.a.43494552-5/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_154676063",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_92535019",
+    "ym_id": "92535019",
+    "title": "Из-за тебя",
+    "artist": "Akmal'",
+    "duration": "2:52",
+    "duration_ms": 172280,
+    "cover": "https://avatars.yandex.net/get-music-content/5966316/2656cf4a.a.22032233-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_92535019",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_141850687",
+    "ym_id": "141850687",
+    "title": "Galmin During",
+    "artist": "Akbar Sapayev",
+    "duration": "2:29",
+    "duration_ms": 149250,
+    "cover": "https://avatars.yandex.net/get-music-content/15134515/7255cf3c.a.37788888-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_141850687",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_125866390",
+    "ym_id": "125866390",
+    "title": "Раневская",
+    "artist": "Akmal'",
+    "duration": "3:47",
+    "duration_ms": 227710,
+    "cover": "https://avatars.yandex.net/get-music-content/10918712/2e83bd18.a.31172691-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_125866390",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_141473460",
+    "ym_id": "141473460",
+    "title": "Таю",
+    "artist": "TASSO",
+    "duration": "3:22",
+    "duration_ms": 202880,
+    "cover": "https://avatars.yandex.net/get-music-content/15499524/7cf71822.a.37625448-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_141473460",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_39900428",
+    "ym_id": "39900428",
+    "title": "Медуза",
+    "artist": "MATRANG",
+    "duration": "2:43",
+    "duration_ms": 163940,
+    "cover": "https://avatars.yandex.net/get-music-content/15142616/2d61e89a.a.5013882-2/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_39900428",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "ym_151860524",
+    "ym_id": "151860524",
+    "title": "Kırgınım",
+    "artist": "BLOK3",
+    "duration": "2:40",
+    "duration_ms": 160630,
+    "cover": "https://avatars.yandex.net/get-music-content/18132539/c9d08df7.a.42287881-1/400x400",
+    "category": "chart",
+    "source": "yandex",
+    "streamUrl": "/api/stream?id=ym_151860524",
+    "moods": [
+      "all",
+      "drive",
+      "energy"
+    ]
+  },
+  {
+    "id": "am_ru_Labrinth___Zendaya_All_for_Us_",
+    "title": "All for Us (From the HBO Original Series Euphoria)",
+    "artist": "Labrinth & Zendaya",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/34/fc/1d/34fc1d8d-62ad-4676-afe6-a85491cb88ff/19UMGIM70965.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Labrinth___Zendaya_All_for_Us_"
+  },
+  {
+    "id": "am_ru_Emma_Louise_Jungle",
+    "title": "Jungle",
+    "artist": "Emma Louise",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/7b/ff/6e/7bff6eaa-af1f-c13d-f817-2c7a4f6c3d69/9324690083305_1.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Emma_Louise_Jungle"
+  },
+  {
+    "id": "am_ru_Ed_Sheeran_Bad_Habits",
+    "title": "Bad Habits",
+    "artist": "Ed Sheeran",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/63/45/cc/6345cc98-aa83-ad6e-e3c9-1a36ff9838a4/190296614316.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Ed_Sheeran_Bad_Habits"
+  },
+  {
+    "id": "am_ru____________M_Dee______",
+    "title": "Мосты",
+    "artist": "А'Студио & M'Dee",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/a3/b8/b3/a3b8b348-f004-ddd7-a5e1-0cb6d2955514/0.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru____________M_Dee______"
+  },
+  {
+    "id": "am_ru_CKay_Love_Nwantiti__ah_ah_ah__",
+    "title": "Love Nwantiti (ah ah ah) [feat. Joeboy & Kuami Eugene] [Remix]",
+    "artist": "CKay",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/47/75/a4/4775a4de-e5bd-e553-7dec-5a3911718276/795152501603.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_CKay_Love_Nwantiti__ah_ah_ah__"
+  },
+  {
+    "id": "am_ru_Miyagi___Andy_Panda_Marmalade_",
+    "title": "Marmalade (feat. Mav-d)",
+    "artist": "Miyagi & Andy Panda",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/82/3e/bc/823ebccc-0414-23a1-9f5e-41d77cd0644c/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Miyagi___Andy_Panda_Marmalade_"
+  },
+  {
+    "id": "am_ru_Oliver_Tree_Life_Goes_On",
+    "title": "Life Goes On",
+    "artist": "Oliver Tree",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b0/b5/17/b0b517a1-b03c-534d-b634-7166aaac869d/075679780621.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Oliver_Tree_Life_Goes_On"
+  },
+  {
+    "id": "am_ru_Cha_l_Don_t_Speak__feat__Kaii_",
+    "title": "Don't Speak (feat. Kaii)",
+    "artist": "Chaël",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/b3/d0/0f/b3d00f84-93ea-f3bd-6d06-4ba4c4a74aff/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Cha_l_Don_t_Speak__feat__Kaii_"
+  },
+  {
+    "id": "am_ru_JONY___HAMMALI________________",
+    "title": "Наверно, ты меня не помнишь",
+    "artist": "JONY & HAMMALI",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a1/a7/99/a1a7995e-d0e3-9de6-cbd8-f8a612efbde6/190296386923.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_JONY___HAMMALI________________"
+  },
+  {
+    "id": "am_ru_ENZRO_________________",
+    "title": "Ты не бойся ночи",
+    "artist": "ENZRO",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cb/6a/fa/cb6afae9-38c5-de30-f52f-bbe72f4a96ef/0.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_ENZRO_________________"
+  },
+  {
+    "id": "am_ru_Minelli_Rampampam",
+    "title": "Rampampam",
+    "artist": "Minelli",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/04/fd/85/04fd8570-35bb-c2cc-9f8f-83668416386c/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Minelli_Rampampam"
+  },
+  {
+    "id": "am_ru_Ed_Sheeran_Shivers",
+    "title": "Shivers",
+    "artist": "Ed Sheeran",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/d8/c6/c5d8c675-63e3-6632-33db-2401eabe574d/190296491412.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Ed_Sheeran_Shivers"
+  },
+  {
+    "id": "am_ru_Boris_Brejcha_Flying_Bird",
+    "title": "Flying Bird",
+    "artist": "Boris Brejcha",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/33/02/6e/mzi.vyseotgc.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Boris_Brejcha_Flying_Bird"
+  },
+  {
+    "id": "am_ru_Cassette_My_Way",
+    "title": "My Way",
+    "artist": "Cassette",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/91/a1/07/91a107fa-bc19-dd97-19dd-c8043221fb6b/886449207503.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Cassette_My_Way"
+  },
+  {
+    "id": "am_ru_Maison_Parisienne_Bonjour_Sole",
+    "title": "Bonjour Soleil",
+    "artist": "Maison Parisienne",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/27/8f/3a/278f3a7c-4b7e-650c-8e29-97249cc7f09b/artwork.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Maison_Parisienne_Bonjour_Sole"
+  },
+  {
+    "id": "am_ru_BEARWOLF_______",
+    "title": "Феникс",
+    "artist": "BEARWOLF",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/fa/f3/16faf31d-ea7f-be83-cc25-64bcd83252b1/0.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_BEARWOLF_______"
+  },
+  {
+    "id": "am_ru________________S___________",
+    "title": "Отпускаю",
+    "artist": "Егор Крид & МакSим",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/86/1a/40/861a4029-b8be-a9a2-76c9-344ffe9ad776/190296236617.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru________________S___________"
+  },
+  {
+    "id": "am_ru_The_Weeknd_Blinding_Lights",
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/6f/bc/e6/6fbce6c4-c38c-72d8-4fd0-66cfff32f679/20UMGIM12176.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_The_Weeknd_Blinding_Lights"
+  },
+  {
+    "id": "am_ru_Tender_May__Bad_Style___Calem_",
+    "title": "Silver Night (Urban Edition)",
+    "artist": "Tender May, Bad Style & Calem OG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a3/e1/6b/a3e16bad-197c-3adf-850f-1ed36ddc67b9/7316482340613.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Tender_May__Bad_Style___Calem_"
+  },
+  {
+    "id": "am_ru_Imael_Angel_Bad_Times__Extende",
+    "title": "Bad Times (Extended Version)",
+    "artist": "Imael Angel",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/08/03/7f/08037f7d-6173-9348-991d-5966f0686539/artwork.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Imael_Angel_Bad_Times__Extende"
+  },
+  {
+    "id": "am_ru_____________________",
+    "title": "Беспечный ангел",
+    "artist": "Ария",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/c5/24/cd/c524cda3-86dc-d16b-a926-810677c926f0/3614591364983.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_____________________"
+  },
+  {
+    "id": "am_ru_Kimo_Sounds_Rise_Slow",
+    "title": "Rise Slow",
+    "artist": "Kimo Sounds",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/23/27/8a/23278a46-aa21-30f3-9e68-213772c53ea7/825181567094.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Kimo_Sounds_Rise_Slow"
+  },
+  {
+    "id": "am_ru_ALL_H_OURS_DANG_DANG",
+    "title": "DANG DANG",
+    "artist": "ALL(H)OURS",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/07/c5/49/07c549b0-d3e9-6612-4c39-93d5d5a10509/cover_KM0025101_1.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_ALL_H_OURS_DANG_DANG"
+  },
+  {
+    "id": "am_ru_HUGEL__Imael_Angel___Ultra_Nat",
+    "title": "Movin' To The Sun",
+    "artist": "HUGEL, Imael Angel & Ultra Naté",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/96/61/7a/96617ab5-51da-7cfc-97e5-c5a6a893c210/1087654.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_HUGEL__Imael_Angel___Ultra_Nat"
+  },
+  {
+    "id": "am_ru_The_Neighbourhood_Softcore",
+    "title": "Softcore",
+    "artist": "The Neighbourhood",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fc/d0/89/fcd0899c-2236-a726-9ce2-ebb110e2204d/886447414545.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_The_Neighbourhood_Softcore"
+  },
+  {
+    "id": "am_ru_By________Xcho___________",
+    "title": "Шадэ",
+    "artist": "By Индия, Xcho & МОТ",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/53/bb/9a/53bb9a92-fc7e-e6c5-68d2-25f3701f7ed7/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_By________Xcho___________"
+  },
+  {
+    "id": "am_ru_GUMA___________",
+    "title": "Стеклянная",
+    "artist": "GUMA",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/09/d6/5a/09d65a7f-4ce6-e435-0547-5076a38ad285/190296515019.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_GUMA___________"
+  },
+  {
+    "id": "am_ru_Coldplay_Clocks",
+    "title": "Clocks",
+    "artist": "Coldplay",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/b9/b4/2a/b9b42ad1-1e25-5096-da43-497a247e69a3/190295978051.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Coldplay_Clocks"
+  },
+  {
+    "id": "am_ru_JONY__________________________",
+    "title": "На сиреневой луне (Леонид Агутин Cover)",
+    "artist": "JONY",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5f/3e/03/5f3e0359-1049-d0f4-419f-528b09b3cf1d/190296314667.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_JONY__________________________"
+  },
+  {
+    "id": "am_ru_Cavalcade_Up_There",
+    "title": "Up There",
+    "artist": "Cavalcade",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d8/5d/bf/d85dbf34-ddc0-ed55-b67a-faf2fd4cffa9/67.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Cavalcade_Up_There"
+  },
+  {
+    "id": "am_ru_TATITERA______________________",
+    "title": "Шепот, Робкое Дыхание",
+    "artist": "TATITERA",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/69/14/b1/6914b1b7-d1dc-08d3-d0c5-385f8fc7206b/0.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_TATITERA______________________"
+  },
+  {
+    "id": "am_ru_BLACK_Wonderful_Life",
+    "title": "Wonderful Life",
+    "artist": "BLACK",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8d/be/1b/8dbe1bc2-f3f2-586d-96a7-72a7410206d5/00082839516525.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_BLACK_Wonderful_Life"
+  },
+  {
+    "id": "am_ru_Teriyaki_Boyz_Tokyo_Drift",
+    "title": "Tokyo Drift",
+    "artist": "Teriyaki Boyz",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/04/f2/33/04f23325-0b6f-97cc-7ff9-87c26e50d948/06UMGIM32559.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Teriyaki_Boyz_Tokyo_Drift"
+  },
+  {
+    "id": "am_ru_25_17_____________feat________",
+    "title": "Подорожник (feat. Дмитрий Ревякин)",
+    "artist": "25/17",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/d0/0d/46/d00d461d-caa1-c014-bf0e-66346c57bdc1/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_25_17_____________feat________"
+  },
+  {
+    "id": "am_ru_The_Clash_Should_I_Stay_or_Sho",
+    "title": "Should I Stay or Should I Go",
+    "artist": "The Clash",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/67/4d/28/674d2820-10ad-690e-9000-c1dabeaa8b5f/886443878709.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_The_Clash_Should_I_Stay_or_Sho"
+  },
+  {
+    "id": "am_ru_Brandon_Flowers_Only_the_Young",
+    "title": "Only the Young",
+    "artist": "Brandon Flowers",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/43/74/39/43743978-fe9d-48c2-ad23-d0018243b592/00602527502755.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Brandon_Flowers_Only_the_Young"
+  },
+  {
+    "id": "am_ru_Viola_Valentino_Comprami",
+    "title": "Comprami",
+    "artist": "Viola Valentino",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/1c/ed/ef/1cedefed-e2f6-ac76-9aaa-67c823afb1cd/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Viola_Valentino_Comprami"
+  },
+  {
+    "id": "am_ru__THER_DARK_MOTIVATION_The_Man_",
+    "title": "The Man Who Walked With Shadows",
+    "artist": "ÉTHER DARK MOTIVATION",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/33/1e/3d/331e3d02-b2d5-51d2-3fa8-d6639823281d/199747642229.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru__THER_DARK_MOTIVATION_The_Man_"
+  },
+  {
+    "id": "am_ru_Taylor_Swift_London_Boy",
+    "title": "London Boy",
+    "artist": "Taylor Swift",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/49/3d/ab/493dab54-f920-9043-6181-80993b8116c9/19UMGIM53909.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Taylor_Swift_London_Boy"
+  },
+  {
+    "id": "am_ru_The_1_800_Lovewave",
+    "title": "Lovewave",
+    "artist": "The 1-800",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/56/75/53/5675530a-de58-4711-4ecf-78682483bf4c/7423.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_The_1_800_Lovewave"
+  },
+  {
+    "id": "am_ru_______________________________",
+    "title": "Спустились ангелы...",
+    "artist": "Филипп Киркоров",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ed/80/a4/ed80a4c9-8cf4-7040-429a-0eaf88a6cc9c/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_______________________________"
+  },
+  {
+    "id": "am_ru_Karna_val______________",
+    "title": "ты первый кто",
+    "artist": "Karna.val",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/31/81/83/318183c8-74af-9f1c-be68-87ac37af9d92/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Karna_val______________"
+  },
+  {
+    "id": "am_ru_Gabry_Ponte_Tu_sei__feat__Dant",
+    "title": "Tu sei (feat. Danti)",
+    "artist": "Gabry Ponte",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/8b/47/26/8b472620-191c-5ecf-45ed-6ac5cf733da1/190295819910.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Gabry_Ponte_Tu_sei__feat__Dant"
+  },
+  {
+    "id": "am_ru_Christian_Il_mondo",
+    "title": "Il mondo",
+    "artist": "Christian",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music2/v4/1c/ed/ef/1cedefed-e2f6-ac76-9aaa-67c823afb1cd/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Christian_Il_mondo"
+  },
+  {
+    "id": "am_ru_Chiara_Civello_Sono_Come_Sono_",
+    "title": "Sono Come Sono (feat. Whodamanny) [Whodamanny Remix]",
+    "artist": "Chiara Civello",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/6a/4c/3d/6a4c3d7d-a3d2-cfcc-1fee-c02f096dfcc0/0652733927200.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Chiara_Civello_Sono_Come_Sono_"
+  },
+  {
+    "id": "am_ru_Chiara_Civello_My_Way",
+    "title": "My Way",
+    "artist": "Chiara Civello",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/00/df/6a/00df6a01-0a36-2484-5107-f8e25e7051f9/3663729138194_cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Chiara_Civello_My_Way"
+  },
+  {
+    "id": "am_ru_trillbot_It_s_Hard",
+    "title": "It's Hard",
+    "artist": "trillbot",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4f/f6/40/4ff640ff-5d9c-5aa1-8bf3-df2da4f9f0f6/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_trillbot_It_s_Hard"
+  },
+  {
+    "id": "am_ru_DJ_Zinc_Sovereign",
+    "title": "Sovereign",
+    "artist": "DJ Zinc",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/aa/59/6d/aa596db9-12c2-dce4-2263-d6e8d766a5bf/3663729466235_cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_DJ_Zinc_Sovereign"
+  },
+  {
+    "id": "am_ru_JNG_Cuttin_",
+    "title": "Cuttin'",
+    "artist": "JNG",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/82/d3/cc/82d3cc53-fbef-1159-9028-c303433b17ec/5053760154747_cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_JNG_Cuttin_"
+  },
+  {
+    "id": "am_ru_______________________",
+    "title": "Самолеты",
+    "artist": "Женя Трофимов",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c9/07/fc/c907fc68-acb5-5e03-e3bd-a6a789ae81f3/0.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_______________________"
+  },
+  {
+    "id": "am_ru_N______________",
+    "title": "Я найду тебя",
+    "artist": "NЮ",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/27/f7/a8/27f7a819-9cd2-d4c0-cf9f-d57db9ee2001/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_N______________"
+  },
+  {
+    "id": "am_ru_N_______",
+    "title": "Никто",
+    "artist": "NЮ",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/eb/97/83/eb9783bd-98d9-3410-bd2a-e3f1a5d50c6c/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_N_______"
+  },
+  {
+    "id": "am_ru_______________________________",
+    "title": "Хочешь закурить",
+    "artist": "Михаил Гребенщиков",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d4/d3/04/d4d304cc-3c29-a04a-e961-9f317884aa72/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_______________________________"
+  },
+  {
+    "id": "am_ru_________________________feat__",
+    "title": "КУКЛА (feat. VONAMOUR) [Remix 2026]",
+    "artist": "Дискотека Авария",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/61/39/db/6139db19-fc9d-7234-0c83-c415553e38ef/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_________________________feat__"
+  },
+  {
+    "id": "am_ru_V_NTAK_Blood_on_Bourbon_Street",
+    "title": "Blood on Bourbon Street",
+    "artist": "VØNTAK",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/74/97/9c/74979c7c-3316-8e83-facd-ecb4b9b286b4/7300349501248.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_V_NTAK_Blood_on_Bourbon_Street"
+  },
+  {
+    "id": "am_ru_Elton_John___Dua_Lipa_Cold_Hea",
+    "title": "Cold Heart (PNAU Remix)",
+    "artist": "Elton John & Dua Lipa",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ec/2f/92/ec2f929f-e7ea-b291-42d7-75081bd808a1/21UMGIM68484.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Elton_John___Dua_Lipa_Cold_Hea"
+  },
+  {
+    "id": "am_ru_Akmal__________",
+    "title": "Любовная",
+    "artist": "Akmal'",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/34/68/a1/3468a16f-19c6-628c-6219-bcf3b8b90aa0/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Akmal__________"
+  },
+  {
+    "id": "am_ru_______________________________",
+    "title": "Случилась осень",
+    "artist": "Мари Краймбрери",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/ec/0c/8f/ec0c8f0d-d7aa-c009-7874-b3e1e3cdffc9/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_______________________________"
+  },
+  {
+    "id": "am_ru_Giorgos_Mazonakis_Savvato",
+    "title": "Savvato",
+    "artist": "Giorgos Mazonakis",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c5/7a/dc/c57adcbc-8c44-c0ef-4b77-a2b39676dc7c/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Giorgos_Mazonakis_Savvato"
+  },
+  {
+    "id": "am_ru_BEARWOLF____________",
+    "title": "Владивосток",
+    "artist": "BEARWOLF",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7a/f7/87/7af7871f-0e76-6559-75b4-8574c31116c0/0.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_BEARWOLF____________"
+  },
+  {
+    "id": "am_ru_Michael_Jackson_Who_Is_It",
+    "title": "Who Is It",
+    "artist": "Michael Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/cf/68/f9/cf68f9d4-e395-9ced-3e50-8cf7f1f9d3e0/884977307832.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Michael_Jackson_Who_Is_It"
+  },
+  {
+    "id": "am_ru_BTS_SWIM",
+    "title": "SWIM",
+    "artist": "BTS",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e0/a2/b4/e0a2b443-7969-b57a-a591-cb6172c10aa7/198704943959_Cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_BTS_SWIM"
+  },
+  {
+    "id": "am_ru_Kane_Brown_x_blackbear_Memory",
+    "title": "Memory",
+    "artist": "Kane Brown x blackbear",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c4/17/62/c41762c3-f522-d00c-598b-9e176a87aac7/886449406807.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Kane_Brown_x_blackbear_Memory"
+  },
+  {
+    "id": "am_ru_______________________________",
+    "title": "Море",
+    "artist": "Женя Трофимов & Комната культуры",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d4/5c/0f/d45c0f98-1025-2814-888f-9f7d3d8e0e04/0.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_______________________________"
+  },
+  {
+    "id": "am_ru_DJ_Lev_House_Mafia",
+    "title": "House Mafia",
+    "artist": "DJ Lev",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/8c/34/cc/8c34cc0a-783f-a6cd-9e20-2578923578bb/4680912701668.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_DJ_Lev_House_Mafia"
+  },
+  {
+    "id": "am_ru_Moby_Porcelain",
+    "title": "Porcelain",
+    "artist": "Moby",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/d0/df/33d0df83-1ebe-f791-cf78-0c8e77283883/0724347387159.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Moby_Porcelain"
+  },
+  {
+    "id": "am_ru_Adele_Hello",
+    "title": "Hello",
+    "artist": "Adele",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/62/bc/87/62bc8791-2a12-4b01-8928-d601684a951c/634904074005.png/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Adele_Hello"
+  },
+  {
+    "id": "am_ru_Zivert_________directoreels___",
+    "title": "Давай на самый верх",
+    "artist": "Zivert, Эвер & directoreels",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3e/ee/ad/3eeead6f-035d-dbc7-426d-13758ccb81e2/cover.png/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Zivert_________directoreels___"
+  },
+  {
+    "id": "am_ru_DJ_ILHAM_Digidi_Digidi",
+    "title": "Digidi Digidi",
+    "artist": "DJ ILHAM",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/86/43/60/8643603e-dd86-7e54-c3f5-267707a83a9c/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_DJ_ILHAM_Digidi_Digidi"
+  },
+  {
+    "id": "am_ru_Anita_Ward_Ring_My_Bell",
+    "title": "Ring My Bell",
+    "artist": "Anita Ward",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/46/82/93/4682932d-1def-ae8a-8a2d-c706ee1f3b09/mzi.gmndxtif.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Anita_Ward_Ring_My_Bell"
+  },
+  {
+    "id": "am_ru_Michael_Jackson_Smooth_Crimina",
+    "title": "Smooth Criminal (2012 Remaster)",
+    "artist": "Michael Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/5f/28/d55f28f4-610c-ee81-dc16-a01cda46bbc4/886443546264.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Michael_Jackson_Smooth_Crimina"
+  },
+  {
+    "id": "am_ru_z0ns_x____feat__KASANE_TETO_",
+    "title": "! (feat. KASANE TETO)",
+    "artist": "z0ns_x",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f4/67/df/f467df1b-15dc-3adc-470b-029d015cb669/4550714302601_cover.png/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_z0ns_x____feat__KASANE_TETO_"
+  },
+  {
+    "id": "am_ru_Michael_Jackson_Bad",
+    "title": "Bad",
+    "artist": "Michael Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/67/c6/c9/67c6c9b0-e879-7e4d-fcda-dc52f758ec43/888880457066.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Michael_Jackson_Bad"
+  },
+  {
+    "id": "am_ru_Michael_Jackson_Human_Nature",
+    "title": "Human Nature",
+    "artist": "Michael Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/4f/fd/324ffda2-9e51-8f6a-0c2d-c6fd2b41ac55/074643811224.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Michael_Jackson_Human_Nature"
+  },
+  {
+    "id": "am_ru_Michael_Jackson_Whatever_Happe",
+    "title": "Whatever Happens",
+    "artist": "Michael Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/dc/02/ef/dc02eff2-027c-a468-7d7b-aa9404e74f1a/mzi.mgytcnob.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Michael_Jackson_Whatever_Happe"
+  },
+  {
+    "id": "am_ru_Kylie_Minogue_In_Your_Eyes",
+    "title": "In Your Eyes",
+    "artist": "Kylie Minogue",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Features115/v4/2d/27/f4/2d27f445-abf6-f360-f56a-683b65c9b842/dj.hhpuvuwv.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Kylie_Minogue_In_Your_Eyes"
+  },
+  {
+    "id": "am_ru___________________________",
+    "title": "Если устал",
+    "artist": "Мари Краймбрери",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/c0/fc/a1/c0fca128-f430-92c5-f5dd-cfcbed3e8954/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru___________________________"
+  },
+  {
+    "id": "am_ru_Duran_Duran_Come_Undone",
+    "title": "Come Undone",
+    "artist": "Duran Duran",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e9/43/cb/e943cba9-b641-14a9-c5cb-52e67cef101c/077779887651.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Duran_Duran_Come_Undone"
+  },
+  {
+    "id": "am_ru_censedif_LET_ME_BE",
+    "title": "LET ME BE",
+    "artist": "censedif",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ae/f0/56/aef05685-0c52-c07f-d513-05c3b0396fe0/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_censedif_LET_ME_BE"
+  },
+  {
+    "id": "am_ru________________________feat___",
+    "title": "Свобода (feat. Кипелов) [Из к/ф \"Бумер. Фильм второй\"]",
+    "artist": "Сергей Шнуров",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/af/8d/0e/af8d0e25-7efc-9f1c-e445-c3433db0728a/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru________________________feat___"
+  },
+  {
+    "id": "am_ru_Adriano_Celentano_Confessa",
+    "title": "Confessa",
+    "artist": "Adriano Celentano",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/68/cc/a4/68cca40d-7e1f-d0df-e49d-b25b5956ba2a/3259130004793.png/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Adriano_Celentano_Confessa"
+  },
+  {
+    "id": "am_ru_Akmal____________________",
+    "title": "Больше, чем любовь",
+    "artist": "Akmal'",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/cd/6e/4b/cd6e4b59-3a49-8c00-eb4b-4bbf4d84a6fa/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Akmal____________________"
+  },
+  {
+    "id": "am_ru_Sting_Fields_of_Gold",
+    "title": "Fields of Gold",
+    "artist": "Sting",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/42/b7/db/42b7dbe1-d13f-c600-5b78-daa57c5d0f08/06UMGIM50761.rgb.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Sting_Fields_of_Gold"
+  },
+  {
+    "id": "am_ru_Cinematic_Symphony_Orchestra_H",
+    "title": "Harry Potter - Hedwig's Theme",
+    "artist": "Cinematic Symphony Orchestra",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4e/13/65/4e13653d-affc-93c5-2249-5785402b54b8/199999402862.png/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_Cinematic_Symphony_Orchestra_H"
+  },
+  {
+    "id": "am_ru_______________________________",
+    "title": "Аэропорты",
+    "artist": "Леонид Агутин & Владимир Пресняков (Мл.)",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/b7/17/e8/b717e8a3-abb2-de02-84a8-3b9e06aa3368/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru_______________________________"
+  },
+  {
+    "id": "am_ru________GQ__feat__L_One________",
+    "title": "GQ (feat. L'One & Сергей Минаев)",
+    "artist": "Тимати",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0b/8a/d5/0b8ad5b4-dbb6-015b-df22-45ebe241edeb/cover.jpg/600x600bb.jpg",
+    "duration": "3:20",
+    "category": "chart",
+    "moods": [
+      "all",
+      "dance",
+      "energy"
+    ],
+    "source": "apple_ru",
+    "streamUrl": "/api/stream?id=am_ru________GQ__feat__L_One________"
+  },
+  {
+    "id": "am_us_Ella_Langley_Choosin__Texas",
+    "title": "Choosin' Texas",
+    "artist": "Ella Langley",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e2/91/4d/e2914d0a-7f1d-f04c-fbf4-c50b38548838/196873638690.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Ella_Langley_Choosin__Texas"
+  },
+  {
+    "id": "am_us_Five_for_Fighting_Superman__It",
+    "title": "Superman (It's Not Easy)",
+    "artist": "Five for Fighting",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3b/60/46/3b604692-e7e2-f35f-01e2-4dd66e4eaf63/074648514922.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Five_for_Fighting_Superman__It"
+  },
+  {
+    "id": "am_us_Alan_Jackson_Where_Were_You__W",
+    "title": "Where Were You (When the World Stopped Turning)",
+    "artist": "Alan Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7a/ff/d1/7affd173-b1d0-63e6-7733-e42dcb7cc52c/dj.xmftukxb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Alan_Jackson_Where_Were_You__W"
+  },
+  {
+    "id": "am_us_Darryl_Worley_Have_You_Forgott",
+    "title": "Have You Forgotten?",
+    "artist": "Darryl Worley",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/b4/de/ac/b4deac57-32b2-73b7-f7a5-480ad00ae905/00600445044326.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Darryl_Worley_Have_You_Forgott"
+  },
+  {
+    "id": "am_us_Brandi_Carlile_Uninvited__Live",
+    "title": "Uninvited (Live at Newport Folk)",
+    "artist": "Brandi Carlile",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e0/5c/d9/e05cd9af-c943-2021-e921-f6fba5c5c607/26UM1IM13891.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Brandi_Carlile_Uninvited__Live"
+  },
+  {
+    "id": "am_us_STELLA_LEFTY_Boston",
+    "title": "Boston",
+    "artist": "STELLA LEFTY",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7c/de/5e/7cde5e7a-612d-9714-d34c-1eb234c85ebb/810129961546.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_STELLA_LEFTY_Boston"
+  },
+  {
+    "id": "am_us_Dolly_Parton_9_to_5",
+    "title": "9 to 5",
+    "artist": "Dolly Parton",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/37/fa/d1/mzi.ecmonpil.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Dolly_Parton_9_to_5"
+  },
+  {
+    "id": "am_us_Morgan_Wallen_Been_By_Now",
+    "title": "Been By Now",
+    "artist": "Morgan Wallen",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/9f/8d/52/9f8d52a0-b6d9-d038-327b-4fe58bedce67/26UMGIM94572.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Morgan_Wallen_Been_By_Now"
+  },
+  {
+    "id": "am_us_Alan_Jackson_Where_Were_You__W",
+    "title": "Where Were You (When The World Stopped Turning) [Live]",
+    "artist": "Alan Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3d/69/14/3d691435-42dd-8c6a-3108-da5b0e5fea6f/26UM1IM09872.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Alan_Jackson_Where_Were_You__W"
+  },
+  {
+    "id": "am_us_Eric_Church_On_The_Road",
+    "title": "On The Road",
+    "artist": "Eric Church",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e6/02/dc/e602dc9a-9c88-2083-c29f-d203df5ca73c/26UM1IM07597.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Eric_Church_On_The_Road"
+  },
+  {
+    "id": "am_us_Still_Heals_God_Didn_t_Let_Me_",
+    "title": "God Didn’t Let Me Break",
+    "artist": "Still Heals",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/26/a7/62/26a762fb-b712-0629-d24f-14a7296e8f9f/artwork.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Still_Heals_God_Didn_t_Let_Me_"
+  },
+  {
+    "id": "am_us_Darius_Rucker_I_Believe",
+    "title": "I Believe",
+    "artist": "Darius Rucker",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f2/e0/8e/f2e08e51-da58-e13b-d8d5-9495056c9234/26UM1IM03945.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Darius_Rucker_I_Believe"
+  },
+  {
+    "id": "am_us_Jamie_Miller_Babydoll",
+    "title": "Babydoll",
+    "artist": "Jamie Miller",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e6/15/d2/e615d28f-70b5-e43a-b3c8-460dca39c9e5/26UMGIM97516.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Jamie_Miller_Babydoll"
+  },
+  {
+    "id": "am_us_Toby_Keith_Courtesy_of_the_Red",
+    "title": "Courtesy of the Red, White and Blue (The Angry American)",
+    "artist": "Toby Keith",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e8/1b/44/e81b44cc-9a2f-9960-1a99-e6eb4389a113/08UMGIM03456.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Toby_Keith_Courtesy_of_the_Red"
+  },
+  {
+    "id": "am_us_Miley_Cyrus_Bass_Persuades",
+    "title": "Bass Persuades",
+    "artist": "Miley Cyrus",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ff/af/51/ffaf51a6-d711-6f92-a5d6-f90e98014f0f/075679564061.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Miley_Cyrus_Bass_Persuades"
+  },
+  {
+    "id": "am_us_Dolly_Parton_Jolene",
+    "title": "Jolene",
+    "artist": "Dolly Parton",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/0b/f8/1e/0bf81e88-de6e-aba3-9fd4-e7407bfbcc31/886445438048.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Dolly_Parton_Jolene"
+  },
+  {
+    "id": "am_us_Ella_Langley_Be_Her",
+    "title": "Be Her",
+    "artist": "Ella Langley",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a1/ba/64/a1ba6484-f462-1b88-ddff-d4c014d5f265/196874018361.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Ella_Langley_Be_Her"
+  },
+  {
+    "id": "am_us_Taylor_Swift_I_Knew_It__I_Knew",
+    "title": "I Knew It, I Knew You (From \"Toy Story 5\")",
+    "artist": "Taylor Swift",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/34/35/6c/34356cb4-bd0b-3bac-b118-1a6d7264dc64/26UMGIM69942.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Taylor_Swift_I_Knew_It__I_Knew"
+  },
+  {
+    "id": "am_us_Five_for_Fighting___John_Ondra",
+    "title": "Superman (It's Not Easy) [New Version]",
+    "artist": "Five for Fighting & John Ondrasik",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a1/59/06/a15906fa-964e-5b8b-4cbd-8e35166b0fa7/884977854114.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Five_for_Fighting___John_Ondra"
+  },
+  {
+    "id": "am_us_Michael_W__Smith_There_She_Sta",
+    "title": "There She Stands",
+    "artist": "Michael W. Smith",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/81/61/e9/8161e99a-2870-a67a-f6df-2060763a50dc/5037300081311.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Michael_W__Smith_There_She_Sta"
+  },
+  {
+    "id": "am_us_Waylon_Jennings_Same_Old_Blues",
+    "title": "Same Old Blues (feat. Jessi Colter)",
+    "artist": "Waylon Jennings",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/be/64/8d/be648dfb-443c-32e8-9f35-cb31bf32c517/820233779517.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Waylon_Jennings_Same_Old_Blues"
+  },
+  {
+    "id": "am_us_Ella_Langley___Morgan_Wallen_I",
+    "title": "I Can't Love You Anymore",
+    "artist": "Ella Langley & Morgan Wallen",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/26/35/03/26350323-d656-4817-49e6-4d658af8363a/196874332917.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Ella_Langley___Morgan_Wallen_I"
+  },
+  {
+    "id": "am_us_Brandon_Lake_How_Good_God_Is",
+    "title": "How Good God Is",
+    "artist": "Brandon Lake",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1b/de/5c/1bde5c6a-05ba-c591-ff95-a34194541a7d/196874664483.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Brandon_Lake_How_Good_God_Is"
+  },
+  {
+    "id": "am_us_Lee_Greenwood_God_Bless_The_U_",
+    "title": "God Bless The U.S.A.",
+    "artist": "Lee Greenwood",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2e/03/1f/2e031f9d-61df-dc10-a321-338165bbe438/00008817026428.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Lee_Greenwood_God_Bless_The_U_"
+  },
+  {
+    "id": "am_us_Elevation_Worship___Chandler_M",
+    "title": "God I'm Just Grateful",
+    "artist": "Elevation Worship & Chandler Moore",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/42/01/51420110-806a-86c5-7025-5016e5a2bd57/196873750729.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Elevation_Worship___Chandler_M"
+  },
+  {
+    "id": "am_us_Dolly_Parton___Kenny_Rogers_Is",
+    "title": "Islands In the Stream",
+    "artist": "Dolly Parton & Kenny Rogers",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/37/fa/d1/mzi.ecmonpil.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Dolly_Parton___Kenny_Rogers_Is"
+  },
+  {
+    "id": "am_us_Chad_Prather___Real_America_s_",
+    "title": "Never Forget",
+    "artist": "Chad Prather & Real America's Music",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fc/30/72/fc3072a7-f594-bfb4-6fef-16929545d86b/1348322.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Chad_Prather___Real_America_s_"
+  },
+  {
+    "id": "am_us_STARSET_a_n_n_1_h_1_l_a_t_1_0_",
+    "title": "a n n 1 h 1 l a t 1 0 n",
+    "artist": "STARSET",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b6/f7/f3/b6f7f3a4-68f0-b307-eccb-850d9d79b664/26CRGIM56218.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_STARSET_a_n_n_1_h_1_l_a_t_1_0_"
+  },
+  {
+    "id": "am_us_Koe_Wetzel___Ella_Langley_Jade",
+    "title": "Jaded",
+    "artist": "Koe Wetzel & Ella Langley",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c1/09/7e/c1097e38-0d2e-d389-2be7-0762979bb43a/ticket.easjqfbg.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Koe_Wetzel___Ella_Langley_Jade"
+  },
+  {
+    "id": "am_us_Ella_Langley___Riley_Green_you",
+    "title": "you look like you love me",
+    "artist": "Ella Langley & Riley Green",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/62/33/40/62334080-6129-4d0c-086b-921cc956cb7a/196872090895.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Ella_Langley___Riley_Green_you"
+  },
+  {
+    "id": "am_us_Warren_Zeiders___Bellah_Mae_Ov",
+    "title": "Overrated",
+    "artist": "Warren Zeiders & Bellah Mae",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ec/91/21/ec9121a0-f47b-a7f1-158f-7c4d6c4f8a15/093624818519.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Warren_Zeiders___Bellah_Mae_Ov"
+  },
+  {
+    "id": "am_us_KAROL_G__Judeline___rusowsky_B",
+    "title": "BbY WOW",
+    "artist": "KAROL G, Judeline & rusowsky",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2b/66/b2/2b66b26c-ab23-faa1-c4ee-06fa2cce8f76/26UM1IM00558.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_KAROL_G__Judeline___rusowsky_B"
+  },
+  {
+    "id": "am_us_Kings_of_Leon_My_Whole_World",
+    "title": "My Whole World",
+    "artist": "Kings of Leon",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c2/84/79/c2847988-ab33-0de8-0dc3-ebf0c6cbd0b4/00823375343684_Cover.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Kings_of_Leon_My_Whole_World"
+  },
+  {
+    "id": "am_us_Josiah_Siska_3_Tequila_Floor",
+    "title": "3 Tequila Floor",
+    "artist": "Josiah Siska",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/c8/9b/3a/c89b3a06-96a5-4342-9cf7-c6954463ebe7/196925277808.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Josiah_Siska_3_Tequila_Floor"
+  },
+  {
+    "id": "am_us_Ariana_Grande_hate_that_i_made",
+    "title": "hate that i made you love me",
+    "artist": "Ariana Grande",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/7e/e6/82/7ee682bd-1b17-6adc-be63-b5af1bdff369/26UMGIM51126.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Ariana_Grande_hate_that_i_made"
+  },
+  {
+    "id": "am_us_Sadie_Barlow_I_Choose_Me",
+    "title": "I Choose Me",
+    "artist": "Sadie Barlow",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/a4/37/73/a43773b3-366e-5a1f-5f3a-977420a42991/artwork.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Sadie_Barlow_I_Choose_Me"
+  },
+  {
+    "id": "am_us_Riley_Green_My_Way",
+    "title": "My Way",
+    "artist": "Riley Green",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/74/60/09/74600943-c67a-5335-4f8c-bad8b3e5d2a8/26BMR0007851.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Riley_Green_My_Way"
+  },
+  {
+    "id": "am_us_AC_DC_Thunderstruck",
+    "title": "Thunderstruck",
+    "artist": "AC/DC",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/bb/a2/f0/bba2f0d7-4d9e-c617-d49e-3ae02fd5d440/dj.xbkfgllk.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_AC_DC_Thunderstruck"
+  },
+  {
+    "id": "am_us_LINKIN_PARK_Faint___Unshatter_",
+    "title": "Faint - Unshatter Film Soundtrack (Live in São Paulo)",
+    "artist": "LINKIN PARK",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/cd/7b/91/cd7b9189-5c62-5f99-c39a-e268a31ec7c2/093624821380.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_LINKIN_PARK_Faint___Unshatter_"
+  },
+  {
+    "id": "am_us_Olivia_Dean_Man_I_Need",
+    "title": "Man I Need",
+    "artist": "Olivia Dean",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/08/e2/21/08e22164-7c0b-1522-818f-e0e74f62dc49/25UMGIM69703.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Olivia_Dean_Man_I_Need"
+  },
+  {
+    "id": "am_us_Dolly_Parton___The_First_Ladie",
+    "title": "Bound to Ride",
+    "artist": "Dolly Parton & The First Ladies of Bluegrass",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/75/27/e4/7527e469-9812-3d3e-136c-cc0cb5825dac/1565.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Dolly_Parton___The_First_Ladie"
+  },
+  {
+    "id": "am_us_Dolly_Parton_I_Will_Always_Lov",
+    "title": "I Will Always Love You",
+    "artist": "Dolly Parton",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/37/fa/d1/mzi.ecmonpil.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Dolly_Parton_I_Will_Always_Lov"
+  },
+  {
+    "id": "am_us_Luke_Combs_Be_By_You",
+    "title": "Be By You",
+    "artist": "Luke Combs",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4c/b6/e5/4cb6e5b1-2db0-88c0-f025-b79cad3b8fab/196873832111.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Luke_Combs_Be_By_You"
+  },
+  {
+    "id": "am_us_Metallica_Enter_Sandman",
+    "title": "Enter Sandman",
+    "artist": "Metallica",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2e/94/95/2e9495d7-dfe3-ddc8-87ef-6ef797a60218/850007452056.png/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Metallica_Enter_Sandman"
+  },
+  {
+    "id": "am_us_Dolly_Parton_Here_You_Come_Aga",
+    "title": "Here You Come Again",
+    "artist": "Dolly Parton",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/01/0c/75/010c75b5-ac46-382c-5862-33679d13dc65/886445438932.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Dolly_Parton_Here_You_Come_Aga"
+  },
+  {
+    "id": "am_us_HUNTR_X__EJAE__AUDREY_NUNA__RE",
+    "title": "Golden",
+    "artist": "HUNTR/X, EJAE, AUDREY NUNA, REI AMI & KPop Demon Hunters Cast",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e1/15/42/e1154273-8ecd-5702-e6e6-597f28001681/25UMGIM82363.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_HUNTR_X__EJAE__AUDREY_NUNA__RE"
+  },
+  {
+    "id": "am_us_Bob_Dominator_In_My_Soul",
+    "title": "In My Soul",
+    "artist": "Bob Dominator",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c2/5a/9d/c25a9da9-18be-d367-6570-56307fcbc1f7/612891165418.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Bob_Dominator_In_My_Soul"
+  },
+  {
+    "id": "am_us_River_Cain_Hell_Out_Of_Me",
+    "title": "Hell Out Of Me",
+    "artist": "River Cain",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/18/91/51/189151db-c10f-bf8a-40d8-9ab625ce9fcd/artwork.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_River_Cain_Hell_Out_Of_Me"
+  },
+  {
+    "id": "am_us_May_the_Lord_Studio_Tell_me__h",
+    "title": "Tell me, how is Heaven",
+    "artist": "May the Lord Studio",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ef/bb/cd/efbbcdd9-de9b-1d59-2e91-300afe2143d1/artwork.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_May_the_Lord_Studio_Tell_me__h"
+  },
+  {
+    "id": "am_us_Olivia_Rodrigo_stupid_song",
+    "title": "stupid song",
+    "artist": "Olivia Rodrigo",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/1d/1b/f9/1d1bf9b1-44c6-9a6c-6ffb-c158488c06ce/26UMGIM39303.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Olivia_Rodrigo_stupid_song"
+  },
+  {
+    "id": "am_us_Bruno_Mars_Risk_It_All",
+    "title": "Risk It All",
+    "artist": "Bruno Mars",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ed/46/bf/ed46bf4e-7cb9-965a-54f3-03059977fe6c/075679589293.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Bruno_Mars_Risk_It_All"
+  },
+  {
+    "id": "am_us_Luke_Bryan_I_Liked_Loving_You",
+    "title": "I Liked Loving You",
+    "artist": "Luke Bryan",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f9/c4/8a/f9c48a79-ac83-7cb9-83bb-236a6bfcd419/26UMGIM53679.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Luke_Bryan_I_Liked_Loving_You"
+  },
+  {
+    "id": "am_us_LE_SSERAFIM_Made_My_Night",
+    "title": "Made My Night",
+    "artist": "LE SSERAFIM",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/70/3a/93/703a93d0-97aa-9746-421b-3844b81d5348/823375407065_Cover.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_LE_SSERAFIM_Made_My_Night"
+  },
+  {
+    "id": "am_us_Earth__Wind___Fire_September",
+    "title": "September",
+    "artist": "Earth, Wind & Fire",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5c/8e/19/5c8e191d-b458-fc29-54ef-bd9367835044/886447618547.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Earth__Wind___Fire_September"
+  },
+  {
+    "id": "am_us_Riley_Green_Think_As_You_Drunk",
+    "title": "Think As You Drunk",
+    "artist": "Riley Green",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/cf/71/16cf71b7-bda7-9916-3d11-3b60539ace2c/26BMR0008042.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Riley_Green_Think_As_You_Drunk"
+  },
+  {
+    "id": "am_us_Ella_Langley_Loving_Life_Again",
+    "title": "Loving Life Again",
+    "artist": "Ella Langley",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a1/ba/64/a1ba6484-f462-1b88-ddff-d4c014d5f265/196874018361.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Ella_Langley_Loving_Life_Again"
+  },
+  {
+    "id": "am_us_Alex_Warren_Ordinary",
+    "title": "Ordinary",
+    "artist": "Alex Warren",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/46/78/fb/4678fb84-d19e-f11b-93ff-4dc17660bff8/075679619075.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Alex_Warren_Ordinary"
+  },
+  {
+    "id": "am_us_The_Goo_Goo_Dolls_Iris",
+    "title": "Iris",
+    "artist": "The Goo Goo Dolls",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music/b4/0c/98/mzi.vhowcacb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_The_Goo_Goo_Dolls_Iris"
+  },
+  {
+    "id": "am_us_River_Cain_Same_Old__Same_Old",
+    "title": "Same Old, Same Old",
+    "artist": "River Cain",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/92/ba/2a/92ba2a50-2d8d-547c-e7a8-9ed15436f688/artwork.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_River_Cain_Same_Old__Same_Old"
+  },
+  {
+    "id": "am_us_Tom_MacDonald_The_Government",
+    "title": "The Government",
+    "artist": "Tom MacDonald",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ac/1b/d9/ac1bd9c4-d6be-0b27-40a9-6e95a2846aad/712132163446_cover.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Tom_MacDonald_The_Government"
+  },
+  {
+    "id": "am_us_The_War_on_Drugs_Who_s_That",
+    "title": "Who's That",
+    "artist": "The War on Drugs",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f8/83/a8/f883a88f-576f-4cef-e185-2ee72949c8dc/859744971936_cover.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_The_War_on_Drugs_Who_s_That"
+  },
+  {
+    "id": "am_us_House_of_Pain_Jump_Around",
+    "title": "Jump Around",
+    "artist": "House of Pain",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c5/b7/2f/c5b72ff4-d593-ed4c-f7ed-080fb4d224aa/081227911560.png/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_House_of_Pain_Jump_Around"
+  },
+  {
+    "id": "am_us_Olivia_Dean_So_Easy__To_Fall_I",
+    "title": "So Easy (To Fall In Love)",
+    "artist": "Olivia Dean",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/08/e2/21/08e22164-7c0b-1522-818f-e0e74f62dc49/25UMGIM69703.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Olivia_Dean_So_Easy__To_Fall_I"
+  },
+  {
+    "id": "am_us_Michael_Jackson_Beat_It",
+    "title": "Beat It",
+    "artist": "Michael Jackson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/32/4f/fd/324ffda2-9e51-8f6a-0c2d-c6fd2b41ac55/074643811224.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Michael_Jackson_Beat_It"
+  },
+  {
+    "id": "am_us_Harry_Styles_Sign_of_the_Times",
+    "title": "Sign of the Times",
+    "artist": "Harry Styles",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3d/5e/aa/3d5eaaa3-9a86-c264-5cd5-7fac83f99a59/886446451978.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Harry_Styles_Sign_of_the_Times"
+  },
+  {
+    "id": "am_us_Phil_Collins_In_the_Air_Tonigh",
+    "title": "In the Air Tonight",
+    "artist": "Phil Collins",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/29/3f/e0/293fe00f-f9ac-859f-bbe5-f3c2de3d83fc/603497880249.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Phil_Collins_In_the_Air_Tonigh"
+  },
+  {
+    "id": "am_us_Little_Big_Town___Kelsea_Balle",
+    "title": "Closing Time",
+    "artist": "Little Big Town & Kelsea Ballerini",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bb/91/1b/bb911b04-47ca-663a-2fd5-7bd7e4303a0f/26UMGIM57737.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Little_Big_Town___Kelsea_Balle"
+  },
+  {
+    "id": "am_us_Crimson_Vale_Not_Okay",
+    "title": "Not Okay",
+    "artist": "Crimson Vale",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/42/79/81/42798151-d7e7-584d-094d-17ef8d2c8dcc/artwork.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Crimson_Vale_Not_Okay"
+  },
+  {
+    "id": "am_us_Zedd___Alessia_Cara_Stay__Jona",
+    "title": "Stay (Jonas Blue Remix)",
+    "artist": "Zedd & Alessia Cara",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/8a/6f/17/8a6f1728-df81-960c-7dcb-01d430ef5752/00602557699708.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Zedd___Alessia_Cara_Stay__Jona"
+  },
+  {
+    "id": "am_us_The_Killers_Mr__Brightside",
+    "title": "Mr. Brightside",
+    "artist": "The Killers",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/11/64/9c/11649c80-2066-dba8-77a9-df7eecae26c1/17UM1IM06937.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_The_Killers_Mr__Brightside"
+  },
+  {
+    "id": "am_us_Tinashe_Pillow_Fight",
+    "title": "Pillow Fight",
+    "artist": "Tinashe",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/33/26/5a/33265a39-a36e-9455-716c-0e63a9173b29/075679570758.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Tinashe_Pillow_Fight"
+  },
+  {
+    "id": "am_us_Benson_Boone_Beautiful_Things",
+    "title": "Beautiful Things",
+    "artist": "Benson Boone",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/54/f4/92/54f49210-e260-b519-ebbd-f4f40ee710cd/054391342751.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Benson_Boone_Beautiful_Things"
+  },
+  {
+    "id": "am_us_Five_for_Fighting_100_Years",
+    "title": "100 Years",
+    "artist": "Five for Fighting",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ba/a0/64/baa064f8-20e8-58d8-06a8-1608f8598b6c/mzi.zlkclpqo.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Five_for_Fighting_100_Years"
+  },
+  {
+    "id": "am_us_Lady_Gaga___Bruno_Mars_Die_Wit",
+    "title": "Die With A Smile",
+    "artist": "Lady Gaga & Bruno Mars",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/11/ae/f2/11aef294-f57c-bab9-c9fc-529162984e62/24UMGIM85348.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Lady_Gaga___Bruno_Mars_Die_Wit"
+  },
+  {
+    "id": "am_us_Dylan_Collins_When_You_Got_To_",
+    "title": "When You Got To Heaven",
+    "artist": "Dylan Collins",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/23/6a/48/236a48e6-3f0d-55ed-f351-d34f1c2edb9e/artwork.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Dylan_Collins_When_You_Got_To_"
+  },
+  {
+    "id": "am_us_Chappell_Roan_Pink_Pony_Club",
+    "title": "Pink Pony Club",
+    "artist": "Chappell Roan",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/41/bc/fb/41bcfb43-91d5-931d-5747-fb381803143f/23UMGIM21715.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Chappell_Roan_Pink_Pony_Club"
+  },
+  {
+    "id": "am_us_Natasha_Owens___Real_America_s",
+    "title": "We Miss You Charlie (feat. Benjy Gaither)",
+    "artist": "Natasha Owens & Real America's Music",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/07/ac/8e/07ac8e34-5477-1dec-a51c-a8523d5219d1/1338273.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Natasha_Owens___Real_America_s"
+  },
+  {
+    "id": "am_us_Bruno_Mars_I_Just_Might",
+    "title": "I Just Might",
+    "artist": "Bruno Mars",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ed/46/bf/ed46bf4e-7cb9-965a-54f3-03059977fe6c/075679589293.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Bruno_Mars_I_Just_Might"
+  },
+  {
+    "id": "am_us_Zara_Larsson_Midnight_Sun",
+    "title": "Midnight Sun",
+    "artist": "Zara Larsson",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/fb/1d/2d/fb1d2d1c-0f79-53ad-ab9b-ac20918b5856/196873177199.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Zara_Larsson_Midnight_Sun"
+  },
+  {
+    "id": "am_us_Alice_In_Chains_Nutshell",
+    "title": "Nutshell",
+    "artist": "Alice In Chains",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bd/d6/37/bdd6373e-dc26-e86e-1d31-9bb1f7656968/5099747485527.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Alice_In_Chains_Nutshell"
+  },
+  {
+    "id": "am_us_Noah_Kahan_Orbiter",
+    "title": "Orbiter",
+    "artist": "Noah Kahan",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f9/aa/69/f9aa6992-40ca-a756-85ca-b27c48f7c720/26UMGIM02802.rgb.jpg/600x600bb.jpg",
+    "duration": "3:15",
+    "category": "world",
+    "moods": [
+      "all",
+      "energy",
+      "drive"
+    ],
+    "source": "apple_us",
+    "streamUrl": "/api/stream?id=am_us_Noah_Kahan_Orbiter"
+  },
+  {
     "id": "4EfM6rPmxow",
     "title": "Minor",
     "artist": "MiyaGi & Andy Panda",
@@ -10,7 +4215,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=4EfM6rPmxow"
   },
   {
     "id": "nidQCt_HEsY",
@@ -23,7 +4229,8 @@
       "all",
       "dance",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=nidQCt_HEsY"
   },
   {
     "id": "j5cNhjG6iGs",
@@ -36,20 +4243,8 @@
       "all",
       "drive",
       "romantic"
-    ]
-  },
-  {
-    "id": "7LcZzCPCuvg",
-    "title": "По барам",
-    "artist": "ANNA ASTI",
-    "cover": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400",
-    "duration": "3:58",
-    "category": "chart",
-    "moods": [
-      "all",
-      "dance",
-      "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=j5cNhjG6iGs"
   },
   {
     "id": "p39HcuQNlg4",
@@ -62,7 +4257,8 @@
       "all",
       "romantic",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=p39HcuQNlg4"
   },
   {
     "id": "x1XuN5Rq2ws",
@@ -75,7 +4271,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=x1XuN5Rq2ws"
   },
   {
     "id": "yM1QjdoLmxQ",
@@ -88,7 +4285,8 @@
       "all",
       "romantic",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=yM1QjdoLmxQ"
   },
   {
     "id": "UJ3COIHd954",
@@ -101,7 +4299,8 @@
       "all",
       "chill",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=UJ3COIHd954"
   },
   {
     "id": "macan_asphalt8",
@@ -114,7 +4313,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=macan_asphalt8"
   },
   {
     "id": "anna_asti_tsaritsa",
@@ -127,7 +4327,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=anna_asti_tsaritsa"
   },
   {
     "id": "xcho_vorony",
@@ -140,7 +4341,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=xcho_vorony"
   },
   {
     "id": "jony_besposhadna",
@@ -153,7 +4355,8 @@
       "all",
       "romantic",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=jony_besposhadna"
   },
   {
     "id": "hammali_ptichka",
@@ -166,7 +4369,8 @@
       "all",
       "romantic",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=hammali_ptichka"
   },
   {
     "id": "jah_khalib_medina",
@@ -179,7 +4383,8 @@
       "all",
       "drive",
       "dance"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=jah_khalib_medina"
   },
   {
     "id": "jah_khalib_leila",
@@ -192,7 +4397,8 @@
       "all",
       "romantic",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=jah_khalib_leila"
   },
   {
     "id": "basta_sansara",
@@ -205,7 +4411,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=basta_sansara"
   },
   {
     "id": "basta_medlyachok",
@@ -218,7 +4425,8 @@
       "all",
       "romantic",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=basta_medlyachok"
   },
   {
     "id": "scriptonite_polozhenie",
@@ -231,7 +4439,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=scriptonite_polozhenie"
   },
   {
     "id": "scriptonite_eto_lubov",
@@ -244,7 +4453,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=scriptonite_eto_lubov"
   },
   {
     "id": "markul_strely",
@@ -257,7 +4467,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=markul_strely"
   },
   {
     "id": "big_baby_tape_million",
@@ -270,7 +4481,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=big_baby_tape_million"
   },
   {
     "id": "big_baby_tape_99_problems",
@@ -283,7 +4495,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=big_baby_tape_99_problems"
   },
   {
     "id": "kizaru_dejavu",
@@ -296,7 +4509,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=kizaru_dejavu"
   },
   {
     "id": "oxxxymiron_gde_nas_net",
@@ -309,7 +4523,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=oxxxymiron_gde_nas_net"
   },
   {
     "id": "oxxxymiron_gorod_pod_podoshvoy",
@@ -322,7 +4537,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=oxxxymiron_gorod_pod_podoshvoy"
   },
   {
     "id": "feduk_moryak",
@@ -335,7 +4551,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=feduk_moryak"
   },
   {
     "id": "feduk_rozovoe_vino",
@@ -348,7 +4565,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=feduk_rozovoe_vino"
   },
   {
     "id": "ramil_siyay",
@@ -361,7 +4579,8 @@
       "all",
       "drive",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=ramil_siyay"
   },
   {
     "id": "navai_esenin",
@@ -374,7 +4593,8 @@
       "all",
       "romantic",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=navai_esenin"
   },
   {
     "id": "andro_inoplanetyanin",
@@ -387,7 +4607,8 @@
       "all",
       "romantic",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=andro_inoplanetyanin"
   },
   {
     "id": "the_limba_xo",
@@ -400,7 +4621,8 @@
       "all",
       "dance",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=the_limba_xo"
   },
   {
     "id": "morgenshtern_cristal_moet",
@@ -413,7 +4635,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=morgenshtern_cristal_moet"
   },
   {
     "id": "morgenshtern_cadillac",
@@ -426,7 +4649,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=morgenshtern_cadillac"
   },
   {
     "id": "macan_za_vseh",
@@ -439,7 +4663,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=macan_za_vseh"
   },
   {
     "id": "miyagi_silhouette",
@@ -452,7 +4677,8 @@
       "all",
       "chill",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=miyagi_silhouette"
   },
   {
     "id": "miyagi_utopia",
@@ -465,7 +4691,8 @@
       "all",
       "chill",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=miyagi_utopia"
   },
   {
     "id": "xcho_eskizy",
@@ -478,7 +4705,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=xcho_eskizy"
   },
   {
     "id": "anna_asti_nochyu_na_kuhne",
@@ -491,7 +4719,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=anna_asti_nochyu_na_kuhne"
   },
   {
     "id": "pharaoh_diko_naprimer",
@@ -504,7 +4733,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=pharaoh_diko_naprimer"
   },
   {
     "id": "rakhim_fendi",
@@ -517,21 +4747,8 @@
       "all",
       "energy",
       "drive"
-    ]
-  },
-  {
-    "id": "fHI8X4OXluQ",
-    "title": "Blinding Lights",
-    "artist": "The Weeknd",
-    "cover": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400",
-    "duration": "3:20",
-    "category": "world",
-    "moods": [
-      "all",
-      "dance",
-      "energy",
-      "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=rakhim_fendi"
   },
   {
     "id": "Rif-RTvmmss",
@@ -544,7 +4761,8 @@
       "all",
       "drive",
       "dance"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=Rif-RTvmmss"
   },
   {
     "id": "the_weeknd_save_your_tears",
@@ -557,7 +4775,8 @@
       "all",
       "dance",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=the_weeknd_save_your_tears"
   },
   {
     "id": "the_weeknd_the_hills",
@@ -570,7 +4789,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=the_weeknd_the_hills"
   },
   {
     "id": "wjj2upnfBI0",
@@ -583,7 +4803,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=wjj2upnfBI0"
   },
   {
     "id": "billie_eilish_bad_guy",
@@ -596,7 +4817,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=billie_eilish_bad_guy"
   },
   {
     "id": "tR1ECf4sEpw",
@@ -609,7 +4831,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=tR1ECf4sEpw"
   },
   {
     "id": "eminem_without_me",
@@ -622,7 +4845,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=eminem_without_me"
   },
   {
     "id": "drake_gods_plan",
@@ -635,7 +4859,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=drake_gods_plan"
   },
   {
     "id": "drake_one_dance",
@@ -648,7 +4873,8 @@
       "all",
       "dance",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=drake_one_dance"
   },
   {
     "id": "travis_scott_goosebumps",
@@ -661,7 +4887,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=travis_scott_goosebumps"
   },
   {
     "id": "travis_scott_sicko_mode",
@@ -674,7 +4901,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=travis_scott_sicko_mode"
   },
   {
     "id": "imagine_dragons_believer",
@@ -687,7 +4915,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=imagine_dragons_believer"
   },
   {
     "id": "imagine_dragons_radioactive",
@@ -700,7 +4929,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=imagine_dragons_radioactive"
   },
   {
     "id": "imagine_dragons_bones",
@@ -713,7 +4943,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=imagine_dragons_bones"
   },
   {
     "id": "dua_lipa_levitating",
@@ -726,7 +4957,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=dua_lipa_levitating"
   },
   {
     "id": "dua_lipa_dont_start_now",
@@ -739,7 +4971,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=dua_lipa_dont_start_now"
   },
   {
     "id": "arctic_monkeys_do_i_wanna_know",
@@ -752,7 +4985,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=arctic_monkeys_do_i_wanna_know"
   },
   {
     "id": "post_malone_circles",
@@ -765,7 +4999,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=post_malone_circles"
   },
   {
     "id": "post_malone_sunflower",
@@ -778,7 +5013,8 @@
       "all",
       "chill",
       "dance"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=post_malone_sunflower"
   },
   {
     "id": "harry_styles_as_it_was",
@@ -791,7 +5027,8 @@
       "all",
       "dance",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=harry_styles_as_it_was"
   },
   {
     "id": "ed_sheeran_shape_of_you",
@@ -804,7 +5041,8 @@
       "all",
       "dance",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=ed_sheeran_shape_of_you"
   },
   {
     "id": "linkin_park_in_the_end",
@@ -817,7 +5055,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=linkin_park_in_the_end"
   },
   {
     "id": "linkin_park_numb",
@@ -830,7 +5069,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=linkin_park_numb"
   },
   {
     "id": "nirvana_smells_like_teen_spirit",
@@ -843,7 +5083,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=nirvana_smells_like_teen_spirit"
   },
   {
     "id": "queen_bohemian_rhapsody",
@@ -856,7 +5097,8 @@
       "all",
       "chill",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=queen_bohemian_rhapsody"
   },
   {
     "id": "kordhell_murder_in_my_mind",
@@ -869,7 +5111,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=kordhell_murder_in_my_mind"
   },
   {
     "id": "dvrst_close_eyes",
@@ -882,7 +5125,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=dvrst_close_eyes"
   },
   {
     "id": "hensonn_sahara",
@@ -895,7 +5139,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=hensonn_sahara"
   },
   {
     "id": "ghostface_playa_why_not",
@@ -908,7 +5153,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=ghostface_playa_why_not"
   },
   {
     "id": "sxmpra_cowbell_warrior",
@@ -921,7 +5167,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=sxmpra_cowbell_warrior"
   },
   {
     "id": "pharmacist_north_memphis",
@@ -934,7 +5181,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=pharmacist_north_memphis"
   },
   {
     "id": "tiesto_the_business",
@@ -947,7 +5195,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=tiesto_the_business"
   },
   {
     "id": "meduza_piece_of_your_heart",
@@ -960,7 +5209,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=meduza_piece_of_your_heart"
   },
   {
     "id": "fisher_losing_it",
@@ -973,7 +5223,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=fisher_losing_it"
   },
   {
     "id": "david_guetta_im_good",
@@ -986,7 +5237,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=david_guetta_im_good"
   },
   {
     "id": "daft_punk_get_lucky",
@@ -999,7 +5251,8 @@
       "all",
       "dance",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=daft_punk_get_lucky"
   },
   {
     "id": "miyagi_polovina_moya",
@@ -1012,7 +5265,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=miyagi_polovina_moya"
   },
   {
     "id": "miyagi_kosandra",
@@ -1025,7 +5279,8 @@
       "all",
       "dance",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=miyagi_kosandra"
   },
   {
     "id": "miyagi_lubi_menya",
@@ -1038,7 +5293,8 @@
       "all",
       "romantic",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=miyagi_lubi_menya"
   },
   {
     "id": "macan_kino",
@@ -1051,7 +5307,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=macan_kino"
   },
   {
     "id": "macan_yug",
@@ -1064,7 +5321,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=macan_yug"
   },
   {
     "id": "macan_ivl",
@@ -1077,7 +5335,8 @@
       "all",
       "romantic",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=macan_ivl"
   },
   {
     "id": "xcho_only_you",
@@ -1090,7 +5349,8 @@
       "all",
       "romantic",
       "dance"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=xcho_only_you"
   },
   {
     "id": "xcho_gandagan",
@@ -1103,7 +5363,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=xcho_gandagan"
   },
   {
     "id": "anna_asti_durak",
@@ -1116,7 +5377,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=anna_asti_durak"
   },
   {
     "id": "anna_asti_zatmila",
@@ -1129,7 +5391,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=anna_asti_zatmila"
   },
   {
     "id": "scriptonite_vecherinka",
@@ -1142,7 +5405,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=scriptonite_vecherinka"
   },
   {
     "id": "scriptonite_multibrendovy",
@@ -1155,7 +5419,8 @@
       "all",
       "drive",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=scriptonite_multibrendovy"
   },
   {
     "id": "jah_khalib_docha",
@@ -1168,7 +5433,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=jah_khalib_docha"
   },
   {
     "id": "markul_serpantin",
@@ -1181,7 +5447,8 @@
       "all",
       "dance",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=markul_serpantin"
   },
   {
     "id": "the_weeknd_cant_feel_my_face",
@@ -1194,7 +5461,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=the_weeknd_cant_feel_my_face"
   },
   {
     "id": "the_weeknd_i_feel_it_coming",
@@ -1207,7 +5475,8 @@
       "all",
       "dance",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=the_weeknd_i_feel_it_coming"
   },
   {
     "id": "drake_hotline_bling",
@@ -1220,7 +5489,8 @@
       "all",
       "dance",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=drake_hotline_bling"
   },
   {
     "id": "drake_in_my_feelings",
@@ -1233,7 +5503,8 @@
       "all",
       "dance",
       "energy"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=drake_in_my_feelings"
   },
   {
     "id": "travis_scott_highest_in_the_room",
@@ -1246,7 +5517,8 @@
       "all",
       "drive",
       "chill"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=travis_scott_highest_in_the_room"
   },
   {
     "id": "travis_scott_fein",
@@ -1259,7 +5531,8 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=travis_scott_fein"
   },
   {
     "id": "billie_eilish_ocean_eyes",
@@ -1272,7 +5545,8 @@
       "all",
       "chill",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=billie_eilish_ocean_eyes"
   },
   {
     "id": "imagine_dragons_demons",
@@ -1285,7 +5559,8 @@
       "all",
       "energy",
       "romantic"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=imagine_dragons_demons"
   },
   {
     "id": "imagine_dragons_whatever_it_takes",
@@ -1298,6 +5573,7 @@
       "all",
       "energy",
       "drive"
-    ]
+    ],
+    "streamUrl": "/api/stream?id=imagine_dragons_whatever_it_takes"
   }
 ]
