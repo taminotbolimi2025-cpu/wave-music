@@ -181,11 +181,32 @@ async def api_version(request):
     })
 
 
+async def api_debug_stream(request):
+    import traceback
+    vid_id = request.query.get('id', 'ZZMj3GjGTVU')
+    try:
+        url = music_service.get_stream_url(vid_id)
+        return web.json_response({
+            'status': 'ok',
+            'id': vid_id,
+            'url_found': bool(url),
+            'url': (url[:80] + '...') if url else ''
+        })
+    except Exception as e:
+        return web.json_response({
+            'status': 'error',
+            'id': vid_id,
+            'error': str(e),
+            'trace': traceback.format_exc()
+        })
+
+
 def create_app():
     app = web.Application(middlewares=[cors_middleware])
     
     # API Routes
     app.router.add_get('/api/version', api_version)
+    app.router.add_get('/api/debug_stream', api_debug_stream)
     app.router.add_get('/api/search', api_search)
     app.router.add_get('/api/wave', api_wave)
     app.router.add_get('/api/chart', api_chart)
