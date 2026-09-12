@@ -107,8 +107,13 @@ def bot_polling_loop():
             logger.info("Bot polling started...")
             bot.polling(non_stop=True, interval=0, timeout=20)
         except Exception as e:
-            logger.warning(f"Bot polling exception: {e}. Reconnecting in 3s...")
-            time.sleep(3)
+            err_str = str(e)
+            if "409" in err_str or "Conflict" in err_str:
+                logger.info("Bot polling active on Render cloud. Standing by...")
+                time.sleep(15)
+            else:
+                logger.warning(f"Bot polling exception: {e}. Reconnecting in 5s...")
+                time.sleep(5)
 
 
 def main():
