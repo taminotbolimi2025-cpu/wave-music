@@ -435,6 +435,30 @@ def handle_admin_panel(message):
         return
 
     args = message.text.strip().split()
+    if len(args) >= 2 and args[1].lower() in ['update', 'refresh', 'sync']:
+        wait_msg = bot.reply_to(message, "⏳ <i>Запускаю принудительное обновление чартов и новинок...</i>", parse_mode="HTML")
+        try:
+            chart, releases = music_service.update_all_daily_playlists()
+            bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=wait_msg.message_id,
+                text=(
+                    f"✅ <b>Плейлисты успешно обновлены!</b>\n\n"
+                    f"🔥 Главный чарт: <b>{len(chart)}</b> свежих треков\n"
+                    f"✨ Новинки музыки: <b>{len(releases)}</b> треков\n\n"
+                    f"<i>(Фоновое автообновление также работает каждые 12 часов)</i>"
+                ),
+                parse_mode="HTML"
+            )
+        except Exception as err:
+            bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=wait_msg.message_id,
+                text=f"⚠️ Ошибка обновления: {html.escape(str(err))}",
+                parse_mode="HTML"
+            )
+        return
+
     if len(args) >= 3:
         cmd = args[1].lower()
         try:
@@ -468,6 +492,7 @@ def handle_admin_panel(message):
             f"📌 <b>Команды управления:</b>\n"
             f"• <code>/admin add ID</code> — выдать доступ по ID\n"
             f"• <code>/admin remove ID</code> — забрать доступ по ID\n"
+            f"• <code>/admin update</code> — обновить чарты и плейлисты прямо сейчас\n"
             f"• <code>/myid</code> — узнать свой ID"
         ),
         parse_mode="HTML"
