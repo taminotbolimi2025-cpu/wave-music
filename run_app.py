@@ -60,9 +60,12 @@ def sync_user_menu_buttons(webapp_url):
     print(f"[Access] Кнопка MiniApp настроена для {len(whitelist)} одобренных пользователей", flush=True)
 
 
+_startup_notified = False
+
+
 def tunnel_watchdog():
     """Keeps the tunnel alive permanently. If it ever closes, restarts automatically."""
-    global _tunnel_proc
+    global _tunnel_proc, _startup_notified
     while True:
         try:
             print("[Watchdog] Инициализация HTTPS-туннеля...", flush=True)
@@ -72,6 +75,23 @@ def tunnel_watchdog():
                 config.WEBAPP_URL = tunnel_url
                 print(f"[Watchdog] Активный URL туннеля: {tunnel_url}", flush=True)
                 sync_user_menu_buttons(tunnel_url)
+
+                if not _startup_notified:
+                    try:
+                        from bot import get_webapp_keyboard
+                        bot.send_message(
+                            config.ADMIN_ID,
+                            "🟢 <b>Wave Music онлайн на офисном компьютере!</b>\n\n"
+                            "🌐 Сервер запущен и готов к работе.\n"
+                            "💡 Не забудьте скачать свежие треки кнопкой <b>«📥 В метро»</b>, чтобы слушать их офлайн, когда ноутбук выключится!",
+                            parse_mode="HTML",
+                            reply_markup=get_webapp_keyboard()
+                        )
+                        _startup_notified = True
+                        print(f"[Watchdog] Уведомление о старте успешно отправлено в Telegram админу ({config.ADMIN_ID})", flush=True)
+                    except Exception as notify_err:
+                        logger.warning(f"Could not send startup notification: {notify_err}")
+
                 # Wait for tunnel process to finish (if it dies)
                 proc.wait()
                 print("[Watchdog] Туннель был разорван. Перезапуск через 3 сек...", flush=True)
