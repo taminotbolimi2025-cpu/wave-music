@@ -4,4 +4,4 @@ Set fso = CreateObject("Scripting.FileSystemObject")
 strPath = fso.GetParentFolderName(WScript.ScriptFullName)
 
 WshShell.CurrentDirectory = strPath
-WshShell.Run "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File """ & strPath & "\start_background.ps1""", 0, False
+WshShell.Run Chr(34) & strPath & "\.venv\Scripts\pythonw.exe" & Chr(34) & " run_app.py", 0, False

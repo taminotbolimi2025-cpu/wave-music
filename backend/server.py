@@ -9,6 +9,7 @@ import telebot
 
 from config import BOT_TOKEN, HOST, PORT, FRONTEND_DIR
 import music_service
+import lyrics_service
 import access_control
 import yt_dlp
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -455,6 +456,16 @@ async def api_debug_stream(request):
     return web.json_response(diag)
 
 
+async def api_lyrics(request):
+    artist = request.query.get('artist', '')
+    title = request.query.get('title', '')
+    if not artist and not title:
+        return web.json_response({'found': False, 'message': 'Параметры artist или title обязательны'}, status=400)
+    loop = asyncio.get_event_loop()
+    data = await loop.run_in_executor(None, lyrics_service.get_lyrics, artist, title)
+    return web.json_response(data)
+
+
 def create_app():
     app = web.Application(middlewares=[cors_middleware])
     
@@ -474,6 +485,7 @@ def create_app():
     app.router.add_post('/api/yandex/sync', api_yandex_sync)
     app.router.add_get('/api/yandex/status', api_yandex_status)
     app.router.add_get('/api/stream', api_stream)
+    app.router.add_get('/api/lyrics', api_lyrics)
     app.router.add_post('/api/send_to_chat', api_send_to_chat)
 
     # Static Routes

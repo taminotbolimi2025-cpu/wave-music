@@ -5686,6 +5686,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const downloadMp3Btn = document.getElementById('downloadMp3Btn');
   const saveOfflineBtn = document.getElementById('saveOfflineBtn');
   const saveOfflineBtnText = document.getElementById('saveOfflineBtnText');
+  const lyricsBtn = document.getElementById('lyricsBtn');
+  const shareTrackBtn = document.getElementById('shareTrackBtn');
+  const lyricsModal = document.getElementById('lyricsModal');
+  const lyricsBackdrop = document.getElementById('lyricsBackdrop');
+  const closeLyricsBtn = document.getElementById('closeLyricsBtn');
+  const lyricsTitle = document.getElementById('lyricsTitle');
+  const lyricsArtist = document.getElementById('lyricsArtist');
+  const lyricsLoader = document.getElementById('lyricsLoader');
+  const lyricsContainer = document.getElementById('lyricsContainer');
   const coverHalo = document.getElementById('coverHalo');
   const toast = document.getElementById('toast');
 
@@ -6046,6 +6055,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentTimeLabel.textContent = formatTime(audio.currentTime);
     totalDurationLabel.textContent = formatTime(audio.duration);
+
+    if (state.isLyricsOpen && state.lyricsData && state.lyricsData.synced && state.lyricsData.synced.length > 0) {
+      updateKaraokeSync(audio.currentTime);
+    }
   });
 
   audio.addEventListener('ended', () => {
@@ -6854,7 +6867,149 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 15. Initial Render
+  // 14. Lyrics & Karaoke Engine
+  async function openLyricsModal() {
+    if (!state.currentTrack) {
+      showToast('⚠️ Сначала включите любой трек');
+      return;
+    }
+    state.isLyricsOpen = true;
+    if (lyricsTitle) lyricsTitle.textContent = state.currentTrack.title || 'Трек';
+    if (lyricsArtist) lyricsArtist.textContent = state.currentTrack.artist || 'Исполнитель';
+    if (lyricsModal) lyricsModal.style.display = 'flex';
+    if (lyricsLoader) lyricsLoader.style.display = 'flex';
+    if (lyricsContainer) lyricsContainer.innerHTML = '';
+    triggerHaptic('light');
+
+    try {
+      const art = encodeURIComponent(state.currentTrack.artist || '');
+      const tit = encodeURIComponent(state.currentTrack.title || '');
+      const res = await fetch(`/api/lyrics?artist=${art}&title=${tit}`);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      state.lyricsData = data;
+      if (lyricsLoader) lyricsLoader.style.display = 'none';
+      renderLyricsContent(data);
+    } catch (e) {
+      if (lyricsLoader) lyricsLoader.style.display = 'none';
+      if (lyricsContainer) {
+        lyricsContainer.innerHTML = '<div class="lyrics-plain-text">Не удалось загрузить текст песни.<br><br>Наслаждайтесь чистым звуком в Wave Music! 🎵</div>';
+      }
+    }
+  }
+
+  function closeLyricsModal() {
+    state.isLyricsOpen = false;
+    if (lyricsModal) lyricsModal.style.display = 'none';
+  }
+
+  function renderLyricsContent(data) {
+    if (!lyricsContainer) return;
+    lyricsContainer.innerHTML = '';
+    lastActiveLyricsIdx = -1;
+
+    if (data.synced && data.synced.length > 0) {
+      data.synced.forEach((line, idx) => {
+        const lineEl = document.createElement('div');
+        lineEl.className = 'lyrics-line';
+        lineEl.dataset.time = line.time;
+        lineEl.dataset.index = idx;
+        lineEl.textContent = line.text || '♪ ♪ ♪';
+        lineEl.addEventListener('click', () => {
+          triggerHaptic('medium');
+          audio.currentTime = line.time;
+          if (audio.paused) audio.play();
+        });
+        lyricsContainer.appendChild(lineEl);
+      });
+      updateKaraokeSync(audio.currentTime);
+    } else if (data.plain) {
+      const plainEl = document.createElement('div');
+      plainEl.className = 'lyrics-plain-text';
+      plainEl.textContent = data.plain;
+      lyricsContainer.appendChild(plainEl);
+    } else {
+      lyricsContainer.innerHTML = `<div class="lyrics-plain-text">${data.message || 'Текст песни пока не добавлен.'}</div>`;
+    }
+  }
+
+  let lastActiveLyricsIdx = -1;
+  function updateKaraokeSync(currentTime) {
+    if (!lyricsContainer || !state.lyricsData || !state.lyricsData.synced || state.lyricsData.synced.length === 0) return;
+    const lines = state.lyricsData.synced;
+    let activeIdx = -1;
+    for (let i = 0; i < lines.length; i++) {
+      if (currentTime >= lines[i].time) {
+        activeIdx = i;
+      } else {
+        break;
+      }
+    }
+
+    if (activeIdx !== lastActiveLyricsIdx) {
+      lastActiveLyricsIdx = activeIdx;
+      const allLineEls = lyricsContainer.querySelectorAll('.lyrics-line');
+      allLineEls.forEach((el, i) => {
+        el.classList.toggle('active', i === activeIdx);
+      });
+
+      if (activeIdx >= 0 && allLineEls[activeIdx]) {
+        allLineEls[activeIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }
+
+  // 15. Share Track Engine
+  function shareCurrentTrack() {
+    if (!state.currentTrack) {
+      showToast('⚠️ Сначала включите трек, чтобы им поделиться');
+      return;
+    }
+    triggerHaptic('medium');
+    const track = state.currentTrack;
+    const trackId = track.id || `${track.artist}_${track.title}`;
+    const botUser = 'music_abdu_bot';
+    const shareUrl = `https://t.me/${botUser}?start=track_${encodeURIComponent(trackId)}`;
+    const shareText = `🎧 Слушай трек в Wave Music:\n${track.artist} — ${track.title}`;
+
+    if (window.Telegram?.WebApp?.openTelegramLink) {
+      const tgShareLink = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+      window.Telegram.WebApp.openTelegramLink(tgShareLink);
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
+      showToast('📋 Ссылка на трек скопирована в буфер обмена!');
+    } else {
+      showToast('👉 Ссылка: ' + shareUrl);
+    }
+  }
+
+  if (lyricsBtn) lyricsBtn.addEventListener('click', openLyricsModal);
+  if (closeLyricsBtn) closeLyricsBtn.addEventListener('click', closeLyricsModal);
+  if (lyricsBackdrop) lyricsBackdrop.addEventListener('click', closeLyricsModal);
+  if (shareTrackBtn) shareTrackBtn.addEventListener('click', shareCurrentTrack);
+
+  // Deep Link: #play_trackId
+  if (window.location.hash && window.location.hash.startsWith('#play_')) {
+    const targetId = decodeURIComponent(window.location.hash.substring(6));
+    const found = defaultTracks.find(t => t.id === targetId || t.title.toLowerCase() === targetId.toLowerCase());
+    if (found) {
+      setTimeout(() => {
+        loadAndPlay(found);
+        openFullPlayer();
+      }, 500);
+    } else {
+      fetch(`/api/search?q=${encodeURIComponent(targetId)}&limit=1`)
+        .then(r => r.json())
+        .then(res => {
+          if (res && res.tracks && res.tracks.length > 0) {
+            loadAndPlay(res.tracks[0]);
+            openFullPlayer();
+          }
+        }).catch(() => {});
+    }
+  }
+
+  // 16. Initial Render
   checkUserAccess();
   renderHomeHits();
   renderChart();

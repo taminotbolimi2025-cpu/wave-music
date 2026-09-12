@@ -39,7 +39,7 @@ def get_current_url():
         except Exception:
             pass
     separator = "&" if "?" in base_url else "?"
-    return f"{base_url}{separator}v=3.4.0"
+    return f"{base_url}{separator}v=3.6.0"
 
 
 def get_webapp_keyboard():
@@ -149,6 +149,11 @@ def handle_start(message):
     user_name = html.escape(message.from_user.first_name or "друг")
     current_url = get_current_url()
 
+    start_payload = ""
+    parts = message.text.split(maxsplit=1)
+    if len(parts) > 1:
+        start_payload = parts[1].strip()
+
     # Check permission
     if not access_control.is_allowed(user_id):
         try:
@@ -163,15 +168,38 @@ def handle_start(message):
                 callback_data=f"req_access_{user_id}"
             )
         )
+        shared_note = ""
+        if start_payload.startswith("track_"):
+            shared_note = "🎵 <b>Ваш друг поделился с вами треком из Wave Music!</b>\n\n"
+
         bot.send_message(
             chat_id=message.chat.id,
             text=(
-                f"🔒 <b>Доступ ограничен</b>\n\n"
+                f"{shared_note}🔒 <b>Доступ ограничен</b>\n\n"
                 f"Здравствуйте, {user_name}! Этот музыкальный плеер является персональным.\n"
                 f"Ваш Telegram ID: <code>{user_id}</code>\n\n"
                 f"Нажмите кнопку ниже, чтобы отправить запрос владельцу бота на получение доступа."
             ),
             reply_markup=markup,
+            parse_mode="HTML"
+        )
+        return
+
+    # If authorized user opened a shared track link
+    if start_payload.startswith("track_"):
+        track_id = start_payload[6:]
+        custom_url = f"{current_url}#play_{track_id}"
+        track_markup = InlineKeyboardMarkup()
+        track_markup.add(
+            InlineKeyboardButton(text="▶️ Слушать отправленный трек", web_app=WebAppInfo(url=custom_url))
+        )
+        track_markup.add(
+            InlineKeyboardButton(text="🎵 Открыть плеер", web_app=WebAppInfo(url=current_url))
+        )
+        bot.send_message(
+            chat_id=message.chat.id,
+            text=f"🎧 <b>Вам отправили трек!</b>\n\nНажмите кнопку ниже, чтобы начать воспроизведение:",
+            reply_markup=track_markup,
             parse_mode="HTML"
         )
         return

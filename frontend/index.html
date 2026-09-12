@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3.5.0">
+  <link rel="stylesheet" href="style.css?v=3.6.0">
 </head>
 <body>
   <div id="app" class="app-container">
@@ -303,7 +303,7 @@
           </button>
         </div>
 
-        <!-- Background Play & Download & Subway Offline -->
+        <!-- Background Play & Download & Subway Offline & Lyrics & Share -->
         <div class="pro-features-strip">
           <button id="saveOfflineBtn" class="pro-action-btn" title="Сохранить для метро">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -312,6 +312,27 @@
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
             <span id="saveOfflineBtnText">📥 В метро</span>
+          </button>
+
+          <button id="lyricsBtn" class="pro-action-btn" title="Текст песни (Караоке)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            <span>🎤 Текст</span>
+          </button>
+
+          <button id="shareTrackBtn" class="pro-action-btn" title="Поделиться с другом">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span>↗️ Поделиться</span>
           </button>
 
           <button id="sendToChatBtn" class="pro-action-btn" title="Слушать в фоне">
@@ -365,11 +386,35 @@
 
       <button class="nav-item" data-target="tab-library">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
         </svg>
         <span>Коллекция</span>
       </button>
     </nav>
+
+    <!-- LYRICS / KARAOKE MODAL -->
+    <div id="lyricsModal" class="lyrics-modal" style="display: none;">
+      <div class="lyrics-backdrop" id="lyricsBackdrop"></div>
+      <div class="lyrics-sheet">
+        <div class="lyrics-drag-bar"></div>
+        <div class="lyrics-header">
+          <div class="lyrics-meta">
+            <h3 id="lyricsTitle" class="lyrics-title">Название трека</h3>
+            <p id="lyricsArtist" class="lyrics-artist">Исполнитель</p>
+          </div>
+          <button id="closeLyricsBtn" class="close-lyrics-btn" title="Закрыть">&times;</button>
+        </div>
+        <div class="lyrics-content" id="lyricsContent">
+          <div id="lyricsLoader" class="lyrics-loader">
+            <div class="spinner"></div>
+            <span>Поиск текста песни...</span>
+          </div>
+          <div id="lyricsContainer" class="lyrics-lines"></div>
+        </div>
+      </div>
+    </div>
 
     <!-- ACCESS RESTRICTION & REQUEST GATE -->
     <div id="accessGateModal" class="access-gate-modal" style="display: none;">
@@ -452,8 +497,8 @@
 
   </div>
 
-  <script src="offline_db.js?v=3.5.0"></script>
-  <script src="app.js?v=3.5.0"></script>
+  <script src="offline_db.js?v=3.6.0"></script>
+  <script src="app.js?v=3.6.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
