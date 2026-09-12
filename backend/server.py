@@ -196,7 +196,7 @@ async def api_version(request):
     import config
     return web.json_response({
         'status': 'ok',
-        'version': '2.3.0',
+        'version': '2.4.0',
         'admin_id': config.ADMIN_ID
     })
 
@@ -204,35 +204,39 @@ async def api_version(request):
 async def api_debug_stream(request):
     import traceback
     vid_id = request.query.get('id', 'ZZMj3GjGTVU')
+    client_param = request.query.get('client', 'android,ios')
+    clients = [c.strip() for c in client_param.split(',') if c.strip()]
     target = f"https://www.youtube.com/watch?v={vid_id}"
-    diag = {}
+    diag = {'id': vid_id, 'tested_clients': clients}
     
-    # Check yt-dlp extract_info
+    test_opts = {
+        'quiet': True,
+        'no_warnings': True,
+        'skip_download': True,
+        'noplaylist': True,
+        'format': '18/bestaudio[ext=m4a]/140/bestaudio/best',
+        'extractor_args': {
+            'youtube': {
+                'player_client': clients
+            }
+        }
+    }
+    
     try:
-        with yt_dlp.YoutubeDL(music_service.YDL_OPTS_STREAM) as ydl:
+        with yt_dlp.YoutubeDL(test_opts) as ydl:
             info = ydl.extract_info(target, download=False)
             if 'entries' in info and info['entries']:
                 info = info['entries'][0]
             stream_url = info.get('url', '')
-            diag['extract_url'] = (stream_url[:80] + '...') if stream_url else ''
-            diag['extract_success'] = bool(stream_url)
+            diag['success'] = bool(stream_url)
+            diag['url'] = (stream_url[:100] + '...') if stream_url else ''
+            diag['format'] = info.get('format_id')
+            diag['ext'] = info.get('ext')
+            diag['acodec'] = info.get('acodec')
+            diag['title'] = info.get('title')
     except Exception as e:
-        diag['extract_error'] = f"{type(e).__name__}: {str(e)}"
-        diag['extract_trace'] = traceback.format_exc()
-
-    # Check download_and_cache_audio
-    try:
-        dl_path = music_service.download_and_cache_audio(vid_id)
-        diag['dl_path'] = dl_path
-        diag['dl_exists'] = os.path.exists(dl_path) if dl_path else False
-        diag['dl_size'] = os.path.getsize(dl_path) if dl_path and os.path.exists(dl_path) else 0
-    except Exception as e:
-        diag['dl_error'] = f"{type(e).__name__}: {str(e)}"
-        diag['dl_trace'] = traceback.format_exc()
-
-    diag['cache_dir'] = music_service.AUDIO_CACHE_DIR
-    diag['cache_dir_exists'] = os.path.exists(music_service.AUDIO_CACHE_DIR)
-    diag['cache_dir_contents'] = os.listdir(music_service.AUDIO_CACHE_DIR) if os.path.exists(music_service.AUDIO_CACHE_DIR) else []
+        diag['success'] = False
+        diag['error'] = f"{type(e).__name__}: {str(e)}"
 
     return web.json_response(diag)
 

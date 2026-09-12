@@ -19,14 +19,24 @@ YDL_OPTS_SEARCH = {
     'skip_download': True,
     'default_search': 'ytsearch',
     'noplaylist': True,
+    'extractor_args': {
+        'youtube': {
+            'player_client': ['android', 'ios']
+        }
+    }
 }
 
 YDL_OPTS_STREAM = {
     'quiet': True,
     'no_warnings': True,
-    'format': 'bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
+    'format': '18/bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
     'skip_download': True,
     'noplaylist': True,
+    'extractor_args': {
+        'youtube': {
+            'player_client': ['android', 'ios']
+        }
+    }
 }
 
 CURATED_CHART = [
@@ -290,12 +300,17 @@ def download_and_cache_audio(video_id_or_title: str) -> str:
 
     out_file = os.path.join(AUDIO_CACHE_DIR, _safe_filename(clean_query))
     ydl_opts = {
-        'format': 'bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
+        'format': '18/bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
         'outtmpl': out_file,
         'quiet': True,
         'no_warnings': True,
         'noplaylist': True,
         'max_filesize': 35 * 1024 * 1024,
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'ios']
+            }
+        }
     }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
