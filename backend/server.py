@@ -113,6 +113,13 @@ async def api_new_releases(request):
     return web.json_response({'tracks': tracks})
 
 
+async def api_playlist(request):
+    name = request.query.get('name', '').strip()
+    loop = asyncio.get_event_loop()
+    tracks = await loop.run_in_executor(None, music_service.get_playlist_tracks, name)
+    return web.json_response({'playlist': name, 'tracks': tracks})
+
+
 async def api_stream(request):
     vid_id = request.query.get('id', '').strip()
     if not vid_id:
@@ -395,6 +402,7 @@ def create_app():
     app.router.add_get('/api/wave', api_wave)
     app.router.add_get('/api/chart', api_chart)
     app.router.add_get('/api/new_releases', api_new_releases)
+    app.router.add_get('/api/playlist', api_playlist)
     app.router.add_get('/api/stream', api_stream)
     app.router.add_post('/api/send_to_chat', api_send_to_chat)
 

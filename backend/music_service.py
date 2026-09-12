@@ -6,6 +6,7 @@ import logging
 import tempfile
 import uuid
 import yt_dlp
+import catalog
 
 logger = logging.getLogger(__name__)
 
@@ -31,92 +32,8 @@ YDL_OPTS_STREAM = {
     'noplaylist': True,
 }
 
-CURATED_CHART = [
-    {
-        'id': '4EfM6rPmxow',
-        'title': 'Minor',
-        'artist': 'MiyaGi & Andy Panda',
-        'cover': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400',
-        'duration': '2:56'
-    },
-    {
-        'id': 'nidQCt_HEsY',
-        'title': 'I Got Love',
-        'artist': 'Miyagi & Эндшпиль',
-        'cover': 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400',
-        'duration': '4:35'
-    },
-    {
-        'id': 'j5cNhjG6iGs',
-        'title': 'Останься образом',
-        'artist': 'MACAN',
-        'cover': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400',
-        'duration': '3:12'
-    },
-    {
-        'id': '7LcZzCPCuvg',
-        'title': 'По барам',
-        'artist': 'ANNA ASTI',
-        'cover': 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400',
-        'duration': '3:58'
-    },
-    {
-        'id': 'p39HcuQNlg4',
-        'title': 'Прятки',
-        'artist': 'HammAli & Navai',
-        'cover': 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400',
-        'duration': '3:10'
-    },
-    {
-        'id': 'fHI8X4OXluQ',
-        'title': 'Blinding Lights',
-        'artist': 'The Weeknd',
-        'cover': 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400',
-        'duration': '3:20'
-    },
-    {
-        'id': 'x1XuN5Rq2ws',
-        'title': 'Ты и Я',
-        'artist': 'Xcho',
-        'cover': 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400',
-        'duration': '2:45'
-    },
-    {
-        'id': 'yM1QjdoLmxQ',
-        'title': 'Комета',
-        'artist': 'JONY',
-        'cover': 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400',
-        'duration': '2:38'
-    },
-    {
-        'id': 'UJ3COIHd954',
-        'title': 'Captain',
-        'artist': 'Miyagi',
-        'cover': 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400',
-        'duration': '3:40'
-    },
-    {
-        'id': 'Rif-RTvmmss',
-        'title': 'Starboy',
-        'artist': 'The Weeknd ft. Daft Punk',
-        'cover': 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=400',
-        'duration': '3:50'
-    },
-    {
-        'id': 'wjj2upnfBI0',
-        'title': 'Lovely',
-        'artist': 'Billie Eilish & Khalid',
-        'cover': 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400',
-        'duration': '3:20'
-    },
-    {
-        'id': 'tR1ECf4sEpw',
-        'title': 'Lose Yourself',
-        'artist': 'Eminem',
-        'cover': 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400',
-        'duration': '5:26'
-    }
-]
+# 50 Top Chart tracks from our 100+ catalog
+CURATED_CHART = catalog.get_chart_catalog(limit=50)
 
 MOOD_QUERIES = {
     'all': ['топ треков 2026', 'популярная музыка хиты', 'новинки музыки'],
@@ -236,6 +153,18 @@ def search_tracks(query: str, limit: int = 12):
             if len(results) >= limit:
                 break
 
+    # 1. Instant match from our 100+ curated catalog
+    q_lower = clean_q.lower()
+    catalog_matches = [
+        t for t in catalog.CATALOG
+        if q_lower in t['title'].lower() or q_lower in t['artist'].lower()
+    ]
+    for cm in catalog_matches:
+        if cm['id'] not in seen_ids:
+            seen_ids.add(cm['id'])
+            results.append(dict(cm))
+
+    # 2. Broader online YouTube search
     try:
         with yt_dlp.YoutubeDL(YDL_OPTS_SEARCH) as ydl:
             info = ydl.extract_info(search_str, download=False)
@@ -244,15 +173,9 @@ def search_tracks(query: str, limit: int = 12):
     except Exception as ex:
         logger.error(f"Search error for {query}: {ex}")
 
-    # Fallback to filter curated list if search yields nothing
+    # Fallback to catalog if search yields nothing
     if not results:
-        q_lower = clean_q.lower()
-        results = [
-            t for t in CURATED_CHART
-            if q_lower in t['title'].lower() or q_lower in t['artist'].lower()
-        ]
-        if not results:
-            results = CURATED_CHART[:limit]
+        results = catalog.CATALOG[:limit]
 
     out_results = results[:limit]
     _search_cache[cache_key] = (now, out_results)
@@ -400,19 +323,25 @@ def _save_cache(filepath, tracks):
 def get_wave_tracks(mood: str = 'all'):
     """Returns dynamic recommendation stream for 'Моя Волна' using guaranteed playable tracks"""
     import random
-    curated = list(CURATED_CHART)
-    random.shuffle(curated)
-    return curated
+    tracks = catalog.get_mood_catalog(mood=mood, limit=60)
+    random.shuffle(tracks)
+    return tracks
 
 
 def get_chart_tracks(force_refresh: bool = False):
-    """Returns top chart tracks with guaranteed high-speed mobile playback"""
-    return list(CURATED_CHART)
+    """Returns top-50 chart tracks with guaranteed high-speed mobile playback"""
+    return catalog.get_chart_catalog(limit=50)
 
 
 def get_new_releases(force_refresh: bool = False):
     """Returns fresh daily releases and premieres with guaranteed high-speed mobile playback"""
-    return list(reversed(CURATED_CHART))
+    all_tracks = catalog.get_catalog_tracks()
+    return all_tracks[15:55]
+
+
+def get_playlist_tracks(name: str):
+    """Returns specialized curated playlist tracks from 100+ track catalog"""
+    return catalog.get_playlist_tracks(name)
 
 
 def update_all_daily_playlists():
