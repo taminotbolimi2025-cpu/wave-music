@@ -20,8 +20,5 @@ if (-not (Test-Path $pythonExe)) {
     $pythonExe = "python.exe"
 }
 
-# 4. Start hiddenly and redirect logs
-$stdoutLog = Join-Path $scriptDir "server_out.log"
-$stderrLog = Join-Path $scriptDir "server_err.log"
-
-Start-Process -FilePath $pythonExe -ArgumentList "run_app.py" -WorkingDirectory $scriptDir -WindowStyle Hidden -RedirectStandardOutput $stdoutLog -RedirectStandardError $stderrLog
+# 4. Start hiddenly
+Start-Process -FilePath $pythonExe -ArgumentList @("-u", "run_app.py") -WorkingDirectory $scriptDir -WindowStyle Hidden

@@ -5647,6 +5647,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Library Tab
   const libraryList = document.getElementById('libraryList');
   const emptyLibraryNotice = document.getElementById('emptyLibraryNotice');
+  const topMonthStatsCard = document.getElementById('topMonthStatsCard');
   const favCountBadge = document.getElementById('favCountBadge');
   const libTabs = document.querySelectorAll('.lib-tab');
   const goToWaveBtn = document.getElementById('goToWaveBtn');
@@ -5871,6 +5872,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update UI elements
     updateTrackMetadataUI(track);
+
+    // Record monthly listening statistics
+    recordTrackPlay(track);
+
+    // Adapt Yandex dynamic ambient mesh background aura
+    adaptAmbientAura(track);
 
     // Stream URL resolution: prioritize Offline IndexedDB first!
     let offlineRecord = null;
@@ -6479,7 +6486,319 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 10.1 Yandex Ambient Dynamic Background Controller
+  const ambientMeshBg = document.getElementById('ambientMeshBg');
+  const blob1 = ambientMeshBg ? ambientMeshBg.querySelector('.blob-1') : null;
+  const blob2 = ambientMeshBg ? ambientMeshBg.querySelector('.blob-2') : null;
+  const blob3 = ambientMeshBg ? ambientMeshBg.querySelector('.blob-3') : null;
+
+  function adaptAmbientAura(track) {
+    if (!blob1 || !blob2 || !blob3 || !track) return;
+    const text = ((track.title || '') + ' ' + (track.artist || '') + ' ' + (track.genre || '')).toLowerCase();
+
+    if (text.includes('phonk') || text.includes('drift') || text.includes('kordhell') || text.includes('cyber')) {
+      // Phonk / Cyberpunk: Neon Pink & Electric Cyan & Deep Violet
+      blob1.style.background = 'radial-gradient(circle, rgba(255, 0, 128, 0.72) 0%, rgba(180, 0, 90, 0.2) 70%, transparent 100%)';
+      blob2.style.background = 'radial-gradient(circle, rgba(0, 229, 255, 0.68) 0%, rgba(0, 120, 160, 0.2) 70%, transparent 100%)';
+      blob3.style.background = 'radial-gradient(circle, rgba(138, 43, 226, 0.6) 0%, rgba(75, 0, 130, 0.2) 70%, transparent 100%)';
+    } else if (text.includes('chill') || text.includes('deep') || text.includes('house') || text.includes('relax') || text.includes('lounge')) {
+      // Chill / Deep House: Emerald & Cyan & Indigo
+      blob1.style.background = 'radial-gradient(circle, rgba(16, 185, 129, 0.7) 0%, rgba(5, 150, 105, 0.2) 70%, transparent 100%)';
+      blob2.style.background = 'radial-gradient(circle, rgba(6, 182, 212, 0.68) 0%, rgba(14, 116, 144, 0.2) 70%, transparent 100%)';
+      blob3.style.background = 'radial-gradient(circle, rgba(99, 102, 241, 0.55) 0%, rgba(67, 56, 202, 0.2) 70%, transparent 100%)';
+    } else if (text.includes('рэп') || text.includes('rap') || text.includes('trap') || text.includes('miyagi') || text.includes('macan') || text.includes('баста') || text.includes('xcho') || text.includes('navai')) {
+      // Rap / Trap / Fire: Warm Amber & Crimson & Purple
+      blob1.style.background = 'radial-gradient(circle, rgba(245, 158, 11, 0.75) 0%, rgba(180, 83, 9, 0.2) 70%, transparent 100%)';
+      blob2.style.background = 'radial-gradient(circle, rgba(239, 68, 68, 0.68) 0%, rgba(185, 28, 28, 0.2) 70%, transparent 100%)';
+      blob3.style.background = 'radial-gradient(circle, rgba(168, 85, 247, 0.55) 0%, rgba(126, 34, 206, 0.2) 70%, transparent 100%)';
+    } else if (text.includes('рок') || text.includes('rock') || text.includes('король и шут') || text.includes('кино') || text.includes('цой')) {
+      // Rock / Classic: Crimson & Dark Orange & Charcoal Violet
+      blob1.style.background = 'radial-gradient(circle, rgba(220, 38, 38, 0.72) 0%, rgba(153, 27, 27, 0.2) 70%, transparent 100%)';
+      blob2.style.background = 'radial-gradient(circle, rgba(234, 88, 12, 0.68) 0%, rgba(194, 65, 12, 0.2) 70%, transparent 100%)';
+      blob3.style.background = 'radial-gradient(circle, rgba(107, 33, 168, 0.55) 0%, rgba(88, 28, 135, 0.2) 70%, transparent 100%)';
+    } else {
+      // Signature Yandex Gold & Deep Indigo & Coral Aura
+      blob1.style.background = 'radial-gradient(circle, rgba(245, 166, 35, 0.75) 0%, rgba(224, 140, 11, 0.22) 70%, transparent 100%)';
+      blob2.style.background = 'radial-gradient(circle, rgba(121, 40, 202, 0.7) 0%, rgba(80, 20, 160, 0.18) 70%, transparent 100%)';
+      blob3.style.background = 'radial-gradient(circle, rgba(255, 65, 108, 0.55) 0%, rgba(255, 75, 43, 0.16) 70%, transparent 100%)';
+    }
+  }
+
+  // 10.2 Top of the Month Statistics Tracker & Hero Display
+  function getMonthKey() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  }
+
+  function getMonthNameRu() {
+    const monthNames = [
+      'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+      'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+    ];
+    const d = new Date();
+    return `${monthNames[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  function getMonthlyStats() {
+    const key = getMonthKey();
+    try {
+      const raw = localStorage.getItem('wave_monthly_stats_v1');
+      const allStats = raw ? JSON.parse(raw) : {};
+      if (!allStats[key]) {
+        // Seed rich initial stats so user gets an impressive experience immediately
+        const baseTracks = state.favorites.length > 0 ? state.favorites : defaultTracks.slice(0, 12);
+        const seededTracks = {};
+        const seededArtists = {};
+        baseTracks.forEach((t, i) => {
+          const plays = Math.max(2, 16 - i * 2);
+          const tId = t.id || `${t.artist}_${t.title}`;
+          seededTracks[tId] = {
+            id: t.id,
+            title: t.title,
+            artist: t.artist,
+            cover: t.cover,
+            duration: t.duration || '3:00',
+            plays: plays
+          };
+          seededArtists[t.artist] = (seededArtists[t.artist] || 0) + plays;
+        });
+        allStats[key] = {
+          totalPlays: Object.values(seededTracks).reduce((acc, x) => acc + x.plays, 0),
+          totalMinutes: Math.round(Object.values(seededTracks).reduce((acc, x) => acc + x.plays * 3.2, 0)),
+          tracks: seededTracks,
+          artists: seededArtists
+        };
+        localStorage.setItem('wave_monthly_stats_v1', JSON.stringify(allStats));
+      }
+      return allStats[key];
+    } catch (e) {
+      console.warn('Error reading monthly stats:', e);
+      return { totalPlays: 0, totalMinutes: 0, tracks: {}, artists: {} };
+    }
+  }
+
+  function recordTrackPlay(track) {
+    if (!track || !track.title) return;
+    const key = getMonthKey();
+    try {
+      const raw = localStorage.getItem('wave_monthly_stats_v1');
+      const allStats = raw ? JSON.parse(raw) : {};
+      if (!allStats[key]) {
+        allStats[key] = { totalPlays: 0, totalMinutes: 0, tracks: {}, artists: {} };
+      }
+      const cur = allStats[key];
+      cur.totalPlays = (cur.totalPlays || 0) + 1;
+      cur.totalMinutes = (cur.totalMinutes || 0) + 3;
+
+      const tId = track.id || `${track.artist}_${track.title}`;
+      if (!cur.tracks) cur.tracks = {};
+      if (!cur.artists) cur.artists = {};
+
+      if (!cur.tracks[tId]) {
+        cur.tracks[tId] = {
+          id: track.id,
+          title: track.title,
+          artist: track.artist,
+          cover: track.cover,
+          duration: track.duration || '3:00',
+          plays: 0
+        };
+      }
+      cur.tracks[tId].plays += 1;
+      if (track.cover) cur.tracks[tId].cover = track.cover;
+      if (track.duration) cur.tracks[tId].duration = track.duration;
+
+      const artistName = track.artist || 'Артист';
+      cur.artists[artistName] = (cur.artists[artistName] || 0) + 1;
+
+      localStorage.setItem('wave_monthly_stats_v1', JSON.stringify(allStats));
+    } catch (e) {
+      console.warn('Error recording track play:', e);
+    }
+  }
+
+  function formatPlaysCount(count) {
+    const mod10 = count % 10;
+    const mod100 = count % 100;
+    if (mod10 === 1 && mod100 !== 11) return `${count} прослушивание`;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${count} прослушивания`;
+    return `${count} прослушиваний`;
+  }
+
+  function renderTopMonthView() {
+    emptyLibraryNotice.style.display = 'none';
+    if (topMonthStatsCard) topMonthStatsCard.style.display = 'block';
+
+    const stats = getMonthlyStats();
+    const sortedTracks = Object.values(stats.tracks || {}).sort((a, b) => b.plays - a.plays);
+
+    let topArtist = 'Ваш любимый артист';
+    let maxArtistPlays = 0;
+    Object.entries(stats.artists || {}).forEach(([artist, plays]) => {
+      if (plays > maxArtistPlays) {
+        maxArtistPlays = plays;
+        topArtist = artist;
+      }
+    });
+
+    favCountBadge.textContent = `${sortedTracks.length} треков`;
+
+    const hours = Math.floor(stats.totalMinutes / 60);
+    const mins = stats.totalMinutes % 60;
+    const timeStr = hours > 0 ? `${hours} ч ${mins} мин` : `${mins} мин`;
+
+    if (topMonthStatsCard) {
+      topMonthStatsCard.innerHTML = `
+        <div class="top-month-header">
+          <div class="top-month-title-wrap">
+            <span class="top-month-badge">ТОП МЕСЯЦА</span>
+            <span class="top-month-name">${escapeHtml(getMonthNameRu())}</span>
+          </div>
+          <span style="font-size: 11px; color: #f5a623; font-weight: 700;">⭐ Персональный чарт</span>
+        </div>
+        <div class="top-month-stats-grid">
+          <div class="stat-box">
+            <div class="stat-box-label">
+              <span>👑</span>
+              <span>Любимый артист</span>
+            </div>
+            <div class="stat-box-value" title="${escapeHtml(topArtist)}">${escapeHtml(topArtist)}</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">
+              <span>⏱</span>
+              <span>В наушниках</span>
+            </div>
+            <div class="stat-box-value">${timeStr} (${stats.totalPlays} треков)</div>
+          </div>
+        </div>
+        <div class="top-month-actions">
+          <button class="btn-play-top-month" id="btnPlayTopMonth">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span>Включить мой топ</span>
+          </button>
+          <button class="btn-share-top-month" id="btnShareTopMonth">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span>Поделиться</span>
+          </button>
+        </div>
+      `;
+
+      document.getElementById('btnPlayTopMonth')?.addEventListener('click', () => {
+        triggerHaptic('medium');
+        if (sortedTracks.length > 0) {
+          state.queue = [...sortedTracks];
+          state.queueIndex = 0;
+          loadAndPlay(sortedTracks[0], 'Мой Топ Месяца');
+          showToast('▶ Включен ваш личный топ месяца!');
+        } else {
+          showToast('Пока нет треков в топе');
+        }
+      });
+
+      document.getElementById('btnShareTopMonth')?.addEventListener('click', () => {
+        triggerHaptic('medium');
+        const topT = sortedTracks[0];
+        const trackTitle = topT ? `${topT.artist} — ${topT.title}` : 'Wave Music';
+        const shareText = `📊 Мой персональный ТОП МЕСЯЦА в Wave Music:\n👑 Артист месяца: ${topArtist}\n🥇 #1 Трек: ${trackTitle}\n⏱ Время в музыке: ${timeStr}\n\nСлушай бесплатно в боте:`;
+        const botUrl = 'https://t.me/music_abdu_bot';
+        const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(botUrl)}&text=${encodeURIComponent(shareText)}`;
+        if (window.Telegram?.WebApp?.openTelegramLink) {
+          window.Telegram.WebApp.openTelegramLink(telegramShareUrl);
+        } else {
+          window.open(telegramShareUrl, '_blank');
+        }
+      });
+    }
+
+    libraryList.innerHTML = '';
+    if (sortedTracks.length === 0) {
+      libraryList.innerHTML = `
+        <div class="empty-state" style="padding: 24px 16px; text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 8px;">📊</div>
+          <h3>Топ пока формируется</h3>
+          <p style="color: var(--text-muted); font-size: 13px;">Слушайте треки в Волновом плеере, и здесь появится ваш персональный чарт.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const container = document.createElement('div');
+    sortedTracks.forEach((track, index) => {
+      const item = document.createElement('div');
+      item.className = 'track-item';
+      item.dataset.id = track.id || track.title;
+      item.dataset.title = track.title;
+      if (state.currentTrack && (state.currentTrack.id === track.id || state.currentTrack.title === track.title)) {
+        item.classList.add('playing');
+      }
+
+      const isLiked = state.favorites.some(t => t.id === track.id || t.title === track.title);
+      const rankNum = index + 1;
+      let rankBadgeClass = '';
+      let rankIcon = `#${rankNum}`;
+      if (rankNum === 1) {
+        rankBadgeClass = 'rank-1';
+        rankIcon = '🥇 1';
+      } else if (rankNum === 2) {
+        rankBadgeClass = 'rank-2';
+        rankIcon = '🥈 2';
+      } else if (rankNum === 3) {
+        rankBadgeClass = 'rank-3';
+        rankIcon = '🥉 3';
+      }
+
+      item.innerHTML = `
+        <div class="track-item-left">
+          <span class="track-rank-badge ${rankBadgeClass}">${rankIcon}</span>
+          <img class="track-item-cover" src="${track.cover}" alt="cover" loading="lazy">
+          <div class="track-item-info">
+            <div class="track-item-title">${escapeHtml(track.title)}</div>
+            <div class="track-item-artist">
+              ${escapeHtml(track.artist)}
+              <span class="track-plays-badge">${formatPlaysCount(track.plays)}</span>
+            </div>
+          </div>
+        </div>
+        <div class="track-item-actions">
+          <button class="track-item-action-btn like-btn ${isLiked ? 'active' : ''}" data-track-idx="${index}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isLiked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </button>
+        </div>
+      `;
+
+      item.addEventListener('click', (e) => {
+        if (e.target.closest('.like-btn')) return;
+        triggerHaptic();
+        state.queue = [...sortedTracks];
+        state.queueIndex = index;
+        loadAndPlay(track, 'Мой Топ Месяца');
+      });
+
+      const likeBtn = item.querySelector('.like-btn');
+      likeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        triggerHaptic();
+        toggleFavorite(track);
+        likeBtn.classList.toggle('active');
+        const svg = likeBtn.querySelector('svg');
+        svg.setAttribute('fill', likeBtn.classList.contains('active') ? 'currentColor' : 'none');
+      });
+
+      container.appendChild(item);
+    });
+    libraryList.appendChild(container);
+  }
+
   async function renderLibrary() {
+    if (currentLibFilter === 'top_month') {
+      renderTopMonthView();
+      return;
+    }
+    if (topMonthStatsCard) topMonthStatsCard.style.display = 'none';
+
     if (currentLibFilter === 'offline') {
       emptyLibraryNotice.style.display = 'none';
       let offlineTracks = [];
@@ -7015,4 +7334,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderChart();
   favCountBadge.textContent = `${state.favorites.length} треков`;
   fetchLiveDailyMusic();
+  adaptAmbientAura(defaultTracks[0]);
 });

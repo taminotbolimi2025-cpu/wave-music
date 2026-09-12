@@ -1531,3 +1531,250 @@ body {
   padding: 10px 0;
 }
 
+/* ==========================================================================
+   YANDEX MUSIC AMBIENT DYNAMIC MESH BACKGROUND
+   ========================================================================== */
+.ambient-mesh-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  background: #0b0b10;
+}
+
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  -webkit-filter: blur(85px);
+  opacity: 0.42;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+  transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Iconic Yandex Gold / Amber Aura */
+.blob-1 {
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.75) 0%, rgba(224, 140, 11, 0.22) 70%, transparent 100%);
+  top: -60px;
+  left: -50px;
+  animation: floatBlob1 18s ease-in-out infinite alternate;
+}
+
+/* Deep Yandex Violet / Indigo Aura */
+.blob-2 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(121, 40, 202, 0.7) 0%, rgba(80, 20, 160, 0.18) 70%, transparent 100%);
+  bottom: 80px;
+  right: -90px;
+  animation: floatBlob2 22s ease-in-out infinite alternate;
+}
+
+/* Vibrant Sunset Coral / Crimson Pulse */
+.blob-3 {
+  width: 290px;
+  height: 290px;
+  background: radial-gradient(circle, rgba(255, 65, 108, 0.55) 0%, rgba(255, 75, 43, 0.16) 70%, transparent 100%);
+  top: 38%;
+  left: 28%;
+  animation: floatBlob3 15s ease-in-out infinite alternate;
+}
+
+.ambient-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(11, 11, 15, 0.25) 0%, rgba(9, 9, 13, 0.8) 100%);
+}
+
+@keyframes floatBlob1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(70px, 90px) scale(1.18); }
+  100% { transform: translate(-40px, 130px) scale(0.92); }
+}
+
+@keyframes floatBlob2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-90px, -70px) scale(1.15); }
+  100% { transform: translate(-30px, 50px) scale(0.9); }
+}
+
+@keyframes floatBlob3 {
+  0% { transform: translate(0, 0) scale(0.95); opacity: 0.35; }
+  50% { transform: translate(60px, -50px) scale(1.22); opacity: 0.55; }
+  100% { transform: translate(-50px, 60px) scale(1); opacity: 0.4; }
+}
+
+/* Elevate main foreground views above ambient background */
+.app-header, .content-viewport, .mini-player, .bottom-nav {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   TOP OF THE MONTH STATS CARD
+   ========================================================================== */
+.top-month-card {
+  margin: 12px 0 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.15) 0%, rgba(121, 40, 202, 0.15) 100%);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: fadeInTopMonth 0.3s ease;
+}
+
+@keyframes fadeInTopMonth {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.top-month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.top-month-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-month-badge {
+  background: linear-gradient(135deg, #f5a623 0%, #e08c0b 100%);
+  color: #0b0b10;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.top-month-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.top-month-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.stat-box-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stat-box-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.top-month-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-play-top-month {
+  flex: 2;
+  background: linear-gradient(135deg, #f5a623 0%, #e08c0b 100%);
+  color: #0b0b10;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 11px 16px;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(245, 166, 35, 0.35);
+  transition: all 0.2s;
+}
+
+.btn-play-top-month:active {
+  transform: scale(0.97);
+}
+
+.btn-share-top-month {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-share-top-month:active {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.track-rank-badge {
+  font-size: 13px;
+  font-weight: 800;
+  min-width: 22px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.track-rank-badge.rank-1 {
+  color: #f5a623;
+  font-size: 16px;
+}
+
+.track-rank-badge.rank-2 {
+  color: #d1d5db;
+  font-size: 15px;
+}
+
+.track-rank-badge.rank-3 {
+  color: #cd7f32;
+  font-size: 14px;
+}
+
+.track-plays-badge {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 6px;
+}
+

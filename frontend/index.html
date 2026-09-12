@@ -14,11 +14,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3.6.0">
+  <link rel="stylesheet" href="style.css?v=3.7.0">
 </head>
 <body>
   <div id="app" class="app-container">
     
+    <!-- Yandex Ambient Dynamic Background -->
+    <div class="ambient-mesh-bg" id="ambientMeshBg">
+      <div class="ambient-blob blob-1"></div>
+      <div class="ambient-blob blob-2"></div>
+      <div class="ambient-blob blob-3"></div>
+      <div class="ambient-overlay"></div>
+    </div>
+
     <!-- Header: Minimal & Elegant -->
     <header class="app-header">
       <div class="brand">
@@ -162,10 +170,14 @@
 
         <div class="library-filter-tabs">
           <button class="lib-tab active" data-filter="favorites">Любимое</button>
-          <button class="lib-tab" data-filter="offline">📥 В метро (Офлайн)</button>
+          <button class="lib-tab" data-filter="top_month">📊 Топ месяца</button>
+          <button class="lib-tab" data-filter="offline">📥 В метро</button>
           <button class="lib-tab" data-filter="yandex">🟡 Яндекс Музыка</button>
           <button class="lib-tab" data-filter="recent">История</button>
         </div>
+
+        <!-- Top of the Month Hero Stats Card -->
+        <div id="topMonthStatsCard" class="top-month-card" style="display: none;"></div>
 
         <div id="libraryList" class="track-list">
           <!-- Rendered by JS -->
@@ -497,8 +509,8 @@
 
   </div>
 
-  <script src="offline_db.js?v=3.6.0"></script>
-  <script src="app.js?v=3.6.0"></script>
+  <script src="offline_db.js?v=3.7.0"></script>
+  <script src="app.js?v=3.7.0"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
