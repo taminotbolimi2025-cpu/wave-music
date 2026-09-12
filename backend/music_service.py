@@ -107,46 +107,91 @@ def _clean_title_and_artist(raw_title, uploader):
     return title, artist
 
 
+NON_MUSIC_STOP_WORDS = [
+    'review', 'обзор', 'тест-драйв', 'test drive', 'carwow', 'turbo review',
+    'buyer', 'buying guide', 'walkaround', 'interior', 'specs', 'acceleration',
+    'vlog', 'влог', 'podcast', 'подкаст', 'интервью', 'interview', 'reaction',
+    'реакция', 'unboxing', 'распаковка', 'exhaust sound', 'sound system', 'crash test',
+    'porsche club', 'exhaust valve', 'oil change', 'car review', 'buyer guide'
+]
+
+
 def search_tracks(query: str, limit: int = 12):
-    """Searches tracks via yt-dlp and returns structured list"""
-    search_str = f"ytsearch{limit}:{query}"
+    """Searches tracks via yt-dlp, strictly filtering for genuine music tracks and rejecting car reviews/podcasts"""
+    clean_q = query.strip()
+    if not clean_q:
+        return []
+
+    # Check if query already has explicit music hints
+    has_music_hint = any(w in clean_q.lower() for w in ['песн', 'трек', 'music', 'song', 'audio', 'клип', 'альбом', 'feat', 'ft.', 'remix', 'official'])
+    
+    # Query enhancement to force YouTube (especially on US IPs like Render) to prioritize Music / Audio over cars/vlogs
+    search_query = clean_q if has_music_hint else f"{clean_q} music трек"
+    fetch_count = max(limit * 2, 24)
+    search_str = f"ytsearch{fetch_count}:{search_query}"
+    
     results = []
+    seen_ids = set()
+
+    def process_entries(entries):
+        for e in entries:
+            if not e or not e.get('id'):
+                continue
+            
+            vid_id = e.get('id')
+            if vid_id in seen_ids:
+                continue
+
+            raw_title = e.get('title', 'Unknown Track')
+            uploader = e.get('uploader', '')
+            duration_sec = e.get('duration') or 0
+
+            # 1. Filter out videos that are too long (compilations/podcasts > 7m) or too short (Shorts/clips < 45s)
+            if duration_sec > 0 and (duration_sec < 45 or duration_sec > 450):
+                continue
+
+            # 2. Filter out non-music videos (car reviews, test drives, unboxings)
+            t_lower = raw_title.lower()
+            u_lower = uploader.lower()
+            if any(sw in t_lower or sw in u_lower for sw in NON_MUSIC_STOP_WORDS):
+                continue
+
+            # Get best thumbnail
+            thumbnails = e.get('thumbnails', [])
+            cover = thumbnails[-1].get('url') if thumbnails else f"https://i.ytimg.com/vi/{vid_id}/hqdefault.jpg"
+
+            title, artist = _clean_title_and_artist(raw_title, uploader)
+
+            seen_ids.add(vid_id)
+            results.append({
+                'id': vid_id,
+                'title': title,
+                'artist': artist,
+                'cover': cover,
+                'duration': _format_duration(duration_sec),
+                'duration_sec': int(duration_sec or 0),
+                'streamUrl': f"/api/stream?id={vid_id}"
+            })
+            if len(results) >= limit:
+                break
 
     try:
         with yt_dlp.YoutubeDL(YDL_OPTS_SEARCH) as ydl:
             info = ydl.extract_info(search_str, download=False)
             entries = info.get('entries', []) if info else []
+            process_entries(entries)
 
-            for e in entries:
-                if not e or not e.get('id'):
-                    continue
-                
-                vid_id = e.get('id')
-                raw_title = e.get('title', 'Unknown Track')
-                uploader = e.get('uploader', '')
-                duration_sec = e.get('duration')
-                
-                # Get best thumbnail
-                thumbnails = e.get('thumbnails', [])
-                cover = thumbnails[-1].get('url') if thumbnails else f"https://i.ytimg.com/vi/{vid_id}/hqdefault.jpg"
-
-                title, artist = _clean_title_and_artist(raw_title, uploader)
-
-                results.append({
-                    'id': vid_id,
-                    'title': title,
-                    'artist': artist,
-                    'cover': cover,
-                    'duration': _format_duration(duration_sec),
-                    'duration_sec': int(duration_sec or 0),
-                    'streamUrl': f"/api/stream?id={vid_id}"
-                })
+            # If enhanced query didn't yield enough results, retry with original query + strict filter
+            if len(results) < 3 and not has_music_hint:
+                fallback_info = ydl.extract_info(f"ytsearch{fetch_count}:{clean_q}", download=False)
+                fallback_entries = fallback_info.get('entries', []) if fallback_info else []
+                process_entries(fallback_entries)
     except Exception as ex:
         logger.error(f"Search error for {query}: {ex}")
 
     # Fallback to filter curated list if search yields nothing
     if not results:
-        q_lower = query.lower()
+        q_lower = clean_q.lower()
         results = [
             t for t in CURATED_CHART
             if q_lower in t['title'].lower() or q_lower in t['artist'].lower()
@@ -154,7 +199,7 @@ def search_tracks(query: str, limit: int = 12):
         if not results:
             results = CURATED_CHART[:limit]
 
-    return results
+    return results[:limit]
 
 
 def get_stream_url(video_id_or_title: str) -> str:
