@@ -60,6 +60,9 @@ body {
   position: relative;
   background: #0b0b0f;
   overflow: hidden;
+  max-width: 580px;
+  margin: 0 auto;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
 }
 
 /* Header */

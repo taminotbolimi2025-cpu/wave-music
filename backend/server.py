@@ -45,29 +45,69 @@ async def index_handler(request):
     })
 
 
+def _get_audio_content_type(file_or_url: str) -> str:
+    """Returns pure audio MIME type to guarantee iOS Safari, Android, and PC playback compatibility"""
+    path_lower = file_or_url.lower()
+    if path_lower.endswith('.mp3'):
+        return 'audio/mpeg'
+    elif path_lower.endswith('.webm') or 'webm' in path_lower:
+        return 'audio/webm'
+    elif path_lower.endswith('.ogg') or path_lower.endswith('.opus'):
+        return 'audio/ogg'
+    elif path_lower.endswith('.aac'):
+        return 'audio/aac'
+    return 'audio/mp4'
+
+
+_caching_ids = set()
+
+
+async def _bg_cache_track(vid_id: str):
+    """Caches track in background so future seeks and replays are instantaneous"""
+    if not vid_id or vid_id in _caching_ids:
+        return
+    _caching_ids.add(vid_id)
+    try:
+        if not music_service.get_cached_audio_path(vid_id):
+            loop = asyncio.get_event_loop()
+            await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id)
+    except Exception as e:
+        logger.warning(f"Background cache error for {vid_id}: {e}")
+    finally:
+        _caching_ids.discard(vid_id)
+
+
 # API Handlers
 async def api_search(request):
     q = request.query.get('q', '').strip()
     if not q:
         return web.json_response({'tracks': []})
     
-    tracks = music_service.search_tracks(q, limit=12)
-    return web.json_response({'tracks': tracks})
+    loop = asyncio.get_event_loop()
+    try:
+        tracks = await loop.run_in_executor(None, music_service.search_tracks, q, 12)
+        return web.json_response({'tracks': tracks})
+    except Exception as e:
+        logger.error(f"Search API error: {e}")
+        return web.json_response({'tracks': []})
 
 
 async def api_wave(request):
     mood = request.query.get('mood', 'all')
-    tracks = music_service.get_wave_tracks(mood)
+    loop = asyncio.get_event_loop()
+    tracks = await loop.run_in_executor(None, music_service.get_wave_tracks, mood)
     return web.json_response({'tracks': tracks, 'mood': mood})
 
 
 async def api_chart(request):
-    tracks = music_service.get_chart_tracks()
+    loop = asyncio.get_event_loop()
+    tracks = await loop.run_in_executor(None, music_service.get_chart_tracks)
     return web.json_response({'tracks': tracks})
 
 
 async def api_new_releases(request):
-    tracks = music_service.get_new_releases()
+    loop = asyncio.get_event_loop()
+    tracks = await loop.run_in_executor(None, music_service.get_new_releases)
     return web.json_response({'tracks': tracks})
 
 
@@ -79,7 +119,7 @@ async def api_stream(request):
     # 1. Fast path: check if track is already cached locally on disk
     cached_path = music_service.get_cached_audio_path(vid_id)
     if cached_path and os.path.exists(cached_path) and os.path.getsize(cached_path) > 10000:
-        ctype = 'audio/mpeg' if cached_path.endswith('.mp3') else 'audio/mp4'
+        ctype = _get_audio_content_type(cached_path)
         return web.FileResponse(cached_path, headers={
             'Content-Type': ctype,
             'Accept-Ranges': 'bytes',
@@ -87,8 +127,13 @@ async def api_stream(request):
             'Cache-Control': 'public, max-age=86400'
         })
 
-    # 2. Try fast direct stream URL
-    stream_url = music_service.get_stream_url(vid_id)
+    loop = asyncio.get_event_loop()
+
+    # Trigger non-blocking background caching
+    asyncio.create_task(_bg_cache_track(vid_id))
+
+    # 2. Try fast direct stream URL without blocking event loop
+    stream_url = await loop.run_in_executor(None, music_service.get_stream_url, vid_id)
     if stream_url and not stream_url.endswith('.m3u8'):
         try:
             headers = {}
@@ -99,7 +144,8 @@ async def api_stream(request):
             session = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=None, sock_read=60, sock_connect=10))
             upstream = await session.get(stream_url, headers=headers)
             if upstream.status in (200, 206):
-                content_type = upstream.headers.get('Content-Type', 'audio/mp4')
+                # Always send pure audio MIME type so iOS Safari / WebKit and Android play without error
+                content_type = _get_audio_content_type(stream_url)
                 res_headers = {
                     'Content-Type': content_type,
                     'Accept-Ranges': 'bytes',
@@ -119,7 +165,10 @@ async def api_stream(request):
                 except (asyncio.CancelledError, ConnectionResetError):
                     pass
                 finally:
-                    await response.write_eof()
+                    try:
+                        await response.write_eof()
+                    except Exception:
+                        pass
                     upstream.close()
                     await session.close()
                 return response
@@ -128,12 +177,11 @@ async def api_stream(request):
         except Exception as proxy_err:
             logger.warning(f"Direct stream proxy error for {vid_id}: {proxy_err}")
 
-    # 3. Robust Mobile Fallback: Download track in worker thread and stream via FileResponse!
-    loop = asyncio.get_event_loop()
+    # 3. Robust Mobile Fallback: Download track in worker thread and stream via FileResponse
     try:
         downloaded = await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id)
         if downloaded and os.path.exists(downloaded) and os.path.getsize(downloaded) > 10000:
-            ctype = 'audio/mpeg' if downloaded.endswith('.mp3') else 'audio/mp4'
+            ctype = _get_audio_content_type(downloaded)
             return web.FileResponse(downloaded, headers={
                 'Content-Type': ctype,
                 'Accept-Ranges': 'bytes',

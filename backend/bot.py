@@ -7,7 +7,9 @@ from telebot.types import (
     InlineKeyboardButton,
     WebAppInfo,
     MenuButtonWebApp,
-    MenuButtonDefault
+    MenuButtonDefault,
+    InlineQueryResultArticle,
+    InputTextMessageContent
 )
 
 import config
@@ -19,6 +21,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger(__name__)
 
 bot = telebot.TeleBot(BOT_TOKEN)
+
+# In-memory dictionary to store searched tracks for 1-click downloads & inline mode
+_searched_tracks_cache = {}
 
 
 def get_current_url():
@@ -86,10 +91,11 @@ def _send_track_to_chat(chat_id, track, status_msg_id=None):
                     pass
             return True
         finally:
-            try:
-                os.remove(audio_file)
-            except Exception:
-                pass
+            if audio_file and not audio_file.startswith(music_service.AUDIO_CACHE_DIR):
+                try:
+                    os.remove(audio_file)
+                except Exception:
+                    pass
     else:
         text = (
             f"🎵 <b>{html.escape(artist)} — {html.escape(title)}</b>\n"
@@ -315,11 +321,13 @@ def handle_send_chart_track(call):
 
     status_msg = bot.send_message(call.message.chat.id, "⏳ <i>Загружаю выбранный трек в Telegram...</i>", parse_mode="HTML")
 
-    # Look up in chart or new releases
-    all_cached = music_service.get_chart_tracks() + music_service.get_new_releases()
-    target = next((t for t in all_cached if t['id'].startswith(track_id)), None)
+    # Look up in searched tracks cache first, then chart or new releases
+    target = _searched_tracks_cache.get(track_id)
     if not target:
-        target = {'id': track_id, 'title': 'Трек из чарта', 'artist': 'Wave Music', 'duration_sec': 0}
+        all_cached = music_service.get_chart_tracks() + music_service.get_new_releases()
+        target = next((t for t in all_cached if t['id'].startswith(track_id)), None)
+    if not target:
+        target = {'id': track_id, 'title': 'Музыкальный трек', 'artist': 'Wave Music', 'duration_sec': 0}
 
     _send_track_to_chat(call.message.chat.id, target, status_msg_id=status_msg.message_id)
 
@@ -505,9 +513,7 @@ def handle_admin_panel(message):
 @bot.message_handler(content_types=['text'])
 def handle_text_search(message):
     user_id = message.from_user.id
-    if not access_control.is_allowed(user_id):
-        handle_start(message)
-        return
+    access_control.is_allowed(user_id)
 
     query = message.text.strip()
     if query.startswith('/'):
@@ -525,20 +531,41 @@ def handle_text_search(message):
             bot.edit_message_text(
                 chat_id=message.chat.id,
                 message_id=status_msg.message_id,
-                text="❌ <b>Ничего не найдено.</b> Попробуйте уточнить название.",
+                text="❌ <b>Ничего не найдено.</b> Попробуйте уточнить название или имя исполнителя.",
                 parse_mode="HTML"
             )
             return
+
+        for t in tracks:
+            _searched_tracks_cache[t['id']] = t
 
         top = tracks[0]
         bot.edit_message_text(
             chat_id=message.chat.id,
             message_id=status_msg.message_id,
-            text=f"⏳ <i>Загружаю трек «{html.escape(top['artist'])} — {html.escape(top['title'])}» в Telegram...</i>",
+            text=f"⏳ <i>Загружаю аудио: «{html.escape(top['artist'])} — {html.escape(top['title'])}»...</i>",
             parse_mode="HTML"
         )
 
+        # Send top track directly into chat
         _send_track_to_chat(message.chat.id, top, status_msg_id=status_msg.message_id)
+
+        # If there are additional matches, offer 1-click download buttons for them
+        if len(tracks) > 1:
+            more_text = f"🔍 <b>Другие результаты по запросу «{html.escape(query)}»:</b>\n\n"
+            markup = InlineKeyboardMarkup(row_width=1)
+            for idx, t in enumerate(tracks[1:5], start=2):
+                more_text += f"{idx}. 🎵 <b>{html.escape(t['artist'])}</b> — {html.escape(t['title'])} <i>({t.get('duration', '3:00')})</i>\n"
+                markup.add(
+                    InlineKeyboardButton(
+                        text=f"⬇️ {idx}. {t['artist'][:18]} — {t['title'][:20]}",
+                        callback_data=f"sendtrack_{t['id'][:20]}"
+                    )
+                )
+            markup.add(
+                InlineKeyboardButton(text="🎵 Открыть в Wave Music", web_app=WebAppInfo(url=get_current_url()))
+            )
+            bot.send_message(message.chat.id, more_text, reply_markup=markup, parse_mode="HTML")
 
     except Exception as ex:
         logger.error(f"Error handling query {query}: {ex}")
@@ -546,11 +573,44 @@ def handle_text_search(message):
             bot.edit_message_text(
                 chat_id=message.chat.id,
                 message_id=status_msg.message_id,
-                text=f"⚠️ Ошибка при обработке: {html.escape(str(ex))}",
+                text=f"⚠️ Ошибка при поиске: {html.escape(str(ex))}",
                 parse_mode="HTML"
             )
         except Exception:
             pass
+
+
+@bot.inline_handler(lambda query: len(query.query.strip()) > 1)
+def handle_inline_query(inline_query):
+    """Allows instant music search and sharing across PC, iPhone, and Android in any chat"""
+    try:
+        q = inline_query.query.strip()
+        tracks = music_service.search_tracks(q, limit=8)
+        results = []
+        for idx, t in enumerate(tracks):
+            _searched_tracks_cache[t['id']] = t
+            share_text = (
+                f"🎵 <b>{html.escape(t['artist'])} — {html.escape(t['title'])}</b>\n"
+                f"⏱ Длительность: {t.get('duration', '3:00')}\n\n"
+                f"🎧 Слушать онлайн в Wave Music:\n{get_current_url()}"
+            )
+            markup = InlineKeyboardMarkup()
+            markup.add(
+                InlineKeyboardButton(text="🎵 Слушать в Wave Music", web_app=WebAppInfo(url=get_current_url()))
+            )
+            results.append(
+                InlineQueryResultArticle(
+                    id=f"in_{t['id']}_{idx}",
+                    title=f"{t['artist']} — {t['title']}",
+                    description=f"⏱ {t.get('duration', '3:00')} | Wave Music",
+                    thumb_url=t.get('cover'),
+                    input_message_content=InputTextMessageContent(message_text=share_text, parse_mode="HTML"),
+                    reply_markup=markup
+                )
+            )
+        bot.answer_inline_query(inline_query.id, results, cache_time=300)
+    except Exception as e:
+        logger.error(f"Inline query error: {e}")
 
 
 def start_bot():

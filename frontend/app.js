@@ -374,15 +374,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   audio.addEventListener('error', (e) => {
     const err = audio.error;
+    if (!audio.src) return;
     console.warn('Audio stream error:', err);
     state.isPlaying = false;
     updatePlayPauseState(false);
-    if (err && err.code === 4) {
-      showToast('⚠️ Формат не поддерживается, пробуем следующий...', 2500);
-    } else {
-      showToast('⚠️ Ошибка сети, переход к следующему...', 2500);
+    if (err && err.code === 1) {
+      // Aborted by user action, do not show error
+      return;
     }
-    setTimeout(() => playNext(), 2000);
+    showToast('⚠️ Ошибка загрузки трека. Нажмите для повтора', 3000);
   });
 
   function formatTime(seconds) {
@@ -474,6 +474,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 8. Search Functionality
   let searchTimeout = null;
+  let activeSearchId = 0;
+
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.trim();
     clearSearchBtn.style.display = q ? 'block' : 'none';
@@ -484,7 +486,20 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     searchLoader.style.display = 'flex';
-    searchTimeout = setTimeout(() => executeSearch(q), 400);
+    searchTimeout = setTimeout(() => executeSearch(q), 300);
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      clearTimeout(searchTimeout);
+      const q = searchInput.value.trim();
+      if (q) {
+        searchLoader.style.display = 'flex';
+        executeSearch(q);
+        searchInput.blur();
+      }
+    }
   });
 
   clearSearchBtn.addEventListener('click', () => {
@@ -506,20 +521,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   async function executeSearch(query) {
+    const currentId = ++activeSearchId;
     try {
       const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+      if (currentId !== activeSearchId) return;
       if (res.ok) {
         const data = await res.json();
         searchLoader.style.display = 'none';
-        renderTrackList(data.tracks || [], searchResultsList, 'Поиск: ' + query);
+        const tracks = data.tracks || [];
+        if (tracks.length > 0) {
+          renderTrackList(tracks, searchResultsList, 'Поиск: ' + query);
+        } else {
+          searchResultsList.innerHTML = `
+            <div class="empty-state">
+              <p style="font-weight: 600; margin-bottom: 6px;">Ничего не найдено</p>
+              <p style="color: var(--text-muted); font-size: 13px;">Проверьте правильность написания исполнителя или трека</p>
+            </div>
+          `;
+        }
         return;
       }
     } catch (e) {
-      console.warn('Search API fallback:', e);
+      console.warn('Search API error:', e);
     }
 
-    // Fallback local fuzzy search
+    if (currentId !== activeSearchId) return;
     searchLoader.style.display = 'none';
+
+    // Local fallback if offline
     const localFiltered = defaultTracks.filter(t => 
       t.title.toLowerCase().includes(query.toLowerCase()) || 
       t.artist.toLowerCase().includes(query.toLowerCase())
@@ -825,7 +854,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.removeChild(link);
   });
 
-  // 14. Initial Render
+  // 14. PC Desktop Keyboard Shortcuts (Space = Play/Pause, Esc = Close Modal, Arrows = Seek)
+  window.addEventListener('keydown', (e) => {
+    if (document.activeElement === searchInput) return;
+    if (e.code === 'Space') {
+      e.preventDefault();
+      togglePlay();
+    } else if (e.code === 'ArrowRight') {
+      if (audio.duration) {
+        audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+      }
+    } else if (e.code === 'ArrowLeft') {
+      if (audio.duration) {
+        audio.currentTime = Math.max(0, audio.currentTime - 10);
+      }
+    } else if (e.code === 'Escape') {
+      fullPlayerModal.classList.remove('open');
+    }
+  });
+
+  // 15. Initial Render
   renderHomeHits();
   renderChart();
   favCountBadge.textContent = `${state.favorites.length} треков`;

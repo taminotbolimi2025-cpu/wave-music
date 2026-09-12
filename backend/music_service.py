@@ -9,8 +9,10 @@ import yt_dlp
 
 logger = logging.getLogger(__name__)
 
-# In-memory stream cache
+# In-memory stream and search cache
 _stream_cache = {}
+_search_cache = {}
+SEARCH_CACHE_TTL = 3600  # 1 hour cache for instant search results
 
 YDL_OPTS_SEARCH = {
     'quiet': True,
@@ -19,26 +21,14 @@ YDL_OPTS_SEARCH = {
     'skip_download': True,
     'default_search': 'ytsearch',
     'noplaylist': True,
-    'extractor_args': {
-        'youtube': {
-            'player_client': ['android'],
-            'player_skip': ['webpage', 'configs']
-        }
-    }
 }
 
 YDL_OPTS_STREAM = {
     'quiet': True,
     'no_warnings': True,
-    'format': '18/bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
+    'format': 'ba[ext=m4a]/ba[acodec^=mp4a]/140/ba[ext=mp3]/ba/b[acodec!=none]',
     'skip_download': True,
     'noplaylist': True,
-    'extractor_args': {
-        'youtube': {
-            'player_client': ['android'],
-            'player_skip': ['webpage', 'configs']
-        }
-    }
 }
 
 CURATED_CHART = [
@@ -147,8 +137,10 @@ def _format_duration(seconds):
 
 
 def _clean_title_and_artist(raw_title, uploader):
-    # Common formats: "Artist - Title (Official Video)", "Artist — Title"
-    cleaned = re.sub(r'[\(\[\{].*?(official|video|audio|клип|премьера|remix|mood).*?[\)\]\}]', '', raw_title, flags=re.IGNORECASE)
+    # Strip leading track numbers like "01. ", "1. ", "8. "
+    cleaned = re.sub(r'^\s*\d+[\.\-\s]+', '', raw_title)
+    # Remove common video tags
+    cleaned = re.sub(r'[\(\[\{].*?(official|video|audio|клип|премьера|remix|mood|lyric|текст).*?[\)\]\}]', '', cleaned, flags=re.IGNORECASE)
     cleaned = cleaned.strip()
 
     if ' - ' in cleaned:
@@ -163,6 +155,16 @@ def _clean_title_and_artist(raw_title, uploader):
         artist = uploader or 'Артист'
         title = cleaned
 
+    if artist.endswith(' - Topic'):
+        artist = artist[:-8].strip()
+
+    title = title.strip(' "\'')
+    artist = artist.strip(' "\'')
+    if not title:
+        title = raw_title
+    if not artist:
+        artist = 'Артист'
+
     return title, artist
 
 
@@ -170,25 +172,25 @@ NON_MUSIC_STOP_WORDS = [
     'review', 'обзор', 'тест-драйв', 'test drive', 'carwow', 'turbo review',
     'buyer', 'buying guide', 'walkaround', 'interior', 'specs', 'acceleration',
     'vlog', 'влог', 'podcast', 'подкаст', 'интервью', 'interview', 'reaction',
-    'реакция', 'unboxing', 'распаковка', 'exhaust sound', 'sound system', 'crash test',
-    'porsche club', 'exhaust valve', 'oil change', 'car review', 'buyer guide'
+    'реакция', 'unboxing', 'распаковка', 'crash test', 'porsche club'
 ]
 
 
 def search_tracks(query: str, limit: int = 12):
-    """Searches tracks via yt-dlp, strictly filtering for genuine music tracks and rejecting car reviews/podcasts"""
+    """Searches tracks via yt-dlp with caching and smart music filtering"""
     clean_q = query.strip()
     if not clean_q:
         return []
 
-    # Check if query already has explicit music hints
-    has_music_hint = any(w in clean_q.lower() for w in ['песн', 'трек', 'music', 'song', 'audio', 'клип', 'альбом', 'feat', 'ft.', 'remix', 'official'])
-    
-    # Query enhancement to force YouTube (especially on US IPs like Render) to prioritize Music / Audio over cars/vlogs
-    search_query = clean_q if has_music_hint else f"{clean_q} music трек"
-    fetch_count = max(limit * 2, 24)
-    search_str = f"ytsearch{fetch_count}:{search_query}"
-    
+    cache_key = f"{clean_q.lower()}_{limit}"
+    now = time.time()
+    if cache_key in _search_cache:
+        cached_time, cached_results = _search_cache[cache_key]
+        if (now - cached_time) < SEARCH_CACHE_TTL:
+            return cached_results
+
+    # Search for genuine music tracks
+    search_str = f"ytsearch{max(limit, 10)}:{clean_q}"
     results = []
     seen_ids = set()
 
@@ -196,7 +198,7 @@ def search_tracks(query: str, limit: int = 12):
         for e in entries:
             if not e or not e.get('id'):
                 continue
-            
+
             vid_id = e.get('id')
             if vid_id in seen_ids:
                 continue
@@ -205,11 +207,11 @@ def search_tracks(query: str, limit: int = 12):
             uploader = e.get('uploader', '')
             duration_sec = e.get('duration') or 0
 
-            # 1. Filter out videos that are too long (compilations/podcasts > 7m) or too short (Shorts/clips < 45s)
-            if duration_sec > 0 and (duration_sec < 45 or duration_sec > 450):
+            # 1. Filter out videos that are too long (> 10m) or too short (< 30s)
+            if duration_sec > 0 and (duration_sec < 30 or duration_sec > 600):
                 continue
 
-            # 2. Filter out non-music videos (car reviews, test drives, unboxings)
+            # 2. Filter out non-music videos
             t_lower = raw_title.lower()
             u_lower = uploader.lower()
             if any(sw in t_lower or sw in u_lower for sw in NON_MUSIC_STOP_WORDS):
@@ -239,12 +241,6 @@ def search_tracks(query: str, limit: int = 12):
             info = ydl.extract_info(search_str, download=False)
             entries = info.get('entries', []) if info else []
             process_entries(entries)
-
-            # If enhanced query didn't yield enough results, retry with original query + strict filter
-            if len(results) < 3 and not has_music_hint:
-                fallback_info = ydl.extract_info(f"ytsearch{fetch_count}:{clean_q}", download=False)
-                fallback_entries = fallback_info.get('entries', []) if fallback_info else []
-                process_entries(fallback_entries)
     except Exception as ex:
         logger.error(f"Search error for {query}: {ex}")
 
@@ -258,14 +254,18 @@ def search_tracks(query: str, limit: int = 12):
         if not results:
             results = CURATED_CHART[:limit]
 
-    return results[:limit]
+    out_results = results[:limit]
+    _search_cache[cache_key] = (now, out_results)
+    return out_results
 
 
 def get_stream_url(video_id_or_title: str) -> str:
-    """Extracts direct audio playback stream URL with high precision"""
+    """Extracts direct audio playback stream URL with high precision and caching"""
     clean_query = video_id_or_title.strip()
     if clean_query in _stream_cache:
-        return _stream_cache[clean_query]
+        cached_url, cached_time = _stream_cache[clean_query]
+        if time.time() - cached_time < 7200:  # 2 hours stream URL TTL
+            return cached_url
 
     # Target resolution
     if clean_query.startswith('http'):
@@ -273,7 +273,6 @@ def get_stream_url(video_id_or_title: str) -> str:
     elif len(clean_query) == 11 and re.match(r'^[a-zA-Z0-9_-]{11}$', clean_query):
         target = f"https://www.youtube.com/watch?v={clean_query}"
     else:
-        # Ignore dummy placeholder ids like track_1, track_2
         if clean_query.startswith('track_'):
             clean_query = 'хит музыки'
         target = f"ytsearch1:{clean_query} audio"
@@ -283,58 +282,43 @@ def get_stream_url(video_id_or_title: str) -> str:
             info = ydl.extract_info(target, download=False)
             if 'entries' in info and info['entries']:
                 info = info['entries'][0]
-            
+
             stream_url = info.get('url')
             if stream_url:
-                _stream_cache[clean_query] = stream_url
-                _stream_cache[video_id_or_title] = stream_url
+                now = time.time()
+                _stream_cache[clean_query] = (stream_url, now)
+                _stream_cache[video_id_or_title] = (stream_url, now)
                 return stream_url
     except Exception as ex:
         logger.error(f"Failed to extract stream for {video_id_or_title}: {ex}")
 
-    # Fallback to search without 'audio' keyword if needed
-    try:
-        with yt_dlp.YoutubeDL(YDL_OPTS_STREAM) as ydl:
-            info = ydl.extract_info(f"ytsearch1:{clean_query}", download=False)
-            if 'entries' in info and info['entries']:
-                info = info['entries'][0]
-            stream_url = info.get('url')
-            if stream_url:
-                _stream_cache[clean_query] = stream_url
-                return stream_url
-    except Exception:
-        pass
-
     return ""
+
 
 AUDIO_CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio_cache")
 os.makedirs(AUDIO_CACHE_DIR, exist_ok=True)
 
 
-def _safe_filename(query: str) -> str:
+def _safe_basename(query: str) -> str:
     cleaned = re.sub(r'[^a-zA-Z0-9_-]', '_', query.strip())
     if len(cleaned) > 50:
         cleaned = cleaned[:50]
-    return f"{cleaned}.m4a"
+    return cleaned or "track"
 
 
 def get_cached_audio_path(video_id_or_title: str) -> str:
     """Returns path to cached audio file if it exists and is valid, else empty string"""
     clean_query = video_id_or_title.strip()
-    base_name = re.sub(r'[^a-zA-Z0-9_-]', '_', clean_query)
-    if len(base_name) > 50:
-        base_name = base_name[:50]
-    mp3_path = os.path.join(AUDIO_CACHE_DIR, f"{base_name}.mp3")
-    if os.path.exists(mp3_path) and os.path.getsize(mp3_path) > 10000:
-        return mp3_path
-    m4a_path = os.path.join(AUDIO_CACHE_DIR, f"{base_name}.m4a")
-    if os.path.exists(m4a_path) and os.path.getsize(m4a_path) > 10000:
-        return m4a_path
+    base_name = _safe_basename(clean_query)
+    for ext in ('.mp3', '.m4a', '.webm', '.aac', '.opus'):
+        path = os.path.join(AUDIO_CACHE_DIR, f"{base_name}{ext}")
+        if os.path.exists(path) and os.path.getsize(path) > 10000:
+            return path
     return ""
 
 
 def download_and_cache_audio(video_id_or_title: str) -> str:
-    """Downloads track directly into persistent cache directory and returns the path."""
+    """Downloads pure audio track directly into persistent cache directory and returns the path."""
     cached = get_cached_audio_path(video_id_or_title)
     if cached:
         return cached
@@ -347,33 +331,25 @@ def download_and_cache_audio(video_id_or_title: str) -> str:
     else:
         target = f"ytsearch1:{clean_query} audio"
 
-    out_file = os.path.join(AUDIO_CACHE_DIR, _safe_filename(clean_query))
+    base_name = _safe_basename(clean_query)
+    out_tmpl = os.path.join(AUDIO_CACHE_DIR, f"{base_name}.%(ext)s")
     ydl_opts = {
-        'format': '18/bestaudio[ext=m4a]/140/bestaudio[acodec^=mp4a]/bestaudio/best',
-        'outtmpl': out_file,
+        'format': 'ba[ext=m4a]/ba[acodec^=mp4a]/140/ba[ext=mp3]/ba/b[acodec!=none]',
+        'outtmpl': out_tmpl,
         'quiet': True,
         'no_warnings': True,
         'noplaylist': True,
-        'max_filesize': 35 * 1024 * 1024,
-        'extractor_args': {
-            'youtube': {
-                'player_client': ['android'],
-                'player_skip': ['webpage', 'configs']
-            }
-        }
+        'max_filesize': 40 * 1024 * 1024
     }
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([target])
-        if os.path.exists(out_file) and os.path.getsize(out_file) > 10000:
-            return out_file
+        found = get_cached_audio_path(clean_query)
+        if found:
+            return found
     except Exception as ex:
         logger.error(f"Error downloading and caching audio for {video_id_or_title}: {ex}")
-        if os.path.exists(out_file):
-            try:
-                os.remove(out_file)
-            except Exception:
-                pass
+
     return ""
 
 
