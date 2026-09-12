@@ -2,6 +2,8 @@ import os
 import json
 import logging
 
+from config import ADMIN_ID
+
 logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -13,10 +15,12 @@ def _read_json(filepath, default):
     if os.path.exists(filepath):
         try:
             with open(filepath, "r", encoding="utf-8") as f:
-                return json.load(f)
+                data = json.load(f)
+                if isinstance(data, list):
+                    return data
         except Exception as e:
             logger.warning(f"Error reading {filepath}: {e}")
-    return default
+    return list(default)
 
 
 def _write_json(filepath, data):
@@ -28,7 +32,10 @@ def _write_json(filepath, data):
 
 
 def get_admins() -> list:
-    return _read_json(ADMINS_FILE, [])
+    admins = _read_json(ADMINS_FILE, [ADMIN_ID])
+    if ADMIN_ID not in admins:
+        admins.insert(0, ADMIN_ID)
+    return admins
 
 
 def add_admin(user_id: int):
@@ -36,28 +43,41 @@ def add_admin(user_id: int):
     if user_id not in admins:
         admins.append(user_id)
         _write_json(ADMINS_FILE, admins)
-    # Admin is automatically whitelisted
     add_to_whitelist(user_id)
 
 
-def is_admin(user_id: int) -> bool:
+def remove_admin(user_id: int):
+    if user_id == ADMIN_ID:
+        # Cannot remove the primary owner
+        return False
     admins = get_admins()
-    return user_id in admins
+    if user_id in admins:
+        admins.remove(user_id)
+        _write_json(ADMINS_FILE, admins)
+        return True
+    return False
+
+
+def is_admin(user_id: int) -> bool:
+    if user_id == ADMIN_ID:
+        return True
+    return user_id in get_admins()
 
 
 def get_whitelist() -> list:
-    return _read_json(WHITELIST_FILE, [])
+    wl = _read_json(WHITELIST_FILE, [ADMIN_ID])
+    if ADMIN_ID not in wl:
+        wl.insert(0, ADMIN_ID)
+    for a in get_admins():
+        if a not in wl:
+            wl.append(a)
+    return wl
 
 
 def is_allowed(user_id: int) -> bool:
-    admins = get_admins()
-    if not admins:
-        # If no admins configured yet, first user who interacts will become admin
+    if is_admin(user_id):
         return True
-    if user_id in admins:
-        return True
-    whitelist = get_whitelist()
-    return user_id in whitelist
+    return user_id in get_whitelist()
 
 
 def add_to_whitelist(user_id: int):
@@ -68,7 +88,11 @@ def add_to_whitelist(user_id: int):
 
 
 def remove_from_whitelist(user_id: int):
+    if user_id == ADMIN_ID:
+        return False
     wl = get_whitelist()
     if user_id in wl:
         wl.remove(user_id)
         _write_json(WHITELIST_FILE, wl)
+        return True
+    return False

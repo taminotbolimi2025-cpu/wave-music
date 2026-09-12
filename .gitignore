@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 daily_chart.json
 daily_releases.json
+*.log

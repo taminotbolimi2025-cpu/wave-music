@@ -5,7 +5,8 @@ from telebot.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
     WebAppInfo,
-    MenuButtonWebApp
+    MenuButtonWebApp,
+    MenuButtonDefault
 )
 
 import config
@@ -56,24 +57,14 @@ def handle_start(message):
     user_name = message.from_user.first_name or "друг"
     current_url = get_current_url()
 
-    # If no admins configured, the first user who starts is the Owner/Admin!
-    admins = access_control.get_admins()
-    if not admins:
-        access_control.add_admin(user_id)
-        logger.info(f"Первый пользователь {user_id} ({user_name}) зарегистрирован как Главный Админ!")
-        bot.send_message(
-            chat_id=message.chat.id,
-            text=(
-                f"👑 *Вы назначены Администратором плеера!*\n\n"
-                f"Бот переведён в *приватный режим*. Теперь никто другой не сможет слушать музыку без вашего подтверждения.\n"
-                f"Когда кто-то напишет боту, вам придёт уведомление с кнопками *Разрешить / Отклонить*."
-            ),
-            parse_mode="Markdown"
-        )
-
     # Check permission
     if not access_control.is_allowed(user_id):
-        # User is NOT whitelisted
+        # Reset menu button for unauthorized user to default
+        try:
+            bot.set_chat_menu_button(chat_id=message.chat.id, menu_button=MenuButtonDefault())
+        except Exception:
+            pass
+
         markup = InlineKeyboardMarkup()
         markup.add(
             InlineKeyboardButton(
@@ -94,10 +85,16 @@ def handle_start(message):
         return
 
     # User IS allowed (Admin or Whitelisted)
-    welcome_text = (
-        f"👋 *Здравствуйте, {user_name}!*\n\n"
-        f"Ваш доступ активен. Нажмите кнопку ниже, чтобы открыть плеер, либо просто напишите название трека в чат:"
-    )
+    if access_control.is_admin(user_id):
+        welcome_text = (
+            f"👑 *Здравствуйте, Администратор ({user_name})!*\n\n"
+            f"Ваш плеер активен в приватном режиме. Нажмите кнопку ниже для запуска, либо используйте /admin для панели управления:"
+        )
+    else:
+        welcome_text = (
+            f"👋 *Здравствуйте, {user_name}!*\n\n"
+            f"Ваш доступ активен. Нажмите кнопку ниже, чтобы открыть плеер, либо просто напишите название трека в чат:"
+        )
 
     try:
         bot.set_chat_menu_button(
@@ -168,6 +165,15 @@ def handle_approve(call):
         parse_mode="Markdown"
     )
 
+    # Set webapp menu button for the approved user
+    try:
+        bot.set_chat_menu_button(
+            chat_id=target_id,
+            menu_button=MenuButtonWebApp(type="web_app", text="🎵 Музыка", web_app=WebAppInfo(url=get_current_url()))
+        )
+    except Exception as e:
+        logger.warning(f"Could not set menu button for user {target_id}: {e}")
+
     # Notify the approved user
     try:
         bot.send_message(
@@ -192,6 +198,12 @@ def handle_reject(call):
 
     target_id = int(call.data.split('_')[1])
     access_control.remove_from_whitelist(target_id)
+
+    # Reset menu button for the rejected user
+    try:
+        bot.set_chat_menu_button(chat_id=target_id, menu_button=MenuButtonDefault())
+    except Exception:
+        pass
 
     bot.edit_message_text(
         chat_id=call.message.chat.id,

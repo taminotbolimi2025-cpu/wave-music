@@ -9,3 +9,5 @@ FRONTEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "fr
 # Render.com automatically sets RENDER_EXTERNAL_URL to the public HTTPS domain
 RENDER_URL = os.environ.get("RENDER_EXTERNAL_URL")
 WEBAPP_URL = os.environ.get("WEBAPP_URL", RENDER_URL or f"http://localhost:{PORT}")
+# Primary Admin ID (Owner)
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "8957090868"))
