@@ -1419,6 +1419,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkAccessStatusBtn = document.getElementById('checkAccessStatusBtn');
   const accessStatusNotice = document.getElementById('accessStatusNotice');
 
+  // Yandex Export Modal Elements
+  const yandexExportModal = document.getElementById('yandexExportModal');
+  const closeYmModalBtn = document.getElementById('closeYmModalBtn');
+  const ymTokenInput = document.getElementById('ymTokenInput');
+  const startYmSyncBtn = document.getElementById('startYmSyncBtn');
+  const ymSyncProgress = document.getElementById('ymSyncProgress');
+  const ymProgressMsg = document.getElementById('ymProgressMsg');
+  const ymProgressBar = document.getElementById('ymProgressBar');
+
   // Access State
   const initialUserId = tg?.initDataUnsafe?.user?.id || (new URLSearchParams(window.location.search).get('user_id')) || 0;
   state.currentUserId = initialUserId ? parseInt(initialUserId, 10) : 0;
@@ -2048,7 +2057,142 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  function renderLibrary() {
+  let yandexLikedTracks = [];
+
+  async function fetchYandexLibrary() {
+    try {
+      const res = await fetch('/api/yandex/liked');
+      if (res.ok) {
+        const data = await res.json();
+        yandexLikedTracks = data.tracks || [];
+      }
+    } catch (e) {
+      console.warn('Could not fetch Yandex library:', e);
+    }
+  }
+
+  function openYandexModal() {
+    if (yandexExportModal) yandexExportModal.style.display = 'flex';
+  }
+
+  function closeYandexModal() {
+    if (yandexExportModal) yandexExportModal.style.display = 'none';
+  }
+
+  if (closeYmModalBtn) closeYmModalBtn.addEventListener('click', closeYandexModal);
+
+  if (startYmSyncBtn) {
+    startYmSyncBtn.addEventListener('click', async () => {
+      triggerHaptic('medium');
+      const token = ymTokenInput.value.trim();
+      if (!token) {
+        showToast('Пожалуйста, вставьте ваш токен Яндекс Музыки');
+        return;
+      }
+
+      startYmSyncBtn.disabled = true;
+      startYmSyncBtn.style.opacity = '0.5';
+      ymSyncProgress.style.display = 'block';
+      ymProgressMsg.textContent = 'Подключение к аккаунту Яндекс...';
+
+      try {
+        const res = await fetch('/api/yandex/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          showToast(`Ошибка: ${data.error || 'Не удалось начать выгрузку'}`);
+          startYmSyncBtn.disabled = false;
+          startYmSyncBtn.style.opacity = '1';
+          ymSyncProgress.style.display = 'none';
+          return;
+        }
+
+        const pollInterval = setInterval(async () => {
+          try {
+            const sRes = await fetch('/api/yandex/status');
+            if (sRes.ok) {
+              const status = await sRes.json();
+              if (status.message) ymProgressMsg.textContent = status.message;
+              if (status.total > 0) {
+                const pct = Math.round((status.current / status.total) * 100);
+                ymProgressBar.style.width = `${Math.max(5, pct)}%`;
+              }
+              if (!status.running && status.message.includes('успешно')) {
+                clearInterval(pollInterval);
+                showToast('✅ Вся Яндекс Музыка успешно сохранена!');
+                setTimeout(async () => {
+                  closeYandexModal();
+                  startYmSyncBtn.disabled = false;
+                  startYmSyncBtn.style.opacity = '1';
+                  ymSyncProgress.style.display = 'none';
+                  await fetchYandexLibrary();
+                  renderLibrary();
+                }, 1200);
+              } else if (!status.running && status.message.includes('Ошибка')) {
+                clearInterval(pollInterval);
+                showToast(`Ошибка: ${status.message}`);
+                startYmSyncBtn.disabled = false;
+                startYmSyncBtn.style.opacity = '1';
+              }
+            }
+          } catch (pe) {}
+        }, 1500);
+
+      } catch (err) {
+        showToast(`Сетевая ошибка: ${err}`);
+        startYmSyncBtn.disabled = false;
+        startYmSyncBtn.style.opacity = '1';
+        ymSyncProgress.style.display = 'none';
+      }
+    });
+  }
+
+  async function renderLibrary() {
+    if (currentLibFilter === 'yandex') {
+      await fetchYandexLibrary();
+      favCountBadge.textContent = `${yandexLikedTracks.length} треков`;
+      if (yandexLikedTracks.length === 0) {
+        libraryList.innerHTML = `
+          <div class="empty-state" style="padding: 24px 16px; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 12px;">🟡</div>
+            <h3 style="margin-bottom: 8px;">Коллекция Яндекс Музыки</h3>
+            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 16px;">
+              Пока ни один трек не выгружен. Нажмите кнопку ниже, чтобы выгрузить все ваши любимые треки и плейлисты из Яндекс Музыки до истечения подписки Плюс.
+            </p>
+            <button id="openYmModalBtn" class="btn-primary" style="background: #ffcc00; color: #000; font-weight: 700; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer;">
+              ⚡️ Выгрузить из Яндекс Музыки
+            </button>
+          </div>
+        `;
+        document.getElementById('openYmModalBtn')?.addEventListener('click', () => {
+          triggerHaptic();
+          openYandexModal();
+        });
+        emptyLibraryNotice.style.display = 'none';
+      } else {
+        emptyLibraryNotice.style.display = 'none';
+        libraryList.innerHTML = '';
+        const topBar = document.createElement('div');
+        topBar.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 4px 6px 14px;';
+        topBar.innerHTML = `
+          <span style="font-size: 13px; color: #ffcc00; font-weight: 600;">🟡 Яндекс Плюс (Навсегда)</span>
+          <button id="reExportBtn" style="background: rgba(255,204,0,0.15); border: 1px solid rgba(255,204,0,0.3); color: #ffcc00; padding: 5px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;">
+            🔄 Обновить
+          </button>
+        `;
+        libraryList.appendChild(topBar);
+        document.getElementById('reExportBtn')?.addEventListener('click', openYandexModal);
+
+        const trackContainer = document.createElement('div');
+        renderTrackList(yandexLikedTracks, trackContainer, 'Яндекс Музыка (Моя коллекция)');
+        libraryList.appendChild(trackContainer);
+      }
+      return;
+    }
+
     const list = currentLibFilter === 'favorites' ? state.favorites : state.recent;
     favCountBadge.textContent = `${list.length} треков`;
     if (list.length === 0) {
@@ -2123,8 +2267,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.bottom-nav [data-target="tab-chart"]').click();
     });
 
-    // Playlists Grid (6 distinct rich collections)
+    // Playlists Grid (Rich collections including Yandex)
     const playlists = [
+      { name: '🟡 Моя Яндекс Музыка', count: 'Яндекс Плюс', img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300' },
       { name: 'Главный ТОП 100', count: '100 треков', img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=300' },
       { name: 'Кальянный Рэп', count: '50 треков', img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300' },
       { name: 'Deep & Chill House', count: '40 треков', img: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300' },
@@ -2146,6 +2291,19 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       pCard.addEventListener('click', async () => {
         triggerHaptic();
+        if (pl.name.includes('Яндекс')) {
+          await fetchYandexLibrary();
+          if (yandexLikedTracks.length > 0) {
+            state.queue = yandexLikedTracks;
+            state.queueIndex = 0;
+            loadAndPlay(state.queue[0], 'Моя Яндекс Музыка');
+            showToast(`Яндекс Музыка (${yandexLikedTracks.length} треков)`);
+          } else {
+            openYandexModal();
+          }
+          return;
+        }
+
         showToast(`Загрузка плейлиста: ${pl.name}...`);
         try {
           const res = await fetch(`/api/playlist?name=${encodeURIComponent(pl.name)}`);

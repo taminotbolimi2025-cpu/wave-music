@@ -942,4 +942,27 @@ def get_playlist_tracks(name):
         return [t for t in CATALOG if "drive" in t.get("moods", []) or "energy" in t.get("moods", [])]
     elif "зарубеж" in lower_name or "world" in lower_name:
         return [t for t in CATALOG if t.get("category") == "world"]
+    elif "яндекс" in lower_name or "yandex" in lower_name:
+        liked = get_yandex_liked_tracks()
+        if liked:
+            return liked
     return list(CATALOG)
+
+
+def get_yandex_library():
+    lib_file = os.path.join(os.path.dirname(__file__), "yandex_library.json")
+    if os.path.exists(lib_file):
+        try:
+            with open(lib_file, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"liked_tracks": [], "playlists": []}
+
+
+def get_yandex_liked_tracks():
+    return get_yandex_library().get("liked_tracks", [])
+
+
+def get_yandex_playlists():
+    return get_yandex_library().get("playlists", [])

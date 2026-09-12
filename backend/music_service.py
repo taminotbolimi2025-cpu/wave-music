@@ -7,6 +7,7 @@ import tempfile
 import uuid
 import yt_dlp
 import catalog
+import yandex_chart
 
 logger = logging.getLogger(__name__)
 
@@ -190,15 +191,35 @@ def get_stream_url(video_id_or_title: str) -> str:
         if time.time() - cached_time < 7200:  # 2 hours stream URL TTL
             return cached_url
 
-    # Target resolution
+def _resolve_target_query(clean_query: str) -> str:
     if clean_query.startswith('http'):
-        target = clean_query
+        return clean_query
     elif len(clean_query) == 11 and re.match(r'^[a-zA-Z0-9_-]{11}$', clean_query):
-        target = f"https://www.youtube.com/watch?v={clean_query}"
+        return f"https://www.youtube.com/watch?v={clean_query}"
+    elif clean_query.startswith('ym_'):
+        ym_id = clean_query[3:]
+        for t in catalog.get_yandex_liked_tracks():
+            if t.get('id') == clean_query or str(t.get('ym_id')) == ym_id:
+                return f"ytsearch1:{t['artist']} - {t['title']} audio"
+        for t in yandex_chart.fetch_live_yandex_chart(100):
+            if t.get('id') == clean_query or str(t.get('ym_id')) == ym_id:
+                return f"ytsearch1:{t['artist']} - {t['title']} audio"
+        return f"ytsearch1:{clean_query} audio"
     else:
         if clean_query.startswith('track_'):
             clean_query = 'хит музыки'
-        target = f"ytsearch1:{clean_query} audio"
+        return f"ytsearch1:{clean_query} audio"
+
+
+def get_stream_url(video_id_or_title: str) -> str:
+    """Extracts direct audio playback stream URL with high precision and caching"""
+    clean_query = video_id_or_title.strip()
+    if clean_query in _stream_cache:
+        cached_url, cached_time = _stream_cache[clean_query]
+        if time.time() - cached_time < 7200:  # 2 hours stream URL TTL
+            return cached_url
+
+    target = _resolve_target_query(clean_query)
 
     try:
         with yt_dlp.YoutubeDL(YDL_OPTS_STREAM) as ydl:
@@ -232,6 +253,12 @@ def _safe_basename(query: str) -> str:
 def get_cached_audio_path(video_id_or_title: str) -> str:
     """Returns path to cached audio file if it exists and is valid, else empty string"""
     clean_query = video_id_or_title.strip()
+    if clean_query.startswith("ym_"):
+        ym_id = clean_query[3:]
+        ypath = os.path.join(AUDIO_CACHE_DIR, "yandex", f"{ym_id}.mp3")
+        if os.path.exists(ypath) and os.path.getsize(ypath) > 10000:
+            return ypath
+
     base_name = _safe_basename(clean_query)
     for ext in ('.mp3', '.m4a', '.webm', '.aac', '.opus'):
         path = os.path.join(AUDIO_CACHE_DIR, f"{base_name}{ext}")
@@ -247,12 +274,7 @@ def download_and_cache_audio(video_id_or_title: str) -> str:
         return cached
 
     clean_query = video_id_or_title.strip()
-    if clean_query.startswith('http'):
-        target = clean_query
-    elif len(clean_query) == 11 and re.match(r'^[a-zA-Z0-9_-]{11}$', clean_query):
-        target = f"https://www.youtube.com/watch?v={clean_query}"
-    else:
-        target = f"ytsearch1:{clean_query} audio"
+    target = _resolve_target_query(clean_query)
 
     base_name = _safe_basename(clean_query)
     out_tmpl = os.path.join(AUDIO_CACHE_DIR, f"{base_name}.%(ext)s")
@@ -278,6 +300,7 @@ def download_and_cache_audio(video_id_or_title: str) -> str:
 
 def download_track_audio(video_id_or_title: str) -> str:
     """Downloads audio of track or gets it from cache. Returns path to file if successful."""
+    return download_and_cache_audio(video_id_or_title)
     return download_and_cache_audio(video_id_or_title)
 
 
@@ -329,7 +352,13 @@ def get_wave_tracks(mood: str = 'all'):
 
 
 def get_chart_tracks(force_refresh: bool = False):
-    """Returns top-50 chart tracks with guaranteed high-speed mobile playback"""
+    """Returns top-50 live chart tracks from Yandex Music with fallback to curated catalog"""
+    try:
+        live_chart = yandex_chart.fetch_live_yandex_chart(limit=50)
+        if live_chart and len(live_chart) >= 10:
+            return live_chart
+    except Exception as e:
+        logger.warning(f"Failed to fetch live Yandex chart: {e}")
     return catalog.get_chart_catalog(limit=50)
 
 

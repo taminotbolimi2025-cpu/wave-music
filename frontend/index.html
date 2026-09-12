@@ -162,6 +162,7 @@
 
         <div class="library-filter-tabs">
           <button class="lib-tab active" data-filter="favorites">Любимое</button>
+          <button class="lib-tab" data-filter="yandex">🟡 Яндекс Музыка</button>
           <button class="lib-tab" data-filter="recent">История</button>
         </div>
 
@@ -403,6 +404,37 @@
       </div>
     </div>
 
+    <!-- YANDEX EXPORT MODAL -->
+    <div id="yandexExportModal" class="access-gate-backdrop" style="display: none;">
+      <div class="access-gate-card" style="border: 1px solid rgba(255, 204, 0, 0.3);">
+        <button id="closeYmModalBtn" style="position: absolute; top: 14px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
+        <div class="access-gate-icon" style="background: rgba(255, 204, 0, 0.15); color: #ffcc00;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+          </svg>
+        </div>
+        <h3 class="access-gate-title">Яндекс Музыка (Плюс)</h3>
+        <p class="access-gate-desc">
+          Выгрузите всю вашу музыку (любимые треки, плейлисты и MP3 320 kbps) навсегда в ваш Mini App до истечения подписки!
+        </p>
+        <div style="background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 12px; text-align: left; line-height: 1.5; color: var(--text-secondary);">
+          <b>Инструкция получения токена:</b><br>
+          1. Откройте <a href="https://oauth.yandex.ru/authorize?response_type=token&client_id=23cabbbdc6cd418abb4b9c13230e92b8" target="_blank" style="color: #ffcc00; text-decoration: underline;">ссылку авторизации Яндекс</a><br>
+          2. Нажмите «Разрешить» и скопируйте токен после <code>access_token=</code>
+        </div>
+        <input type="text" id="ymTokenInput" placeholder="Вставьте токен Яндекс (y0_AgAA...)" style="width: 100%; padding: 12px 14px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #fff; margin-bottom: 12px; box-sizing: border-box; font-size: 13px;">
+        <button id="startYmSyncBtn" class="btn-access-primary" style="background: #ffcc00; color: #000; font-weight: 700;">
+          <span>⚡️ Выгрузить все треки в Mini App</span>
+        </button>
+        <div id="ymSyncProgress" style="display: none; margin-top: 14px; font-size: 13px; color: var(--text-muted); text-align: left;">
+          <div style="margin-bottom: 6px;">⏳ <span id="ymProgressMsg">Подключение к Яндекс Музыке...</span></div>
+          <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+            <div id="ymProgressBar" style="width: 10%; height: 100%; background: #ffcc00; transition: width 0.3s;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Audio Element (Native HTML5 Audio for pure MP3) -->
     <audio id="audioPlayer" preload="auto" playsinline webkit-playsinline></audio>
 
@@ -411,6 +443,6 @@
 
   </div>
 
-  <script src="app.js?v=3.1.0"></script>
+  <script src="app.js?v=3.2.0"></script>
 </body>
 </html>

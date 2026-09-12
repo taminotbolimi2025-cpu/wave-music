@@ -120,6 +120,68 @@ async def api_playlist(request):
     return web.json_response({'playlist': name, 'tracks': tracks})
 
 
+async def api_yandex_chart(request):
+    import yandex_chart
+    loop = asyncio.get_event_loop()
+    tracks = await loop.run_in_executor(None, yandex_chart.fetch_live_yandex_chart, 100)
+    return web.json_response({'tracks': tracks})
+
+
+async def api_yandex_liked(request):
+    import catalog
+    tracks = catalog.get_yandex_liked_tracks()
+    return web.json_response({'tracks': tracks})
+
+
+async def api_yandex_playlists(request):
+    import catalog
+    playlists = catalog.get_yandex_playlists()
+    return web.json_response({'playlists': playlists})
+
+
+_yandex_sync_status = {"running": False, "total": 0, "current": 0, "message": "Ожидание"}
+
+
+async def api_yandex_sync(request):
+    global _yandex_sync_status
+    try:
+        data = await request.json()
+        token = data.get("token", "").strip()
+        if not token:
+            return web.json_response({"error": "Токен не предоставлен"}, status=400)
+
+        if _yandex_sync_status["running"]:
+            return web.json_response({"status": "already_running", "progress": _yandex_sync_status})
+
+        import threading
+        import yandex_extractor
+
+        def run_sync():
+            global _yandex_sync_status
+            _yandex_sync_status["running"] = True
+            _yandex_sync_status["message"] = "Подключение к Яндекс Музыке..."
+            def on_progress(curr, total, track, msg):
+                _yandex_sync_status["current"] = curr
+                _yandex_sync_status["total"] = total
+                _yandex_sync_status["message"] = msg
+            try:
+                yandex_extractor.extract_full_library(token, download_audio=True, progress_cb=on_progress)
+                _yandex_sync_status["message"] = "Выгрузка успешно завершена! Все треки сохранены локально."
+            except Exception as e:
+                _yandex_sync_status["message"] = f"Ошибка: {e}"
+            finally:
+                _yandex_sync_status["running"] = False
+
+        threading.Thread(target=run_sync, daemon=True).start()
+        return web.json_response({"status": "started", "message": "Выгрузка запущена в фоновом режиме"})
+    except Exception as e:
+        return web.json_response({"error": str(e)}, status=500)
+
+
+async def api_yandex_status(request):
+    return web.json_response(_yandex_sync_status)
+
+
 async def api_stream(request):
     vid_id = request.query.get('id', '').strip()
     if not vid_id:
@@ -403,6 +465,11 @@ def create_app():
     app.router.add_get('/api/chart', api_chart)
     app.router.add_get('/api/new_releases', api_new_releases)
     app.router.add_get('/api/playlist', api_playlist)
+    app.router.add_get('/api/yandex/chart', api_yandex_chart)
+    app.router.add_get('/api/yandex/liked', api_yandex_liked)
+    app.router.add_get('/api/yandex/playlists', api_yandex_playlists)
+    app.router.add_post('/api/yandex/sync', api_yandex_sync)
+    app.router.add_get('/api/yandex/status', api_yandex_status)
     app.router.add_get('/api/stream', api_stream)
     app.router.add_post('/api/send_to_chat', api_send_to_chat)
 

@@ -1,4 +1,5 @@
 import os
+import time
 import html
 import logging
 import telebot
@@ -38,7 +39,7 @@ def get_current_url():
         except Exception:
             pass
     separator = "&" if "?" in base_url else "?"
-    return f"{base_url}{separator}v=3.0.0"
+    return f"{base_url}{separator}v=3.2.0"
 
 
 def get_webapp_keyboard():
@@ -229,6 +230,79 @@ def handle_help(message):
         "6. <b>Ссылки YouTube / Shorts:</b> отправьте ссылку на видео, и бот извлечет аудиофайл в чат!"
     )
     bot.send_message(message.chat.id, help_text, reply_markup=get_webapp_keyboard(), parse_mode="HTML")
+
+
+@bot.message_handler(commands=['yandex', 'ym'])
+def handle_yandex_export(message):
+    user_id = message.from_user.id
+    if not access_control.is_allowed(user_id):
+        handle_start(message)
+        return
+
+    parts = message.text.split(maxsplit=1)
+    if len(parts) < 2:
+        help_msg = (
+            "🟡 <b>Импорт и выгрузка из Яндекс Музыки</b>\n\n"
+            "Вы можете выгрузить все ваши любимые треки и плейлисты из Яндекс Музыки прямо в этот бот и Mini App до истечения подписки Плюс!\n\n"
+            "<b>Инструкция (за 30 секунд):</b>\n"
+            "1. Перейдите по официальной ссылке: 👉 <a href=\"https://oauth.yandex.ru/authorize?response_type=token&amp;client_id=23cabbbdc6cd418abb4b9c13230e92b8\">Получить токен Яндекс</a>\n"
+            "2. Нажмите «Разрешить» и скопируйте токен из адресной строки (после <code>access_token=</code>)\n"
+            "3. Отправьте команду боту:\n"
+            "<code>/yandex ВАШ_ТОКЕН</code>\n\n"
+            "Бот сразу же выгрузит всю вашу коллекцию и сохранит аудиофайлы навсегда!"
+        )
+        bot.send_message(message.chat.id, help_msg, parse_mode="HTML")
+        return
+
+    token = parts[1].strip()
+    status_msg = bot.send_message(message.chat.id, "⏳ <i>Подключаюсь к Яндекс Музыке и начинаю выгрузку...</i>", parse_mode="HTML")
+
+    import threading
+    import yandex_extractor
+
+    def run_tg_export():
+        try:
+            last_edit = [time.time()]
+            def on_progress(curr, total, track, msg_text):
+                now = time.time()
+                if now - last_edit[0] > 4 or curr == total:
+                    last_edit[0] = now
+                    try:
+                        bot.edit_message_text(
+                            chat_id=message.chat.id,
+                            message_id=status_msg.message_id,
+                            text=f"⏳ <b>Выгрузка Яндекс Музыки:</b>\n\nПрогресс: {curr}/{total}\nСейчас скачивается: <i>{html.escape(track['artist'])} — {html.escape(track['title'])}</i>",
+                            parse_mode="HTML"
+                        )
+                    except Exception:
+                        pass
+
+            res = yandex_extractor.extract_full_library(token, download_audio=True, progress_cb=on_progress)
+            liked_count = len(res.get("liked_tracks", []))
+            pl_count = len(res.get("playlists", []))
+
+            bot.send_message(
+                message.chat.id,
+                f"✅ <b>Выгрузка успешно завершена!</b>\n\n"
+                f"• Сохранено любимых треков: <b>{liked_count}</b>\n"
+                f"• Плейлистов: <b>{pl_count}</b>\n\n"
+                f"Все треки теперь навсегда доступны в вашем Mini App без подписок!",
+                reply_markup=get_webapp_keyboard(),
+                parse_mode="HTML"
+            )
+        except Exception as e:
+            logger.error(f"Error during Telegram Yandex export: {e}")
+            try:
+                bot.edit_message_text(
+                    chat_id=message.chat.id,
+                    message_id=status_msg.message_id,
+                    text=f"❌ <b>Ошибка при выгрузке:</b>\n<code>{html.escape(str(e))}</code>\n\nПроверьте правильность токена и попробуйте снова.",
+                    parse_mode="HTML"
+                )
+            except Exception:
+                pass
+
+    threading.Thread(target=run_tg_export, daemon=True).start()
 
 
 @bot.message_handler(commands=['chart', 'top'])
