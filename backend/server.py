@@ -196,7 +196,7 @@ async def api_version(request):
     import config
     return web.json_response({
         'status': 'ok',
-        'version': '2.4.0',
+        'version': '2.5.0',
         'admin_id': config.ADMIN_ID
     })
 
@@ -217,7 +217,8 @@ async def api_debug_stream(request):
         'format': '18/bestaudio[ext=m4a]/140/bestaudio/best',
         'extractor_args': {
             'youtube': {
-                'player_client': clients
+                'player_client': clients,
+                'player_skip': ['webpage', 'configs']
             }
         }
     }

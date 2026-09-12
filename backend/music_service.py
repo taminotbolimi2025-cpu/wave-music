@@ -21,7 +21,8 @@ YDL_OPTS_SEARCH = {
     'noplaylist': True,
     'extractor_args': {
         'youtube': {
-            'player_client': ['android', 'ios']
+            'player_client': ['android'],
+            'player_skip': ['webpage', 'configs']
         }
     }
 }
@@ -34,49 +35,50 @@ YDL_OPTS_STREAM = {
     'noplaylist': True,
     'extractor_args': {
         'youtube': {
-            'player_client': ['android', 'ios']
+            'player_client': ['android'],
+            'player_skip': ['webpage', 'configs']
         }
     }
 }
 
 CURATED_CHART = [
     {
-        'id': 'ZZMj3GjGTVU',
+        'id': '4EfM6rPmxow',
         'title': 'Minor',
         'artist': 'MiyaGi & Andy Panda',
         'cover': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400',
         'duration': '2:56'
     },
     {
-        'id': 'aYw5HDb3z54',
+        'id': 'j5cNhjG6iGs',
         'title': 'Останься образом',
         'artist': 'MACAN',
         'cover': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400',
         'duration': '3:12'
     },
     {
-        'id': '4NRXx6U8ABQ',
+        'id': 'fHI8X4OXluQ',
         'title': 'Blinding Lights',
         'artist': 'The Weeknd',
         'cover': 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400',
         'duration': '3:20'
     },
     {
-        'id': 'xKzL5zR4H7c',
+        'id': 'x1XuN5Rq2ws',
         'title': 'Ты и Я',
         'artist': 'Xcho',
         'cover': 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400',
         'duration': '2:45'
     },
     {
-        'id': 'XvR07g-R94E',
+        'id': 'yM1QjdoLmxQ',
         'title': 'Комета',
         'artist': 'JONY',
         'cover': 'https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400',
         'duration': '2:38'
     },
     {
-        'id': '_Yhyp-_hX2s',
+        'id': 'tR1ECf4sEpw',
         'title': 'Lose Yourself',
         'artist': 'Eminem',
         'cover': 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400',
@@ -308,7 +310,8 @@ def download_and_cache_audio(video_id_or_title: str) -> str:
         'max_filesize': 35 * 1024 * 1024,
         'extractor_args': {
             'youtube': {
-                'player_client': ['android', 'ios']
+                'player_client': ['android'],
+                'player_skip': ['webpage', 'configs']
             }
         }
     }
@@ -335,7 +338,7 @@ def download_track_audio(video_id_or_title: str) -> str:
 def pre_cache_top_tracks():
     """Pre-downloads top tracks so mobile playback is instant with zero buffering"""
     logger.info("[PreCache] Начинаю фоновую предзагрузку топ-треков для мгновенного воспроизведения...")
-    startup_ids = ['ZZMj3GjGTVU', 'aYw5HDb3z54', '4NRXx6U8ABQ', 'xKzL5zR4H7c', 'XvR07g-R94E', '_Yhyp-_hX2s']
+    startup_ids = ['4EfM6rPmxow', 'j5cNhjG6iGs', 'fHI8X4OXluQ', 'x1XuN5Rq2ws', 'yM1QjdoLmxQ', 'tR1ECf4sEpw']
     for sid in startup_ids:
         try:
             download_and_cache_audio(sid)

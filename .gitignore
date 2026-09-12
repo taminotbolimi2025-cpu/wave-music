@@ -5,5 +5,3 @@ __pycache__/
 daily_chart.json
 daily_releases.json
 *.log
-backend/audio_cache/
-audio_cache/
