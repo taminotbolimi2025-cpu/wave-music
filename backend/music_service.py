@@ -321,10 +321,15 @@ def _safe_filename(query: str) -> str:
 def get_cached_audio_path(video_id_or_title: str) -> str:
     """Returns path to cached audio file if it exists and is valid, else empty string"""
     clean_query = video_id_or_title.strip()
-    fname = _safe_filename(clean_query)
-    fpath = os.path.join(AUDIO_CACHE_DIR, fname)
-    if os.path.exists(fpath) and os.path.getsize(fpath) > 50000:
-        return fpath
+    base_name = re.sub(r'[^a-zA-Z0-9_-]', '_', clean_query)
+    if len(base_name) > 50:
+        base_name = base_name[:50]
+    mp3_path = os.path.join(AUDIO_CACHE_DIR, f"{base_name}.mp3")
+    if os.path.exists(mp3_path) and os.path.getsize(mp3_path) > 10000:
+        return mp3_path
+    m4a_path = os.path.join(AUDIO_CACHE_DIR, f"{base_name}.m4a")
+    if os.path.exists(m4a_path) and os.path.getsize(m4a_path) > 10000:
+        return m4a_path
     return ""
 
 

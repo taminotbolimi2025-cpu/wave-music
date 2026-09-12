@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=2.8.0">
+  <link rel="stylesheet" href="style.css?v=3.0.0">
 </head>
 <body>
   <div id="app" class="app-container">
@@ -361,14 +361,14 @@
       </button>
     </nav>
 
-    <!-- Media Element (Video tag with playsinline supports MP4 H.264+AAC seamlessly on iOS & Android) -->
-    <video id="audioPlayer" playsinline webkit-playsinline x5-playsinline preload="auto" style="position: fixed; top: -100px; left: -100px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></video>
+    <!-- Audio Element (Native HTML5 Audio for pure MP3) -->
+    <audio id="audioPlayer" preload="auto" playsinline webkit-playsinline></audio>
 
     <!-- Toast Notification -->
     <div id="toast" class="toast-popup"></div>
 
   </div>
 
-  <script src="app.js?v=2.8.0"></script>
+  <script src="app.js?v=3.0.0"></script>
 </body>
 </html>
