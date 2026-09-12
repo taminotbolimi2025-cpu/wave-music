@@ -66,15 +66,10 @@ def run_ssh_tunnel(port=8080):
 
 
 def start_single_tunnel(port=8080):
-    # 1. Primary: SSH localhost.run (no Cloudflare 530 error, works on Russian/CIS Wi-Fi)
-    url, proc = run_ssh_tunnel(port)
-    if url and proc:
-        return url, proc
-
-    # 2. Fallback: Cloudflare tunnel
+    # 1. Primary: Cloudflare Tunnel (rock solid, permanent, global edge, no random disconnects)
     if os.path.exists(CLOUDFLARED_EXE):
         try:
-            print(f"[Tunnel] Запуск резервного Cloudflare туннеля для порта {port}...", flush=True)
+            print(f"[Tunnel] Запуск надёжного Cloudflare туннеля для порта {port}...", flush=True)
             proc = subprocess.Popen(
                 [CLOUDFLARED_EXE, "tunnel", "--url", f"http://127.0.0.1:{port}"],
                 stdout=subprocess.PIPE,
@@ -86,7 +81,7 @@ def start_single_tunnel(port=8080):
 
             tunnel_url = None
             start_time = time.time()
-            while time.time() - start_time < 20:
+            while time.time() - start_time < 25:
                 line = proc.stdout.readline()
                 if not line:
                     continue
@@ -98,8 +93,16 @@ def start_single_tunnel(port=8080):
             if tunnel_url:
                 with open(URL_FILE, "w", encoding="utf-8") as f:
                     f.write(tunnel_url)
+                print("\n" + "=" * 60, flush=True)
+                print(f"[HTTPS URL] ВАШЕ МИНИ-ПРИЛОЖЕНИЕ ДОСТУПНО: {tunnel_url}", flush=True)
+                print("=" * 60 + "\n", flush=True)
                 return tunnel_url, proc
         except Exception as e:
             print(f"[Tunnel] Ошибка Cloudflare: {e}", flush=True)
+
+    # 2. Fallback: SSH localhost.run
+    url, proc = run_ssh_tunnel(port)
+    if url and proc:
+        return url, proc
 
     return None, None
