@@ -194,6 +194,142 @@ document.addEventListener('DOMContentLoaded', () => {
   const coverHalo = document.getElementById('coverHalo');
   const toast = document.getElementById('toast');
 
+  // Access Control Modal Elements
+  const accessGateModal = document.getElementById('accessGateModal');
+  const accessUserName = document.getElementById('accessUserName');
+  const accessUserId = document.getElementById('accessUserId');
+  const sendAccessRequestBtn = document.getElementById('sendAccessRequestBtn');
+  const checkAccessStatusBtn = document.getElementById('checkAccessStatusBtn');
+  const accessStatusNotice = document.getElementById('accessStatusNotice');
+
+  // Access State
+  const initialUserId = tg?.initDataUnsafe?.user?.id || (new URLSearchParams(window.location.search).get('user_id')) || 0;
+  state.currentUserId = initialUserId ? parseInt(initialUserId, 10) : 0;
+  state.isAccessAllowed = false;
+  state.isAdmin = false;
+
+  async function checkUserAccess() {
+    const tgUser = tg?.initDataUnsafe?.user;
+    let uid = state.currentUserId || tgUser?.id;
+    if (!uid) {
+      const urlUid = new URLSearchParams(window.location.search).get('user_id');
+      if (urlUid) uid = parseInt(urlUid, 10);
+    }
+    state.currentUserId = uid || 0;
+
+    if (!uid) {
+      // If opened outside Telegram without user_id, check version or allow preview
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/check_access?user_id=${uid}`);
+      if (res.ok) {
+        const data = await res.json();
+        state.isAccessAllowed = Boolean(data.allowed);
+        state.isAdmin = Boolean(data.is_admin);
+
+        if (!state.isAccessAllowed) {
+          showAccessGate(tgUser || { id: uid, first_name: 'Пользователь' });
+          if (audio) {
+            audio.pause();
+            state.isPlaying = false;
+            updatePlayPauseState(false);
+          }
+        } else {
+          hideAccessGate();
+        }
+      }
+    } catch (e) {
+      console.warn('Access check error:', e);
+    }
+  }
+
+  function showAccessGate(user) {
+    if (!accessGateModal) return;
+    accessGateModal.style.display = 'flex';
+    if (accessUserName) accessUserName.textContent = user.first_name || 'Пользователь';
+    if (accessUserId) accessUserId.textContent = `ID: ${user.id || state.currentUserId}`;
+
+    const requested = localStorage.getItem(`wave_access_requested_${user.id || state.currentUserId}`);
+    if (requested) {
+      if (sendAccessRequestBtn) {
+        sendAccessRequestBtn.disabled = true;
+        sendAccessRequestBtn.innerHTML = '<span>⏳ Запрос на рассмотрении</span>';
+      }
+      if (checkAccessStatusBtn) checkAccessStatusBtn.style.display = 'flex';
+      if (accessStatusNotice) {
+        accessStatusNotice.style.display = 'block';
+        accessStatusNotice.textContent = 'Ваш запрос отправлен администратору. Когда он подтвердит заявку, нажмите «Проверить одобрение» ниже.';
+      }
+    }
+  }
+
+  function hideAccessGate() {
+    if (accessGateModal) accessGateModal.style.display = 'none';
+  }
+
+  if (sendAccessRequestBtn) {
+    sendAccessRequestBtn.addEventListener('click', async () => {
+      triggerHaptic('medium');
+      const tgUser = tg?.initDataUnsafe?.user;
+      const uid = state.currentUserId || tgUser?.id;
+      if (!uid) {
+        showToast('Не удалось определить Telegram ID');
+        return;
+      }
+
+      sendAccessRequestBtn.disabled = true;
+      sendAccessRequestBtn.innerHTML = '<span>⏳ Отправка...</span>';
+
+      try {
+        const res = await fetch('/api/request_access', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_id: uid,
+            first_name: tgUser?.first_name || 'Пользователь',
+            username: tgUser?.username || ''
+          })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          localStorage.setItem(`wave_access_requested_${uid}`, 'true');
+          sendAccessRequestBtn.innerHTML = '<span>✅ Запрос отправлен!</span>';
+          if (checkAccessStatusBtn) checkAccessStatusBtn.style.display = 'flex';
+          if (accessStatusNotice) {
+            accessStatusNotice.style.display = 'block';
+            accessStatusNotice.textContent = 'Администратор получил ваш запрос. Как только доступ откроют, нажмите кнопку «Проверить одобрение».';
+          }
+          showToast('📩 Запрос отправлен администратору!');
+        } else {
+          sendAccessRequestBtn.disabled = false;
+          sendAccessRequestBtn.innerHTML = '<span>📩 Отправить запрос админу</span>';
+          showToast(data.error || 'Ошибка при отправке');
+        }
+      } catch (err) {
+        sendAccessRequestBtn.disabled = false;
+        sendAccessRequestBtn.innerHTML = '<span>📩 Отправить запрос админу</span>';
+        showToast('Ошибка сети. Попробуйте еще раз.');
+      }
+    });
+  }
+
+  if (checkAccessStatusBtn) {
+    checkAccessStatusBtn.addEventListener('click', async () => {
+      triggerHaptic('light');
+      checkAccessStatusBtn.innerHTML = '<span>⏳ Проверка...</span>';
+      await checkUserAccess();
+      checkAccessStatusBtn.innerHTML = '<span>🔄 Проверить одобрение</span>';
+      if (state.isAccessAllowed) {
+        showToast('🎉 Доступ одобрен! Добро пожаловать!');
+      } else {
+        showToast('⏳ Заявка еще на рассмотрении администратора');
+      }
+    });
+  }
+
   // 4. Toast Helper
   function showToast(text, duration = 3000) {
     toast.textContent = text;
@@ -205,6 +341,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Audio Engine Functions
   function loadAndPlay(track, source = 'Моя Волна') {
+    if (state.currentUserId && !state.isAccessAllowed) {
+      showAccessGate(tg?.initDataUnsafe?.user || { id: state.currentUserId });
+      showToast('🔒 Требуется одобрение администратора', 3000);
+      return;
+    }
     state.currentTrack = track;
     document.getElementById('playerSourceLabel').textContent = source;
 
@@ -224,7 +365,8 @@ document.addEventListener('DOMContentLoaded', () => {
       streamId = `${track.artist} ${track.title}`;
     }
     showToast(`▶ ${track.artist} — ${track.title}`, 2000);
-    const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}`;
+    const userParam = state.currentUserId ? `&user_id=${state.currentUserId}` : '';
+    const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}${userParam}`;
     if (!audio.src || !audio.src.includes(encodeURIComponent(streamId))) {
       audio.src = streamUrl;
     }
@@ -521,9 +663,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   async function executeSearch(query) {
+    if (state.currentUserId && !state.isAccessAllowed) {
+      showAccessGate(tg?.initDataUnsafe?.user || { id: state.currentUserId });
+      showToast('🔒 Поиск доступен после одобрения администратором');
+      searchLoader.style.display = 'none';
+      return;
+    }
     const currentId = ++activeSearchId;
     try {
-      const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+      const userParam = state.currentUserId ? `&user_id=${state.currentUserId}` : '';
+      const res = await fetch(`/api/search?q=${encodeURIComponent(query)}${userParam}`);
       if (currentId !== activeSearchId) return;
       if (res.ok) {
         const data = await res.json();
@@ -874,6 +1023,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 15. Initial Render
+  checkUserAccess();
   renderHomeHits();
   renderChart();
   favCountBadge.textContent = `${state.favorites.length} треков`;

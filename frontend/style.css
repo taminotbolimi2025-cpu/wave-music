@@ -1188,3 +1188,180 @@ body {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
 }
+
+/* ==========================================================================
+   ACCESS CONTROL & APPROVAL GATE MODAL
+   ========================================================================== */
+.access-gate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.access-gate-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 12, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.access-gate-card {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(180deg, #181822 0%, #101016 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  max-width: 360px;
+  width: 100%;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: gatePopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes gatePopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.access-gate-icon-ring {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.18) 0%, rgba(245, 166, 35, 0.04) 70%);
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f5a623;
+  box-shadow: 0 0 30px rgba(245, 166, 35, 0.2);
+}
+
+.access-gate-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.access-gate-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #9898a8;
+  margin: 0 0 20px;
+}
+
+.access-user-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+.access-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.access-user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e4e4ed;
+}
+
+.access-user-id {
+  font-size: 11px;
+  color: #727282;
+  font-family: monospace;
+}
+
+.btn-access-primary {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #f5a623 0%, #e08c0b 100%);
+  color: #0b0b10;
+  border: none;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.32);
+  transition: all 0.2s ease;
+}
+
+.btn-access-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(245, 166, 35, 0.42);
+}
+
+.btn-access-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-access-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-access-secondary {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e4e4ed;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-access-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn-access-secondary:active {
+  transform: scale(0.98);
+}
+
+.access-status-notice {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  background: rgba(245, 166, 35, 0.12);
+  border: 1px solid rgba(245, 166, 35, 0.25);
+  color: #ffbe4a;
+}
+

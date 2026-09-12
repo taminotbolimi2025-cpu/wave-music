@@ -214,6 +214,11 @@ def handle_start(message):
 
 @bot.message_handler(commands=['help'])
 def handle_help(message):
+    user_id = message.from_user.id
+    if not access_control.is_allowed(user_id):
+        handle_start(message)
+        return
+
     help_text = (
         "🎵 <b>Возможности бота Wave Music:</b>\n\n"
         "1. <b>Полноценный Mini App:</b> нажмите кнопку «🎵 Открыть Wave Music» под чатом или напишите /start.\n"
@@ -513,7 +518,9 @@ def handle_admin_panel(message):
 @bot.message_handler(content_types=['text'])
 def handle_text_search(message):
     user_id = message.from_user.id
-    access_control.is_allowed(user_id)
+    if not access_control.is_allowed(user_id):
+        handle_start(message)
+        return
 
     query = message.text.strip()
     if query.startswith('/'):
@@ -583,6 +590,21 @@ def handle_text_search(message):
 @bot.inline_handler(lambda query: len(query.query.strip()) > 1)
 def handle_inline_query(inline_query):
     """Allows instant music search and sharing across PC, iPhone, and Android in any chat"""
+    user_id = inline_query.from_user.id
+    if not access_control.is_allowed(user_id):
+        article = InlineQueryResultArticle(
+            id="no_access",
+            title="🔒 Доступ к музыке ограничен",
+            description="Нажмите, чтобы запросить доступ у администратора",
+            thumb_url="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100",
+            input_message_content=InputTextMessageContent(
+                message_text=f"🔒 <b>Доступ к Wave Music закрыт</b>\n\nОткройте бота @{config.BOT_USERNAME} и нажмите кнопку «📩 Отправить запрос админу», чтобы получить доступ.",
+                parse_mode="HTML"
+            )
+        )
+        bot.answer_inline_query(inline_query.id, [article], cache_time=5)
+        return
+
     try:
         q = inline_query.query.strip()
         tracks = music_service.search_tracks(q, limit=8)

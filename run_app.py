@@ -38,6 +38,28 @@ def start_server():
     loop.run_forever()
 
 
+def sync_user_menu_buttons(webapp_url):
+    """Configures MenuButtonDefault for all random users, and MenuButtonWebApp only for approved users"""
+    import access_control
+    from telebot.types import MenuButtonDefault, MenuButtonWebApp, WebAppInfo
+    try:
+        bot.set_chat_menu_button(menu_button=MenuButtonDefault())
+        print("[Access] Глобальное меню: приватный режим (по запросу)", flush=True)
+    except Exception as e:
+        logger.warning(f"Could not reset global menu button: {e}")
+
+    whitelist = access_control.get_whitelist()
+    for uid in whitelist:
+        try:
+            bot.set_chat_menu_button(
+                chat_id=uid,
+                menu_button=MenuButtonWebApp(type="web_app", text="🎵 Музыка", web_app=WebAppInfo(url=webapp_url))
+            )
+        except Exception:
+            pass
+    print(f"[Access] Кнопка MiniApp настроена для {len(whitelist)} одобренных пользователей", flush=True)
+
+
 def tunnel_watchdog():
     """Keeps the tunnel alive permanently. If it ever closes, restarts automatically."""
     global _tunnel_proc
@@ -49,14 +71,7 @@ def tunnel_watchdog():
                 _tunnel_proc = proc
                 config.WEBAPP_URL = tunnel_url
                 print(f"[Watchdog] Активный URL туннеля: {tunnel_url}", flush=True)
-                try:
-                    from telebot.types import MenuButtonWebApp, WebAppInfo
-                    bot.set_chat_menu_button(
-                        menu_button=MenuButtonWebApp(type="web_app", text="🎵 Музыка", web_app=WebAppInfo(url=tunnel_url))
-                    )
-                    print(f"[Watchdog] Главная кнопка-меню Telegram настроена для всех: {tunnel_url}", flush=True)
-                except Exception as b_err:
-                    print(f"[Watchdog] Предупреждение: не удалось синхронизировать меню-кнопку бота: {b_err}", flush=True)
+                sync_user_menu_buttons(tunnel_url)
                 # Wait for tunnel process to finish (if it dies)
                 proc.wait()
                 print("[Watchdog] Туннель был разорван. Перезапуск через 3 сек...", flush=True)
@@ -113,14 +128,7 @@ def main():
         time.sleep(4)
     else:
         print(f"[Cloud] Облачный режим активен! URL: {config.WEBAPP_URL}", flush=True)
-        try:
-            from telebot.types import MenuButtonWebApp, WebAppInfo
-            bot.set_chat_menu_button(
-                menu_button=MenuButtonWebApp(type="web_app", text="🎵 Музыка", web_app=WebAppInfo(url=config.WEBAPP_URL))
-            )
-            print(f"[Cloud] Главная кнопка-меню Telegram настроена для всех: {config.WEBAPP_URL}", flush=True)
-        except Exception as b_err:
-            print(f"[Cloud] Предупреждение: не удалось синхронизировать меню-кнопку бота: {b_err}", flush=True)
+        sync_user_menu_buttons(config.WEBAPP_URL)
 
     # 3. Start Daily Playlist Auto-Updater thread
     updater_thread = threading.Thread(target=daily_updater_thread, daemon=True)

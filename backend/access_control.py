@@ -75,10 +75,11 @@ def get_whitelist() -> list:
 
 
 def is_allowed(user_id: int) -> bool:
-    """Allows all users so the bot works seamlessly across PC, iPhone, and Android, and registers them in whitelist"""
-    if user_id:
-        add_to_whitelist(user_id)
-    return True
+    if not user_id:
+        return False
+    if is_admin(user_id):
+        return True
+    return user_id in get_whitelist()
 
 
 def add_to_whitelist(user_id: int):

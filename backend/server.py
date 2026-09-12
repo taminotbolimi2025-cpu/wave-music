@@ -9,7 +9,9 @@ import telebot
 
 from config import BOT_TOKEN, HOST, PORT, FRONTEND_DIR
 import music_service
+import access_control
 import yt_dlp
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
@@ -116,6 +118,16 @@ async def api_stream(request):
     if not vid_id:
         return web.Response(status=400, text='Missing id parameter')
     
+    # Check access permission if user_id is passed
+    user_id_str = request.query.get('user_id') or request.headers.get('X-User-Id')
+    if user_id_str:
+        try:
+            uid = int(user_id_str)
+            if not access_control.is_allowed(uid):
+                return web.Response(status=403, text='Access restricted. Approval required.')
+        except (ValueError, TypeError):
+            return web.Response(status=403, text='Invalid user credentials.')
+
     # 1. Fast path: check if track is already cached locally on disk
     cached_path = music_service.get_cached_audio_path(vid_id)
     if cached_path and os.path.exists(cached_path) and os.path.getsize(cached_path) > 10000:
@@ -204,6 +216,12 @@ async def api_send_to_chat(request):
         if not user_id:
             return web.json_response({'error': 'Missing user_id'}, status=400)
 
+        try:
+            if not access_control.is_allowed(int(user_id)):
+                return web.json_response({'error': 'Access denied. Please request access from administrator.'}, status=403)
+        except (ValueError, TypeError):
+            return web.json_response({'error': 'Invalid user_id'}, status=400)
+
         title = track.get('title', 'Трек')
         artist = track.get('artist', 'Wave Music')
         track_id = track.get('id', '')
@@ -248,6 +266,70 @@ async def api_send_to_chat(request):
         return web.json_response({'success': True})
     except Exception as ex:
         logger.error(f"Error in send_to_chat: {ex}")
+        return web.json_response({'error': str(ex)}, status=500)
+
+
+async def api_check_access(request):
+    user_id_str = request.query.get('user_id', '').strip()
+    try:
+        user_id = int(user_id_str) if user_id_str else 0
+    except (ValueError, TypeError):
+        user_id = 0
+
+    allowed = access_control.is_allowed(user_id) if user_id else False
+    is_admin = access_control.is_admin(user_id) if user_id else False
+
+    return web.json_response({
+        'user_id': user_id,
+        'allowed': allowed,
+        'is_admin': is_admin
+    })
+
+
+async def api_request_access(request):
+    try:
+        data = await request.json()
+        user_id = int(data.get('user_id', 0))
+        first_name = html.escape(str(data.get('first_name') or 'Пользователь'))
+        username = data.get('username', '')
+        username_str = f"@{html.escape(username)}" if username else "нет юзернейма"
+
+        if not user_id:
+            return web.json_response({'error': 'Missing user_id'}, status=400)
+
+        if access_control.is_allowed(user_id):
+            return web.json_response({
+                'success': True,
+                'already_allowed': True,
+                'message': 'Доступ уже открыт!'
+            })
+
+        # Send notification to Telegram bot admins
+        admins = access_control.get_admins()
+        markup = InlineKeyboardMarkup()
+        markup.add(
+            InlineKeyboardButton(text="✅ Разрешить доступ", callback_data=f"approve_{user_id}"),
+            InlineKeyboardButton(text="❌ Отклонить", callback_data=f"reject_{user_id}")
+        )
+        admin_text = (
+            f"🔔 <b>Новый запрос на доступ из Mini App:</b>\n\n"
+            f"👤 <b>Имя:</b> {first_name}\n"
+            f"🔗 <b>Юзернейм:</b> {username_str}\n"
+            f"🆔 <b>ID:</b> <code>{user_id}</code>\n\n"
+            f"Разрешить этому человеку использовать плеер?"
+        )
+        for admin_id in admins:
+            try:
+                bot.send_message(chat_id=admin_id, text=admin_text, reply_markup=markup, parse_mode="HTML")
+            except Exception as e:
+                logger.warning(f"Could not notify admin {admin_id}: {e}")
+
+        return web.json_response({
+            'success': True,
+            'message': 'Запрос отправлен администратору. Ожидайте одобрения.'
+        })
+    except Exception as ex:
+        logger.error(f"Error handling access request: {ex}")
         return web.json_response({'error': str(ex)}, status=500)
 
 
@@ -306,6 +388,8 @@ def create_app():
     
     # API Routes
     app.router.add_get('/api/version', api_version)
+    app.router.add_get('/api/check_access', api_check_access)
+    app.router.add_post('/api/request_access', api_request_access)
     app.router.add_get('/api/debug_stream', api_debug_stream)
     app.router.add_get('/api/search', api_search)
     app.router.add_get('/api/wave', api_wave)
