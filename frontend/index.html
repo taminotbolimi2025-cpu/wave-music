@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=3.4.0">
+  <link rel="stylesheet" href="style.css?v=3.5.0">
 </head>
 <body>
   <div id="app" class="app-container">
@@ -162,6 +162,7 @@
 
         <div class="library-filter-tabs">
           <button class="lib-tab active" data-filter="favorites">Любимое</button>
+          <button class="lib-tab" data-filter="offline">📥 В метро (Офлайн)</button>
           <button class="lib-tab" data-filter="yandex">🟡 Яндекс Музыка</button>
           <button class="lib-tab" data-filter="recent">История</button>
         </div>
@@ -302,20 +303,28 @@
           </button>
         </div>
 
-        <!-- Background Play & Download -->
+        <!-- Background Play & Download & Subway Offline -->
         <div class="pro-features-strip">
-          <button id="sendToChatBtn" class="pro-action-btn" title="Слушать в фоне">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
-            </svg>
-            <span>В фон Telegram</span>
-          </button>
-
-          <button id="downloadMp3Btn" class="pro-action-btn" title="Скачать">
+          <button id="saveOfflineBtn" class="pro-action-btn" title="Сохранить для метро">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span id="saveOfflineBtnText">📥 В метро</span>
+          </button>
+
+          <button id="sendToChatBtn" class="pro-action-btn" title="Слушать в фоне">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+            </svg>
+            <span>В фон</span>
+          </button>
+
+          <button id="downloadMp3Btn" class="pro-action-btn" title="Скачать файл">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 2v13"></path>
+              <path d="M5 15l7 7 7-7"></path>
             </svg>
             <span>Скачать MP3</span>
           </button>
@@ -443,6 +452,14 @@
 
   </div>
 
-  <script src="app.js?v=3.4.0"></script>
+  <script src="offline_db.js?v=3.5.0"></script>
+  <script src="app.js?v=3.5.0"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW note:', err));
+      });
+    }
+  </script>
 </body>
 </html>

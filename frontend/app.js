@@ -5684,6 +5684,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const repeatBtn = document.getElementById('repeatBtn');
   const sendToChatBtn = document.getElementById('sendToChatBtn');
   const downloadMp3Btn = document.getElementById('downloadMp3Btn');
+  const saveOfflineBtn = document.getElementById('saveOfflineBtn');
+  const saveOfflineBtnText = document.getElementById('saveOfflineBtnText');
   const coverHalo = document.getElementById('coverHalo');
   const toast = document.getElementById('toast');
 
@@ -5842,7 +5844,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 5. Audio Engine Functions
-  function loadAndPlay(track, source = 'Моя Волна') {
+  async function loadAndPlay(track, source = 'Моя Волна') {
     if (state.currentUserId && !state.isAccessAllowed) {
       showAccessGate(tg?.initDataUnsafe?.user || { id: state.currentUserId });
       showToast('🔒 Требуется одобрение администратора', 3000);
@@ -5861,19 +5863,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update UI elements
     updateTrackMetadataUI(track);
 
-    // Stream URL resolution: prioritize valid YouTube ID or "Artist - Title"
-    let streamId = track.id;
-    if (!streamId || streamId.startsWith('track_')) {
-      streamId = `${track.artist} ${track.title}`;
+    // Stream URL resolution: prioritize Offline IndexedDB first!
+    let offlineRecord = null;
+    try {
+      if (window.offlineDB) {
+        offlineRecord = await window.offlineDB.getOfflineTrack(track.id);
+      }
+    } catch (e) {
+      console.warn('Offline lookup error:', e);
     }
-    showToast(`▶ ${track.artist} — ${track.title}`, 2000);
-    const userParam = state.currentUserId ? `&user_id=${state.currentUserId}` : '';
-    const artistParam = track.artist ? `&artist=${encodeURIComponent(track.artist)}` : '';
-    const titleParam = track.title ? `&title=${encodeURIComponent(track.title)}` : '';
-    const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}${artistParam}${titleParam}${userParam}`;
-    if (!audio.src || !audio.src.includes(encodeURIComponent(streamId))) {
-      audio.src = streamUrl;
+
+    if (offlineRecord && offlineRecord.blob) {
+      const offlineBlobUrl = URL.createObjectURL(offlineRecord.blob);
+      audio.src = offlineBlobUrl;
+      showToast(`🚇 Память телефона: ${track.artist} — ${track.title}`, 2200);
+      updateOfflineBtnUI(true);
+    } else {
+      updateOfflineBtnUI(false);
+      let streamId = track.id;
+      if (!streamId || streamId.startsWith('track_')) {
+        streamId = `${track.artist} ${track.title}`;
+      }
+      showToast(`▶ ${track.artist} — ${track.title}`, 2000);
+      const userParam = state.currentUserId ? `&user_id=${state.currentUserId}` : '';
+      const artistParam = track.artist ? `&artist=${encodeURIComponent(track.artist)}` : '';
+      const titleParam = track.title ? `&title=${encodeURIComponent(track.title)}` : '';
+      const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}${artistParam}${titleParam}${userParam}`;
+      if (!audio.src || !audio.src.includes(encodeURIComponent(streamId))) {
+        audio.src = streamUrl;
+      }
     }
+
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
@@ -5977,6 +5997,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function updateOfflineBtnUI(isSaved) {
+    if (!saveOfflineBtn || !saveOfflineBtnText) return;
+    if (isSaved) {
+      saveOfflineBtn.style.color = '#10b981';
+      saveOfflineBtnText.textContent = '✅ В метро';
+    } else {
+      saveOfflineBtn.style.color = '';
+      saveOfflineBtnText.textContent = '📥 В метро';
+    }
+  }
+
   function updateTrackMetadataUI(track) {
     miniTitle.textContent = track.title;
     miniArtist.textContent = track.artist;
@@ -5990,6 +6021,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const isLiked = state.favorites.some(t => t.id === track.id || t.title === track.title);
     miniLikeBtn.classList.toggle('active', isLiked);
     fullLikeBtn.classList.toggle('active', isLiked);
+
+    // Check offline status in IndexedDB
+    if (window.offlineDB) {
+      window.offlineDB.isOfflineTrack(track.id).then(isSaved => {
+        updateOfflineBtnUI(isSaved);
+      }).catch(() => {});
+    }
 
     // Active track in lists
     document.querySelectorAll('.track-item').forEach(item => {
@@ -6429,6 +6467,50 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function renderLibrary() {
+    if (currentLibFilter === 'offline') {
+      emptyLibraryNotice.style.display = 'none';
+      let offlineTracks = [];
+      try {
+        if (window.offlineDB) {
+          offlineTracks = await window.offlineDB.getAllOfflineTracks();
+        }
+      } catch (e) {
+        console.warn('Error loading offline tracks:', e);
+      }
+      favCountBadge.textContent = `${offlineTracks.length} треков`;
+      if (offlineTracks.length === 0) {
+        libraryList.innerHTML = `
+          <div class="empty-state" style="padding: 32px 16px; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 12px;">🚇</div>
+            <h3 style="margin-bottom: 8px;">Офлайн-память пуста</h3>
+            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 16px;">
+              Откройте любой трек в плеере и нажмите кнопку <b>«📥 В метро»</b> — он сохранится в память телефона и будет играть без интернета.
+            </p>
+            <button id="goExploreChartBtn" class="btn-primary" style="background: var(--accent-gradient, #4f46e5); color: #fff; font-weight: 600; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer;">
+              🎵 Выбрать треки в чарте
+            </button>
+          </div>
+        `;
+        document.getElementById('goExploreChartBtn')?.addEventListener('click', () => {
+          document.querySelector('.bottom-nav [data-target="tab-chart"]')?.click();
+        });
+      } else {
+        libraryList.innerHTML = '';
+        const topBar = document.createElement('div');
+        topBar.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 4px 6px 14px;';
+        topBar.innerHTML = `
+          <span style="font-size: 13px; color: #10b981; font-weight: 600;">🚇 В памяти для метро (${offlineTracks.length})</span>
+          <span style="font-size: 12px; color: var(--text-muted);">Играет без сети</span>
+        `;
+        libraryList.appendChild(topBar);
+
+        const trackContainer = document.createElement('div');
+        renderTrackList(offlineTracks, trackContainer, 'Скачанные для метро (Офлайн)');
+        libraryList.appendChild(trackContainer);
+      }
+      return;
+    }
+
     if (currentLibFilter === 'yandex') {
       await fetchYandexLibrary();
       favCountBadge.textContent = `${yandexLikedTracks.length} треков`;
@@ -6691,12 +6773,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  if (saveOfflineBtn) {
+    saveOfflineBtn.addEventListener('click', async () => {
+      triggerHaptic('medium');
+      if (!state.currentTrack) return;
+      const track = state.currentTrack;
+      if (!window.offlineDB) {
+        showToast('⚠️ Офлайн-память не поддерживается');
+        return;
+      }
+
+      const isSaved = await window.offlineDB.isOfflineTrack(track.id);
+      if (isSaved) {
+        await window.offlineDB.deleteOfflineTrack(track.id);
+        updateOfflineBtnUI(false);
+        showToast(`🗑️ «${track.title}» удалён из офлайн-памяти`);
+        if (currentLibFilter === 'offline') renderLibrary();
+        return;
+      }
+
+      showToast(`⏳ Сохраняю «${track.title}» в память телефона...`);
+      if (saveOfflineBtnText) saveOfflineBtnText.textContent = '⏳ Скачиваю...';
+
+      try {
+        const streamId = (!track.id || track.id.startsWith('track_')) ? `${track.artist} ${track.title}` : track.id;
+        const artistParam = track.artist ? `&artist=${encodeURIComponent(track.artist)}` : '';
+        const titleParam = track.title ? `&title=${encodeURIComponent(track.title)}` : '';
+        const userParam = state.currentUserId ? `&user_id=${state.currentUserId}` : '';
+        const streamUrl = `/api/stream?id=${encodeURIComponent(streamId)}${artistParam}${titleParam}${userParam}`;
+
+        const res = await fetch(streamUrl);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const blob = await res.blob();
+        if (!blob || blob.size < 5000) throw new Error('Пустой аудиопоток');
+
+        await window.offlineDB.saveOfflineTrack(track, blob);
+        updateOfflineBtnUI(true);
+        triggerHaptic('success');
+        showToast(`✅ «${track.title}» в памяти! Будет играть в метро без интернета 🚇`, 3500);
+        if (currentLibFilter === 'offline') renderLibrary();
+      } catch (err) {
+        console.error('Save offline error:', err);
+        updateOfflineBtnUI(false);
+        showToast(`⚠️ Не удалось сохранить: ${err.message || 'ошибка сети'}`);
+      }
+    });
+  }
+
   downloadMp3Btn.addEventListener('click', () => {
     triggerHaptic('medium');
     if (!state.currentTrack) return;
     showToast('⬇️ Скачивание трека началось...');
     const tArtist = encodeURIComponent(state.currentTrack.artist || '');
     const tTitle = encodeURIComponent(state.currentTrack.title || '');
+    const link = document.createElement('a');
     link.href = `/api/stream?id=${encodeURIComponent(state.currentTrack.id)}&artist=${tArtist}&title=${tTitle}`;
     link.download = `${state.currentTrack.artist} - ${state.currentTrack.title}.mp3`;
     link.target = '_blank';
