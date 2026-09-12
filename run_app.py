@@ -153,20 +153,21 @@ def main():
         time.sleep(4)
     else:
         print(f"[Cloud] Облачный режим активен! URL: {config.WEBAPP_URL}", flush=True)
-        if os.environ.get("SYNC_RENDER_MENU"):
-            sync_user_menu_buttons(config.WEBAPP_URL)
-        else:
-            print("[Cloud] Меню-кнопка сохранена за активным рабочим туннелем", flush=True)
+        print("[Cloud] Меню-кнопка закреплена за офисным компьютером", flush=True)
 
     # 3. Start Daily Playlist Auto-Updater thread
     updater_thread = threading.Thread(target=daily_updater_thread, daemon=True)
     updater_thread.start()
 
-    # 4. Start Telegram Bot polling (self-healing loop)
-    print(f"\n[Bot] Telegram-бот @{config.BOT_USERNAME} готов к работе!", flush=True)
-    print(f"[Bot] Отправьте /start боту в Telegram для открытия плеера.\n", flush=True)
-
-    bot_polling_loop()
+    # 4. Start Telegram Bot polling (self-healing loop) - only on office PC
+    if config.RENDER_URL or os.environ.get("RENDER"):
+        print("[Cloud] На Render опрос бота отключен, чтобы офис работал эксклюзивно без конфликтов.", flush=True)
+        while True:
+            time.sleep(3600)
+    else:
+        print(f"\n[Bot] Telegram-бот @{config.BOT_USERNAME} готов к работе!", flush=True)
+        print(f"[Bot] Отправьте /start боту в Telegram для открытия плеера.\n", flush=True)
+        bot_polling_loop()
 
 
 if __name__ == "__main__":
