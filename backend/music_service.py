@@ -138,6 +138,7 @@ def search_tracks(query: str, limit: int = 12):
                     'artist': artist,
                     'cover': cover,
                     'duration': _format_duration(duration_sec),
+                    'duration_sec': int(duration_sec or 0),
                     'streamUrl': f"/api/stream?id={vid_id}"
                 })
     except Exception as ex:
@@ -201,6 +202,47 @@ def get_stream_url(video_id_or_title: str) -> str:
         pass
 
     return ""
+
+
+import tempfile
+import uuid
+
+
+def download_track_audio(video_id_or_title: str) -> str:
+    """Downloads audio of track to a local m4a file in temp directory.
+    Returns path to file if successful, or empty string on failure.
+    Caller is responsible for removing the file after sending."""
+    clean_query = video_id_or_title.strip()
+    if clean_query.startswith('http'):
+        target = clean_query
+    elif len(clean_query) == 11 and re.match(r'^[a-zA-Z0-9_-]{11}$', clean_query):
+        target = f"https://www.youtube.com/watch?v={clean_query}"
+    else:
+        target = f"ytsearch1:{clean_query} audio"
+
+    out_file = os.path.join(tempfile.gettempdir(), f"wave_{uuid.uuid4().hex[:8]}.m4a")
+    ydl_opts = {
+        'format': 'bestaudio[ext=m4a]/bestaudio/best',
+        'outtmpl': out_file,
+        'quiet': True,
+        'no_warnings': True,
+        'noplaylist': True,
+        'max_filesize': 30 * 1024 * 1024,
+    }
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([target])
+        if os.path.exists(out_file) and os.path.getsize(out_file) > 1000:
+            return out_file
+    except Exception as ex:
+        logger.error(f"Error downloading audio for {video_id_or_title}: {ex}")
+        if os.path.exists(out_file):
+            try:
+                os.remove(out_file)
+            except Exception:
+                pass
+    return ""
+
 
 
 import os

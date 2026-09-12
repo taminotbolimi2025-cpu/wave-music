@@ -1,4 +1,5 @@
 import os
+import html
 import json
 import logging
 import asyncio
@@ -129,27 +130,40 @@ async def api_send_to_chat(request):
         artist = track.get('artist', 'Wave Music')
         track_id = track.get('id', '')
 
-        # Resolve audio URL
-        audio_url = music_service.get_stream_url(track_id or f"{artist} {title}")
+        # Download audio track in worker thread
+        loop = asyncio.get_event_loop()
+        audio_file = await loop.run_in_executor(
+            None,
+            music_service.download_track_audio,
+            track_id or f"{artist} {title}"
+        )
 
-        # Send to Telegram chat
-        caption = f"🎵 *{title}*\n👤 {artist}\n\n✨ _Воспроизводится в фоновом режиме даже с выключенным экраном_"
-        
-        try:
-            bot.send_audio(
-                chat_id=user_id,
-                audio=audio_url,
-                title=title,
-                performer=artist,
-                caption=caption,
-                parse_mode='Markdown'
-            )
-        except Exception as send_err:
-            logger.warning(f"send_audio failed, sending direct music card link: {send_err}")
+        caption = (
+            f"🎵 <b>{html.escape(artist)} — {html.escape(title)}</b>\n\n"
+            f"✨ <i>Воспроизводится в фоновом режиме даже с выключенным экраном</i>"
+        )
+
+        if audio_file and os.path.exists(audio_file):
+            try:
+                with open(audio_file, 'rb') as f:
+                    bot.send_audio(
+                        chat_id=user_id,
+                        audio=f,
+                        title=title,
+                        performer=artist,
+                        caption=caption,
+                        parse_mode='HTML'
+                    )
+            finally:
+                try:
+                    os.remove(audio_file)
+                except Exception:
+                    pass
+        else:
             bot.send_message(
                 chat_id=user_id,
-                text=f"🎵 *{artist} — {title}*\n\n🎧 [Нажмите здесь, чтобы слушать в Telegram]({audio_url})",
-                parse_mode='Markdown'
+                text=caption,
+                parse_mode='HTML'
             )
 
         return web.json_response({'success': True})
@@ -158,10 +172,20 @@ async def api_send_to_chat(request):
         return web.json_response({'error': str(ex)}, status=500)
 
 
+async def api_version(request):
+    import config
+    return web.json_response({
+        'status': 'ok',
+        'version': '2.1.0',
+        'admin_id': config.ADMIN_ID
+    })
+
+
 def create_app():
     app = web.Application(middlewares=[cors_middleware])
     
     # API Routes
+    app.router.add_get('/api/version', api_version)
     app.router.add_get('/api/search', api_search)
     app.router.add_get('/api/wave', api_wave)
     app.router.add_get('/api/chart', api_chart)
