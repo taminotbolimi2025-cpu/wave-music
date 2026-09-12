@@ -80,6 +80,7 @@ async def api_stream(request):
     cached_path = music_service.get_cached_audio_path(vid_id)
     if cached_path and os.path.exists(cached_path) and os.path.getsize(cached_path) > 10000:
         return web.FileResponse(cached_path, headers={
+            'Content-Type': 'video/mp4',
             'Access-Control-Allow-Origin': '*',
             'Cache-Control': 'public, max-age=86400'
         })
@@ -131,6 +132,7 @@ async def api_stream(request):
         downloaded = await loop.run_in_executor(None, music_service.download_and_cache_audio, vid_id)
         if downloaded and os.path.exists(downloaded) and os.path.getsize(downloaded) > 10000:
             return web.FileResponse(downloaded, headers={
+                'Content-Type': 'video/mp4',
                 'Access-Control-Allow-Origin': '*',
                 'Cache-Control': 'public, max-age=86400'
             })
@@ -201,7 +203,7 @@ async def api_version(request):
     import config
     return web.json_response({
         'status': 'ok',
-        'version': '2.7.0',
+        'version': '2.8.0',
         'admin_id': config.ADMIN_ID
     })
 
