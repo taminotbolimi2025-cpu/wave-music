@@ -109,6 +109,14 @@ def main():
         time.sleep(4)
     else:
         print(f"[Cloud] Облачный режим активен! URL: {config.WEBAPP_URL}", flush=True)
+        try:
+            from telebot.types import MenuButtonWebApp, WebAppInfo
+            bot.set_chat_menu_button(
+                menu_button=MenuButtonWebApp(type="web_app", text="🎵 Музыка", web_app=WebAppInfo(url=config.WEBAPP_URL))
+            )
+            print(f"[Cloud] Меню-кнопка Telegram бота успешно синхронизирована: {config.WEBAPP_URL}", flush=True)
+        except Exception as b_err:
+            print(f"[Cloud] Предупреждение: не удалось синхронизировать меню-кнопку бота: {b_err}", flush=True)
 
     # 3. Start Daily Playlist Auto-Updater thread
     updater_thread = threading.Thread(target=daily_updater_thread, daemon=True)
