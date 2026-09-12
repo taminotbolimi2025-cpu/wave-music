@@ -49,6 +49,14 @@ def tunnel_watchdog():
                 _tunnel_proc = proc
                 config.WEBAPP_URL = tunnel_url
                 print(f"[Watchdog] Активный URL туннеля: {tunnel_url}", flush=True)
+                try:
+                    from telebot.types import MenuButtonWebApp, WebAppInfo
+                    bot.set_chat_menu_button(
+                        menu_button=MenuButtonWebApp(type="web_app", text="🎵 Музыка", web_app=WebAppInfo(url=tunnel_url))
+                    )
+                    print(f"[Watchdog] Меню-кнопка Telegram бота успешно синхронизирована: {tunnel_url}", flush=True)
+                except Exception as b_err:
+                    print(f"[Watchdog] Предупреждение: не удалось синхронизировать меню-кнопку бота: {b_err}", flush=True)
                 # Wait for tunnel process to finish (if it dies)
                 proc.wait()
                 print("[Watchdog] Туннель был разорван. Перезапуск через 3 сек...", flush=True)
