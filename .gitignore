@@ -12,3 +12,4 @@ backend/audio_cache/
 *.mp3
 *.webm
 *.opus
+*.egg-info/

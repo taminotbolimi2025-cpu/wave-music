@@ -4,3 +4,4 @@ requests>=2.31.0
 yt-dlp>=2024.0.0
 imageio-ffmpeg>=0.5.0
 yandex-music>=3.0.0
+-e .
