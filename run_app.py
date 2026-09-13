@@ -200,13 +200,13 @@ def main():
     updater_thread = threading.Thread(target=daily_updater_thread, daemon=True)
     updater_thread.start()
 
-    # 4. Start Telegram Bot polling (self-healing loop)
-    if os.environ.get("DISABLE_BOT"):
-        print("[Bot] Опрос бота отключен переменной DISABLE_BOT.", flush=True)
+    # 4. Start Telegram Bot polling (self-healing loop) - only on laptop/PC
+    if config.RENDER_URL or os.environ.get("RENDER"):
+        print("[Cloud] На Render опрос бота отключен, чтобы ноутбук работал эксклюзивно без конфликтов.", flush=True)
         while True:
             time.sleep(3600)
     else:
-        print(f"\n[Bot] Telegram-бот @{config.BOT_USERNAME} готов к работе 24/7!", flush=True)
+        print(f"\n[Bot] Telegram-бот @{config.BOT_USERNAME} готов к работе!", flush=True)
         print(f"[Bot] Отправьте /start боту в Telegram для открытия плеера.\n", flush=True)
         bot_polling_loop()
 
