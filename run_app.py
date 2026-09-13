@@ -129,11 +129,28 @@ def bot_polling_loop():
         except Exception as e:
             err_str = str(e)
             if "409" in err_str or "Conflict" in err_str:
-                logger.info("Bot polling active on Render cloud. Standing by...")
+                logger.info("Bot polling active elsewhere. Standing by for 15s...")
                 time.sleep(15)
             else:
                 logger.warning(f"Bot polling exception: {e}. Reconnecting in 5s...")
                 time.sleep(5)
+
+
+def keep_alive_thread():
+    """Keeps Render Free tier awake by pinging /health every 10 minutes"""
+    if not config.RENDER_URL:
+        return
+    import urllib.request
+    ping_url = f"{config.RENDER_URL.rstrip('/')}/health"
+    print(f"[KeepAlive] Пингер активности запущен: {ping_url}", flush=True)
+    while True:
+        time.sleep(10 * 60)
+        try:
+            req = urllib.request.Request(ping_url, headers={'User-Agent': 'Render-Self-Ping'})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                pass
+        except Exception:
+            pass
 
 
 def main():
@@ -146,26 +163,50 @@ def main():
     server_thread.start()
     time.sleep(1)
 
-    # 2. Start Tunnel Watchdog in background thread (only if running locally)
+    # 2. Configure URL and Tunnels
     if not config.RENDER_URL and not os.environ.get("NO_TUNNEL"):
+        # Local PC mode: run tunnel watchdog
         tunnel_thread = threading.Thread(target=tunnel_watchdog, daemon=True)
         tunnel_thread.start()
         time.sleep(4)
     else:
-        print(f"[Cloud] Облачный режим активен! URL: {config.WEBAPP_URL}", flush=True)
-        print("[Cloud] Меню-кнопка закреплена за офисным компьютером", flush=True)
+        # Cloud / Render mode: permanent domain active
+        print(f"[Cloud] Облачный режим 24/7 активен! URL: {config.WEBAPP_URL}", flush=True)
+        try:
+            sync_user_menu_buttons(config.WEBAPP_URL)
+        except Exception as e:
+            logger.warning(f"Could not sync menu buttons: {e}")
+
+        # Start self-keepalive pinger to prevent Render free instance from sleeping
+        keepalive = threading.Thread(target=keep_alive_thread, daemon=True)
+        keepalive.start()
+
+        # Send startup notification to Admin with permanent URL
+        try:
+            from bot import get_webapp_keyboard
+            bot.send_message(
+                config.ADMIN_ID,
+                f"🚀 <b>Wave Music онлайн в облаке Render 24/7!</b>\n\n"
+                f"🌐 Постоянный адрес: <code>{config.WEBAPP_URL}</code>\n"
+                f"💡 Теперь плеер работает всегда, даже когда ваш ПК выключен!",
+                parse_mode="HTML",
+                reply_markup=get_webapp_keyboard()
+            )
+            print(f"[Cloud] Уведомление с постоянным URL отправлено админу ({config.ADMIN_ID})", flush=True)
+        except Exception as notify_err:
+            logger.warning(f"Could not send cloud startup notification: {notify_err}")
 
     # 3. Start Daily Playlist Auto-Updater thread
     updater_thread = threading.Thread(target=daily_updater_thread, daemon=True)
     updater_thread.start()
 
-    # 4. Start Telegram Bot polling (self-healing loop) - only on office PC
-    if config.RENDER_URL or os.environ.get("RENDER"):
-        print("[Cloud] На Render опрос бота отключен, чтобы офис работал эксклюзивно без конфликтов.", flush=True)
+    # 4. Start Telegram Bot polling (self-healing loop)
+    if os.environ.get("DISABLE_BOT"):
+        print("[Bot] Опрос бота отключен переменной DISABLE_BOT.", flush=True)
         while True:
             time.sleep(3600)
     else:
-        print(f"\n[Bot] Telegram-бот @{config.BOT_USERNAME} готов к работе!", flush=True)
+        print(f"\n[Bot] Telegram-бот @{config.BOT_USERNAME} готов к работе 24/7!", flush=True)
         print(f"[Bot] Отправьте /start боту в Telegram для открытия плеера.\n", flush=True)
         bot_polling_loop()
 

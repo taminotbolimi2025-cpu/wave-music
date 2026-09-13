@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: wave-music
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run_app.py
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: BOT_TOKEN
+        value: 8738282936:AAHPZONZS9BVFH1F8vVQpQCo6HBXOUkStfg
+      - key: ADMIN_ID
+        value: 8957090868

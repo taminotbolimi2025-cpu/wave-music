@@ -143,6 +143,30 @@ def handle_myid(message):
     )
 
 
+@bot.message_handler(commands=['url', 'link'])
+def handle_url(message):
+    user_id = message.from_user.id
+    if not access_control.is_allowed(user_id):
+        handle_start(message)
+        return
+
+    curr_url = get_current_url()
+    mode_str = "☁️ <b>Облако Render (24/7 Постоянный)</b>" if config.RENDER_URL else "💻 <b>Локальный туннель</b>"
+    
+    markup = InlineKeyboardMarkup()
+    markup.add(InlineKeyboardButton(text="🎵 Открыть плеер Wave Music", web_app=WebAppInfo(url=curr_url)))
+    
+    bot.reply_to(
+        message,
+        f"🌐 <b>Текущий рабочий адрес Wave Music:</b>\n\n"
+        f"Режим: {mode_str}\n"
+        f"Ссылка: <code>{curr_url}</code>\n\n"
+        f"💡 <i>Если вы настраивали Web App в @BotFather, убедитесь, что там указан именно этот URL.</i>",
+        reply_markup=markup,
+        parse_mode="HTML"
+    )
+
+
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     user_id = message.from_user.id

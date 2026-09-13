@@ -488,6 +488,10 @@ def create_app():
     app.router.add_get('/api/lyrics', api_lyrics)
     app.router.add_post('/api/send_to_chat', api_send_to_chat)
 
+    # Health check for Render cloud & uptime monitors
+    app.router.add_get('/health', lambda r: web.json_response({'status': 'ok'}))
+    app.router.add_get('/ping', lambda r: web.Response(text='pong'))
+
     # Static Routes
     app.router.add_get('/', index_handler)
     app.router.add_static('/', path=FRONTEND_DIR, name='frontend')
